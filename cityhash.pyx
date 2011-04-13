@@ -71,14 +71,14 @@ cpdef CityHash64(bytes buf):
     """
     return c_CityHash64(buf, len(buf))
 
-cpdef CityHash64WithSeed(bytes buf, long seed):
+cpdef CityHash64WithSeed(bytes buf, uint64 seed):
     """
         Description: Hash function for a byte array. For convenience, a 64-bit seed is also
                      hashed into the result.
     """
     return c_CityHash64WithSeed(buf, len(buf), seed)
 
-cpdef CityHash64WithSeeds(bytes buf, long seed0, long seed1):
+cpdef CityHash64WithSeeds(bytes buf, uint64 seed0, uint64 seed1):
     """
         Description: Hash function for a byte array.  For convenience, two seeds are also
                      hashed into the result.
