@@ -30,6 +30,8 @@ __all__         = ["CityHash64",
                    "CityHash128",
                    "CityHash128WithSeed",
                    "Hash128to64",
+                   "ch64",
+                   "ch128",
                   ]
 
 cdef extern from * nogil:
@@ -110,3 +112,31 @@ cpdef Hash128to64(tuple x):
     cdef pair[uint64,uint64] xx
     xx.first, xx.second = x[0], x[1]
     return c_Hash128to64(xx)
+
+cdef class ch64:
+    cdef uint64 __value
+    cdef public bytes name
+    def __cinit__(self, bytes value=str("")):
+        self.name = str("CityHash64")
+        self.update(value)
+    cpdef update(self, bytes value):
+        if self.__value:
+            self.__value = c_CityHash64WithSeed(value, len(value), self.__value)
+        else:
+            self.__value = c_CityHash64(value, len(value))
+    cpdef digest(self):
+        return self.__value
+
+cdef class ch128:
+    cdef tuple __value
+    cdef public bytes name
+    def __cinit__(self, bytes value=str("")):
+        self.name = str("CityHash128")
+        self.update(value)
+    cpdef update(self, bytes value):
+        if self.__value:
+            self.__value = CityHash128WithSeed(value, self.__value)
+        else:
+            self.__value = CityHash128(value)
+    cpdef digest(self):
+        return self.__value
