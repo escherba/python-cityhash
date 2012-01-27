@@ -31,18 +31,15 @@ __url__     = "http://amper.github.com/cityhash"
 
 from distutils.core import setup
 from distutils.extension import Extension
-from Cython.Distutils import build_ext
 
-ext_modules = [Extension("cityhash", ["city.cc","cityhash.pyx"])]
+ext_modules = [Extension("cityhash", ["city.cc","cityhash.cpp"])]
 
 setup(
-    version = "0.1",
+    version = "0.2",
     description = "Python-bindings for CityHash",
     author = "Alexander [Amper] Marshalov",
     author_email = "alone.amper+cityhash@gmail.com",
     url = "https://github.com/Amper/cityhash",
     name='cityhash', 
     license='MIT',
-    cmdclass = {'build_ext': build_ext},
-    ext_modules = ext_modules
-)
+    ext_modules = ext_modules)
