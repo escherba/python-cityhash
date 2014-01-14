@@ -35,11 +35,11 @@ from distutils.extension import Extension
 ext_modules = [Extension("cityhash", ["city.cc","cityhash.cpp"])]
 
 setup(
-    version = "0.2",
+    version = "0.0.2",
     description = "Python-bindings for CityHash",
     author = "Alexander [Amper] Marshalov",
     author_email = "alone.amper+cityhash@gmail.com",
     url = "https://github.com/Amper/cityhash",
-    name='cityhash', 
+    name='cityhash',
     license='MIT',
     ext_modules = ext_modules)
