@@ -59,7 +59,7 @@ setup(
     author="Alexander [Amper] Marshalov",
     author_email="alone.amper+cityhash@gmail.com",
     url="https://github.com/Amper/cityhash",
-    name='pycityhash',
+    name='cityhash',
     license='MIT',
     cmdclass={'build_ext': build_ext_subclass},
     ext_modules=[Extension("cityhash", ["city.cc", "cityhash.cpp"])]
