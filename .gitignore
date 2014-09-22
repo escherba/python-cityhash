@@ -1,0 +1,6 @@
+*.py[cod]
+
+.ropeproject/
+build/
+
+*.sw[op]

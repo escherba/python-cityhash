@@ -29,17 +29,38 @@ __jabber__  = "alone.amper@gmail.com"
 __twitter__ = "amper"
 __url__     = "http://amper.github.com/cityhash"
 
-from distutils.core import setup
+from setuptools import setup
+from distutils.command.build_ext import build_ext
 from distutils.extension import Extension
 
-ext_modules = [Extension("cityhash", ["city.cc","cityhash.cpp"])]
+
+class build_ext_subclass(build_ext):
+    """
+    This fixes a problem with building packages when environmental variable
+    CXX consists of compiler name + arguments with spaces in the middle.
+    build_ext instead expects an array where each element is a CLI token, and
+    so normally compilation would fail with error "unable to execute
+    `cxx[0]`: No such file or directory. This subclass of build_ext extracts
+    the compiler name and places remaining arguments back into the array
+    """
+    def build_extensions(self):
+        ccm = self.compiler.compiler
+        if ' ' in ccm:
+            self.compiler.compiler = ccm[0].split(' ') + ccm[1:]
+        cxx = self.compiler.compiler_cxx
+        if ' ' in cxx[0]:
+            self.compiler.compiler_cxx = cxx[0].split(' ') + cxx[1:]
+        build_ext.build_extensions(self)
+
 
 setup(
-    version = "0.0.2",
-    description = "Python-bindings for CityHash",
-    author = "Alexander [Amper] Marshalov",
-    author_email = "alone.amper+cityhash@gmail.com",
-    url = "https://github.com/Amper/cityhash",
+    version="0.0.3",
+    description="Python-bindings for CityHash",
+    author="Alexander [Amper] Marshalov",
+    author_email="alone.amper+cityhash@gmail.com",
+    url="https://github.com/Amper/cityhash",
     name='cityhash',
     license='MIT',
-    ext_modules = ext_modules)
+    cmdclass={'build_ext': build_ext_subclass},
+    ext_modules=[Extension("cityhash", ["city.cc", "cityhash.cpp"])]
+)
