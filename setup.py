@@ -36,16 +36,23 @@ from distutils.extension import Extension
 
 class build_ext_subclass(build_ext):
     """
-    This fixes a problem with building packages when environmental variable
-    CXX consists of compiler name + arguments with spaces in the middle.
-    build_ext instead expects an array where each element is a CLI token, and
-    so normally compilation would fail with error "unable to execute
-    `cxx[0]`: No such file or directory. This subclass of build_ext extracts
-    the compiler name and places remaining arguments back into the array
+    This class is an ugly hack to a problem that arises when one must force
+    a compiler to use specific flags by adding to the environment somethiing
+    like the following:
+
+        CXX="clang --some_flagA --some_flagB -I/usr/bin/include/mylibC"
+
+    (as opposed to setting CXXFLAGS). Distutils in that case will complain
+    that it cannot run the entire command as given because it is not
+    found as an executable (specific error message is: "unable to execute...
+    ... no such file or directory").
+
+    This subclass of ``build_ext`` will extract the compiler name from the
+    command line and insert any remaining arguments right after it.
     """
     def build_extensions(self):
         ccm = self.compiler.compiler
-        if ' ' in ccm:
+        if ' ' in ccm[0]:
             self.compiler.compiler = ccm[0].split(' ') + ccm[1:]
         cxx = self.compiler.compiler_cxx
         if ' ' in cxx[0]:

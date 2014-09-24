@@ -1,6 +1,9 @@
+# Python
 *.py[cod]
-
-.ropeproject/
+*.egg-info/
 build/
+dist/
 
+# Misc editor stuff
+.ropeproject/
 *.sw[op]
