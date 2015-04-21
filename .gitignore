@@ -7,3 +7,6 @@ dist/
 # Misc editor stuff
 .ropeproject/
 *.sw[op]
+
+# virtualenv
+env/
