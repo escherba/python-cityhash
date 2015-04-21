@@ -31,5 +31,5 @@ env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv --no-site-packages env
 	$(PYENV) pip install -U pip wheel
-	$(PYENV) pip install -e . -r $<
+	$(PYENV) pip install -e .
 	touch $@
