@@ -31,7 +31,7 @@ __url__     = "http://amper.github.com/cityhash"
 
 from setuptools import setup
 from distutils.extension import Extension
-#from distutils.command.build_ext import build_ext
+from pkg_resources import resource_string
 from Cython.Distutils import build_ext
 
 
@@ -71,7 +71,16 @@ setup(
     license='MIT',
     cmdclass={'build_ext': build_ext_subclass},
     ext_modules=[Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
-                           language = "c++",
+                           language="c++",
                            extra_compile_args=['-O3'],
-                           include_dirs=['include'])]
+                           include_dirs=['include'])],
+    classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Operating System :: OS Independent',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Programming Language :: Python :: 2.7',
+    ],
+    long_description=resource_string(__name__, 'README.rst'),
 )
