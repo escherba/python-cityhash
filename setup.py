@@ -30,8 +30,9 @@ __twitter__ = "amper"
 __url__     = "http://amper.github.com/cityhash"
 
 from setuptools import setup
-from distutils.command.build_ext import build_ext
 from distutils.extension import Extension
+#from distutils.command.build_ext import build_ext
+from Cython.Distutils import build_ext
 
 
 class build_ext_subclass(build_ext):
@@ -69,5 +70,8 @@ setup(
     name='cityhash',
     license='MIT',
     cmdclass={'build_ext': build_ext_subclass},
-    ext_modules=[Extension("cityhash", ["city.cc", "cityhash.cpp"])]
+    ext_modules=[Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
+                           language = "c++",
+                           extra_compile_args=['-O3'],
+                           include_dirs=['include'])]
 )
