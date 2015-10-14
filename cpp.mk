@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -O3
+CXXFLAGS := -O3 -msse4.2
 LDFLAGS := -stdlib=libc++
 SRCEXT := cc
 INC := -I include
@@ -46,4 +46,7 @@ run_cpp: $(RUN_TARGETS)
 		done
 
 test_cpp: $(TEST_TARGETS)
-	$(foreach target, $^, ./$(target);)
+	@for target in $(TEST_TARGETS); do \
+		echo $$target >&2; \
+		./$$target; \
+		done

@@ -20,5 +20,5 @@ CityHash64
 
     >>> from cityhash import CityHash64
     >>> CityHash64("abc")
-    4220206313085259313L
+    2640714258260161385L
 

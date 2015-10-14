@@ -72,7 +72,7 @@ setup(
     cmdclass={'build_ext': build_ext_subclass},
     ext_modules=[Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
                            language="c++",
-                           extra_compile_args=['-O3'],
+                           extra_compile_args=['-O3', '-msse4.2'],
                            include_dirs=['include'])],
     classifiers=[
         'Development Status :: 3 - Alpha',
