@@ -208,7 +208,7 @@ static uint128 CityMurmur(const char *s, size_t len, uint128 seed) {
   uint64 b = Uint128High64(seed);
   uint64 c = 0;
   uint64 d = 0;
-  ssize_t l = len - 16;
+  size_t l = len - 16;
   if (l <= 0) {  // len <= 16
     c = b * k1 + HashLen0to16(s, len);
     d = Rotate(a + (len >= 8 ? UNALIGNED_LOAD64(s) : c), 32);
