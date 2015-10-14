@@ -1,11 +1,11 @@
 CXX := g++
-CXXFLAGS := -std=c++11 -msse4.2 -O3
+CXXFLAGS := -O3
 LDFLAGS := -stdlib=libc++
 SRCEXT := cc
 INC := -I include
 LIB := -L lib
 
-INPUT := ./data/sample_10k.txt
+INPUT := ./data/sample_100k.txt
 
 BINDIR := bin
 SRCDIR := src
