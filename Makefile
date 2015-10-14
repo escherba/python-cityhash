@@ -1,8 +1,13 @@
-.PHONY: clean develop env extras package release test virtualenv
+.PHONY: clean develop env extras package release test virtualenv build_ext
 
-PYENV = . env/bin/activate;
-PYTHON = $(PYENV) python
-DISTRIBUTE = sdist bdist_wheel
+PYMODULE := cityhash
+EXTENSION := $(PYMODULE)
+PYENV := . env/bin/activate;
+PYTHON := $(PYENV) python
+PIP := $(PYENV) pip
+DISTRIBUTE := sdist bdist_wheel
+EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
+
 
 package: env
 	$(PYTHON) setup.py $(DISTRIBUTE)
@@ -10,7 +15,13 @@ package: env
 release: env
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r livefyre
 
-test: extras
+build_ext: $(EXTENSION).so
+	@echo "finished building extension"
+
+$(EXTENSION).so:
+	$(PYTHON) setup.py build_ext --inplace
+
+test: extras $(EXTENSION).so
 	$(PYENV) nosetests $(NOSEARGS)
 	$(PYENV) py.test README.rst
 
@@ -24,12 +35,19 @@ clean:
 
 develop:
 	@echo "Installing for " `which pip`
-	pip uninstall $(PYMODULE) || true
-	python setup.py develop
+	-pip uninstall --yes $(PYMODULE)
+	pip install -e .
+
+extras: env/make.extras
+env/make.extras: $(EXTRAS_REQS) | env
+	rm -rf env/build
+	$(PYENV) for req in $?; do pip install -r $$req; done
+	touch $@
 
 env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv --no-site-packages env
-	$(PYENV) pip install -U pip wheel
-	$(PYENV) pip install -e .
+	$(PIP) install -U pip wheel
+	$(PIP) install cython
+	$(PIP) install -e .
 	touch $@
