@@ -3,6 +3,10 @@
 *.egg-info/
 build/
 dist/
+data/
+
+# ignore executables
+bin/
 
 # Misc editor stuff
 .ropeproject/

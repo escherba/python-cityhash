@@ -1,1 +1,1 @@
-include src/*.h
+include include/*.h
