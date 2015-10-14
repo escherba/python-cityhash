@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -O3
+CXXFLAGS := -O3 -msse4.2
 LDFLAGS := -stdlib=libc++
 SRCEXT := cc
 INC := -I include
