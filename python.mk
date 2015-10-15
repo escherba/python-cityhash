@@ -18,7 +18,7 @@ release: env
 build_ext: $(EXTENSION).so
 	@echo "finished building extension"
 
-$(EXTENSION).so:
+$(EXTENSION).so: ./src/$(PYMODULE).pyx
 	$(PYTHON) setup.py build_ext --inplace
 
 test: extras $(EXTENSION).so
