@@ -28,9 +28,6 @@ OBJECTS := $(patsubst %, $(BUILDDIR)/%, $(SOURCES:.$(SRCEXT)=.o))
 
 .SECONDARY: $(RUN_OBJECTS) $(TEST_OBJECTS) $(OBJECTS)
 
-clean_cpp:
-	rm -rf ./$(BINDIR)/ ./$(BUILDDIR)/
-
 $(BUILDDIR)/%.o: %.$(SRCEXT)
 	@mkdir -p $(dir $@)
 	$(CC) $(INC) $(CXXFLAGS) -c $< -o $@
@@ -38,6 +35,9 @@ $(BUILDDIR)/%.o: %.$(SRCEXT)
 $(BINDIR)/%: $(BUILDDIR)/%.o $(OBJECTS)
 	@mkdir -p $(dir $@)
 	$(CXX) $(LIB) $(LDFLAGS) $^ -o $@
+
+clean_cpp:
+	rm -rf ./$(BINDIR)/ ./$(BUILDDIR)/
 
 run_cpp: $(RUN_TARGETS)
 	@for target in $(RUN_TARGETS); do \
