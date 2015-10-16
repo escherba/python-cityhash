@@ -62,7 +62,7 @@ class build_ext_subclass(build_ext):
 
 
 setup(
-    version="0.0.4",
+    version="0.0.5",
     description="Python-bindings for CityHash",
     author="Alexander [Amper] Marshalov",
     author_email="alone.amper+cityhash@gmail.com",
