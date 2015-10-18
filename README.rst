@@ -1,9 +1,18 @@
 CityHash
 ========
 
-This is a Python wrapper around a C implementation of CityHash, a fast non-cryptographic hashing algorithm.
+A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
 
-To get started, clone this repo and run the setup.py script, or, alternatively
+.. image:: https://travis-ci.org/escherba/python-cityhash.svg
+    :target: https://travis-ci.org/escherba/python-cityhash
+
+
+Installation
+------------
+
+To get started, clone this repo and run ``make env`` or, alternatively,
+install it into your environment of choice (below). Note that you
+will need to have Cython installed before you install this package.
 
 .. code-block:: bash
 
@@ -14,7 +23,7 @@ To get started, clone this repo and run the setup.py script, or, alternatively
 Example Usage
 -------------
 
-The package contains 64- and 128-bit implementations of CityHash algorithm
+The package contains 64- and 128-bit implementations of CityHash algorithm.
 
 .. code-block:: python
 
