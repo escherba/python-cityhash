@@ -59,7 +59,7 @@ URL = "https://github.com/escherba/python-cityhash"
 
 setup(
     version=VERSION,
-    description="Python-bindings for CityHash",
+    description="Python-bindings for CityHash, a fast non-cryptographic hash algorithm",
     author="Alexander [Amper] Marshalov",
     author_email="alone.amper+cityhash@gmail.com",
     url=URL,
