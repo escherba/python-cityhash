@@ -1,6 +1,6 @@
 CXX := g++
 CXXFLAGS := -O3 -msse4.2
-LDFLAGS := -stdlib=libc++
+LDFLAGS :=
 SRCEXT := cc
 INC := -I include
 LIB := -L lib
@@ -10,7 +10,7 @@ INPUT := ./data/sample_100k.txt
 BINDIR := bin
 SRCDIR := src
 TESTDIR := tests
-BUILDDIR := $(shell $(PYTHON) ./scripts/get_build_dir.py)
+BUILDDIR := build
 ALL_SOURCES := $(wildcard $(SRCDIR)/*.$(SRCEXT) $(TESTDIR)/*.$(SRCEXT))
 
 RUN_SOURCES := $(wildcard $(SRCDIR)/*_main.$(SRCEXT) $(TESTDIR)/*_main.$(SRCEXT))
