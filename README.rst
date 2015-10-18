@@ -17,7 +17,7 @@ will need to have Cython installed before you install this package.
 .. code-block:: bash
 
     pip install -U cython
-    pip install git+https://github.com/escherba/python-cityhash
+    pip install cityhash
 
 
 Example Usage
