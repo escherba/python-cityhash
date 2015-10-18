@@ -8,17 +8,19 @@ To get started, clone this repo and run the setup.py script, or, alternatively
 .. code-block:: bash
 
     pip install -U cython
-    pip install git+https://github.com/escherba/cityhash#egg=cityhash-0.0.4
+    pip install git+https://github.com/escherba/python-cityhash
 
 
-CityHash64
-----------
+Example Usage
+-------------
 
-64-bit implementation of CityHash algorithm
+The package contains 64- and 128-bit implementations of CityHash algorithm
 
 .. code-block:: python
 
-    >>> from cityhash import CityHash64
+    >>> from cityhash import CityHash64, CityHash128
     >>> CityHash64("abc")
     2640714258260161385L
+    >>> CityHash128("abc")
+    76434233956484675513733017140465933893L
 
