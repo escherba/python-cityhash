@@ -3,8 +3,17 @@ CityHash
 
 A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
 
+.. image:: https://img.shields.io/pypi/v/cityhash.svg
+    :target: https://pypi.python.org/pypi/cityhash
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/dm/cityhash.svg
+    :target: https://pypi.python.org/pypi/cityhash
+    :alt: Downloads
+
 .. image:: https://travis-ci.org/escherba/python-cityhash.svg
     :target: https://travis-ci.org/escherba/python-cityhash
+    :alt: Travis-CI Test Status
 
 
 Installation
