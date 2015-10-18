@@ -1,36 +1,41 @@
 .PHONY: clean develop env extras package release test virtualenv build_ext
 
 PYMODULE := cityhash
-EXTENSION := $(PYMODULE)
-PYENV := . env/bin/activate;
-PYTHON := $(PYENV) python
-PIP := $(PYENV) pip
+EXTENSION := $(PYMODULE).so
+EXTENSION_INTERMEDIATE := ./src/$(PYMODULE).cpp
+EXTENSION_DEPS := ./src/$(PYMODULE).pyx
+PYPI_HOST := pypi
 DISTRIBUTE := sdist bdist_wheel
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
+PYENV := . env/bin/activate;
+PYTHON := $(PYENV) python
+PIP := $(PYENV) pip
 
-package: env
+
+package: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE)
 
-release: env
-	$(PYTHON) setup.py $(DISTRIBUTE) upload -r livefyre
+release: env build_ext
+	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
 
-build_ext: $(EXTENSION).so
-	@echo "finished building extension"
+build_ext: $(EXTENSION)
+	@echo "done building '$(EXTENSION)' extension"
 
-$(EXTENSION).so: ./src/$(PYMODULE).pyx
+$(EXTENSION): env $(EXTENSION_DEPS)
 	$(PYTHON) setup.py build_ext --inplace
 
-test: extras $(EXTENSION).so
+test: extras build_ext | test_cpp
 	$(PYENV) nosetests $(NOSEARGS)
 	$(PYENV) py.test README.rst
 
 nuke: clean
 	rm -rf *.egg *.egg-info env
 
-clean:
+clean: | clean_cpp
 	python setup.py clean
-	rm -rf dist build *.so
+	rm -rf dist build
+	rm -f $(EXTENSION) $(EXTENSION_INTERMEDIATE)
 	find . -path ./env -prune -o -type f -name "*.pyc" -exec rm {} \;
 
 develop:
