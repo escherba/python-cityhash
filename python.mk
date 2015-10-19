@@ -52,7 +52,7 @@ env/make.extras: $(EXTRAS_REQS) | env
 env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv --no-site-packages env
-	$(PIP) install -U pip wheel
-	$(PIP) install cython
+	$(PYENV) easy_install -U pip
+	$(PIP) install -U wheel cython
 	$(PIP) install -e .
 	touch $@
