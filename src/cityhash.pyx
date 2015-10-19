@@ -6,7 +6,7 @@ A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Alexander [Amper] Marshalov"
 __email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.1.1'
+__version__     = '0.1.2'
 __all__         = ["CityHash64",
                    "CityHash64WithSeed",
                    "CityHash64WithSeeds",
@@ -45,53 +45,121 @@ cdef extern from "city.h" nogil:
     cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t len, uint128[uint64,uint64] seed)
 
 
-cdef const char* _chars(basestring s):
-    if isinstance(s, unicode):
-        s = s.encode('utf8')
-    return s
+from cpython.buffer cimport PyObject_CheckBuffer
+from cpython.buffer cimport PyBUF_SIMPLE
+from cpython.buffer cimport Py_buffer
+from cpython.buffer cimport PyObject_GetBuffer
+
+from cpython.unicode cimport PyUnicode_Check
+
+from cpython cimport PyUnicode_AsUTF8String, Py_DECREF
 
 
-cpdef CityHash64(basestring buff):
-    """
-        Description: Hash function for a byte array.
-    """
-    cdef const char* array = _chars(buff)
-    return c_CityHash64(array, len(array))
+cdef object _type_error(str argname, type expected, value):
+    return TypeError(
+        "Argument '%s' has incorrect type (expected %s, got %s)" %
+        (argname, expected, type(value))
+    )
 
-cpdef CityHash64WithSeed(basestring buff, uint64 seed=0L):
+cpdef CityHash64(data):
+    """64-bit hash function for a basestring type
     """
-        Description: Hash function for a byte array. For convenience, a 64-bit seed is also
-                     hashed into the result.
-    """
-    cdef const char* array = _chars(buff)
-    return c_CityHash64WithSeed(array, len(array), seed)
-
-cpdef CityHash64WithSeeds(basestring buff, uint64 seed0=0L, uint64 seed1=0L):
-    """
-        Description: Hash function for a byte array.  For convenience, two seeds are also
-                     hashed into the result.
-    """
-    cdef const char* array = _chars(buff)
-    return c_CityHash64WithSeeds(array, len(array), seed0, seed1)
-
-cpdef CityHash128(basestring buff):
-    """
-        Description: Hash function for a byte array.
-    """
-    cdef const char* array = _chars(buff)
-    cdef pair[uint64,uint64] result = c_CityHash128(array, len(array))
-    return 0x10000000000000000L * long(result.first) + long(result.second)
+    cdef Py_buffer buf
+    cdef object obj
+    cdef uint64 result
+    if PyUnicode_Check(data):
+        obj = PyUnicode_AsUTF8String(data)
+        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64(<const char*>buf.buf, buf.len)
+        Py_DECREF(obj)
+    elif PyObject_CheckBuffer(data):
+        PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64(<const char*>buf.buf, buf.len)
+    else:
+        raise _type_error("data", basestring, data)
+    return result
 
 
-cpdef CityHash128WithSeed(basestring buff, seed=0L):
+cpdef CityHash64WithSeed(data, uint64 seed=0L):
+    """64-bit hash function for a basestring type.
+    For convenience, a 64-bit seed is also hashed into the result.
     """
-        Description: Hash function for a byte array.  For convenience, a 128-bit seed is also
-                     hashed into the result.
+    cdef Py_buffer buf
+    cdef object obj
+    cdef uint64 result
+    if PyUnicode_Check(data):
+        obj = PyUnicode_AsUTF8String(data)
+        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
+        Py_DECREF(obj)
+    elif PyObject_CheckBuffer(data):
+        PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
+    else:
+        raise _type_error("data", basestring, data)
+    return result
+
+cpdef CityHash64WithSeeds(data, uint64 seed0=0L, uint64 seed1=0L):
+    """64-bit hash function for a basestring type.
+    For convenience, two seeds are also hashed into the result.
     """
+    cdef Py_buffer buf
+    cdef object obj
+    cdef uint64 result
+    if PyUnicode_Check(data):
+        obj = PyUnicode_AsUTF8String(data)
+        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
+        Py_DECREF(obj)
+    elif PyObject_CheckBuffer(data):
+        PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
+        result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
+    else:
+        raise _type_error("data", basestring, data)
+    return result
+
+cpdef CityHash128(data):
+    """128-bit hash function for a basestring type
+    """
+    cdef Py_buffer buf
+    cdef object obj
+    cdef pair[uint64, uint64] result
+    if PyUnicode_Check(data):
+        obj = PyUnicode_AsUTF8String(data)
+        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
+        result = c_CityHash128(<const char*>buf.buf, buf.len)
+        final = 0x10000000000000000L * long(result.first) + long(result.second)
+        Py_DECREF(obj)
+    elif PyObject_CheckBuffer(data):
+        PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
+        result = c_CityHash128(<const char*>buf.buf, buf.len)
+        final = 0x10000000000000000L * long(result.first) + long(result.second)
+    else:
+        raise _type_error("data", basestring, data)
+    return final
+
+cpdef CityHash128WithSeed(data, seed=0L):
+    """128-bit ash function for a basestring type.
+    For convenience, a 128-bit seed is also hashed into the result.
+    """
+    cdef Py_buffer buf
+    cdef object obj
+    cdef pair[uint64, uint64] result
+    cdef pair[uint64, uint64] tseed
+
     cdef uint64 seed_0 = seed >> 64
     cdef uint64 seed_1 = seed & ((1 << 64) - 1)
-    cdef const char* array = _chars(buff)
-    cdef pair[uint64,uint64] tseed
-    tseed.first, tseed.second = seed_0, seed_1
-    cdef pair[uint64,uint64] result = c_CityHash128WithSeed(array, len(array), tseed)
-    return 0x10000000000000000L * long(result.first) + long(result.second)
+
+    if PyUnicode_Check(data):
+        obj = PyUnicode_AsUTF8String(data)
+        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
+        result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
+        final = 0x10000000000000000L * long(result.first) + long(result.second)
+        Py_DECREF(obj)
+    elif PyObject_CheckBuffer(data):
+        PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
+        result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
+        final = 0x10000000000000000L * long(result.first) + long(result.second)
+    else:
+        raise _type_error("data", basestring, data)
+    return final
