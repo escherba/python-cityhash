@@ -6,7 +6,7 @@ A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Alexander [Amper] Marshalov"
 __email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.1.2'
+__version__     = '0.1.3'
 __all__         = ["CityHash64",
                    "CityHash64WithSeed",
                    "CityHash64WithSeeds",
@@ -51,18 +51,22 @@ from cpython.buffer cimport Py_buffer
 from cpython.buffer cimport PyObject_GetBuffer
 
 from cpython.unicode cimport PyUnicode_Check
+from cpython.unicode cimport PyUnicode_AsUTF8String
 
-from cpython cimport PyUnicode_AsUTF8String, Py_DECREF
+from cpython.string cimport PyString_Check
+from cpython.string cimport PyString_GET_SIZE
+from cpython.string cimport PyString_AS_STRING
+from cpython cimport Py_DECREF
 
 
-cdef object _type_error(str argname, type expected, value):
+cdef object _type_error(str argname, expected, value):
     return TypeError(
         "Argument '%s' has incorrect type (expected %s, got %s)" %
         (argname, expected, type(value))
     )
 
 cpdef CityHash64(data):
-    """64-bit hash function for a basestring type
+    """64-bit hash function for a basestring or buffer type
     """
     cdef Py_buffer buf
     cdef object obj
@@ -72,16 +76,19 @@ cpdef CityHash64(data):
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64(<const char*>buf.buf, buf.len)
         Py_DECREF(obj)
+    elif PyString_Check(data):
+        result = c_CityHash64(<const char*>PyString_AS_STRING(data),
+                              PyString_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64(<const char*>buf.buf, buf.len)
     else:
-        raise _type_error("data", basestring, data)
+        raise _type_error("data", ["basestring", "buffer"], data)
     return result
 
 
 cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
-    """64-bit hash function for a basestring type.
+    """64-bit hash function for a basestring or buffer type.
     For convenience, a 64-bit seed is also hashed into the result.
     """
     cdef Py_buffer buf
@@ -92,15 +99,18 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
         Py_DECREF(obj)
+    elif PyString_Check(data):
+        result = c_CityHash64WithSeed(<const char*>PyString_AS_STRING(data),
+                                      PyString_GET_SIZE(data), seed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
     else:
-        raise _type_error("data", basestring, data)
+        raise _type_error("data", ["basestring", "buffer"], data)
     return result
 
 cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
-    """64-bit hash function for a basestring type.
+    """64-bit hash function for a basestring or buffer type.
     For convenience, two seeds are also hashed into the result.
     """
     cdef Py_buffer buf
@@ -111,15 +121,18 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
         Py_DECREF(obj)
+    elif PyString_Check(data):
+        result = c_CityHash64WithSeeds(<const char*>PyString_AS_STRING(data),
+                                       PyString_GET_SIZE(data), seed0, seed1)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
     else:
-        raise _type_error("data", basestring, data)
+        raise _type_error("data", ["basestring", "buffer"], data)
     return result
 
 cpdef CityHash128(data):
-    """128-bit hash function for a basestring type
+    """128-bit hash function for a basestring or buffer type
     """
     cdef Py_buffer buf
     cdef object obj
@@ -128,18 +141,20 @@ cpdef CityHash128(data):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash128(<const char*>buf.buf, buf.len)
-        final = 0x10000000000000000L * long(result.first) + long(result.second)
         Py_DECREF(obj)
+    elif PyString_Check(data):
+        result = c_CityHash128(<const char*>PyString_AS_STRING(data),
+                               PyString_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash128(<const char*>buf.buf, buf.len)
-        final = 0x10000000000000000L * long(result.first) + long(result.second)
     else:
-        raise _type_error("data", basestring, data)
+        raise _type_error("data", ["basestring", "buffer"], data)
+    final = 0x10000000000000000L * long(result.first) + long(result.second)
     return final
 
 cpdef CityHash128WithSeed(data, seed=0L):
-    """128-bit ash function for a basestring type.
+    """128-bit ash function for a basestring or buffer type.
     For convenience, a 128-bit seed is also hashed into the result.
     """
     cdef Py_buffer buf
@@ -154,12 +169,14 @@ cpdef CityHash128WithSeed(data, seed=0L):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
-        final = 0x10000000000000000L * long(result.first) + long(result.second)
         Py_DECREF(obj)
+    elif PyString_Check(data):
+        result = c_CityHash128WithSeed(<const char*>PyString_AS_STRING(data),
+                                       PyString_GET_SIZE(data), tseed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
-        final = 0x10000000000000000L * long(result.first) + long(result.second)
     else:
-        raise _type_error("data", basestring, data)
+        raise _type_error("data", ["basestring", "buffer"], data)
+    final = 0x10000000000000000L * long(result.first) + long(result.second)
     return final
