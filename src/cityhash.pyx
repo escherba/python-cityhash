@@ -80,7 +80,7 @@ cpdef CityHash64(data):
     return result
 
 
-cpdef CityHash64WithSeed(data, uint64 seed=0L):
+cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     """64-bit hash function for a basestring type.
     For convenience, a 64-bit seed is also hashed into the result.
     """
@@ -99,7 +99,7 @@ cpdef CityHash64WithSeed(data, uint64 seed=0L):
         raise _type_error("data", basestring, data)
     return result
 
-cpdef CityHash64WithSeeds(data, uint64 seed0=0L, uint64 seed1=0L):
+cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     """64-bit hash function for a basestring type.
     For convenience, two seeds are also hashed into the result.
     """
@@ -147,8 +147,8 @@ cpdef CityHash128WithSeed(data, seed=0L):
     cdef pair[uint64, uint64] result
     cdef pair[uint64, uint64] tseed
 
-    cdef uint64 seed_0 = seed >> 64
-    cdef uint64 seed_1 = seed & ((1 << 64) - 1)
+    cdef uint64 seed_0 = seed >> 64ULL
+    cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
 
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)

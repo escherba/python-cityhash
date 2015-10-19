@@ -58,3 +58,8 @@ class TestStandalone(unittest.TestCase):
         """Accepts Unicode input outside of ASCII range"""
         test_case = u'\u2661'
         self.assertTrue(isinstance(CityHash128WithSeed(test_case), long))
+
+    def test_unicode_2_128_seed(self):
+        """Accepts Unicode input outside of ASCII range"""
+        test_case = u'\u2661'
+        self.assertTrue(isinstance(CityHash128WithSeed(test_case, seed=CityHash128WithSeed(test_case)), long))
