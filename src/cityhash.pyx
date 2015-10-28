@@ -6,7 +6,7 @@ A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Alexander [Amper] Marshalov"
 __email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.1.3'
+__version__     = '0.1.4'
 __all__         = ["CityHash64",
                    "CityHash64WithSeed",
                    "CityHash64WithSeeds",

@@ -11,10 +11,9 @@ A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
 
-.. image:: https://travis-ci.org/escherba/python-cityhash.svg
-    :target: https://travis-ci.org/escherba/python-cityhash
-    :alt: Travis-CI Test Status
-
+.. image:: https://circleci.com/gh/escherba/python-cityhash.png?style=shield
+    :target: https://circleci.com/gh/escherba/python-cityhash
+    :alt: Tests Status
 
 Installation
 ------------

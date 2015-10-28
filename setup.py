@@ -54,7 +54,7 @@ CXXFLAGS = u"""
 -Wno-unused-function
 """.split()
 
-VERSION = '0.1.3'
+VERSION = '0.1.4'
 URL = "https://github.com/escherba/python-cityhash"
 
 setup(
