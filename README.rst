@@ -42,6 +42,10 @@ The package contains 64- and 128-bit implementations of CityHash algorithm.
     >>> CityHash128("abc")
     76434233956484675513733017140465933893L
 
+See Also
+--------
+For other fast non-cryptographic hashing implementations, see `CityHash <https://github.com/escherba/pyhton-metrohash>`__ and `xxh <https://github.com/lebedov/xxh>`__.
+
 Authors
 -------
 The Python bindings were originally written by Alexander [Amper] Marshalov and were subsequently edited and packaged by Eugene Scherba. The original CityHash algorithm is by Google.
