@@ -25,8 +25,8 @@ To use this package in your program, simply type
     pip install cityhash
 
 
-After that, you should be able to import the module and use it (see Example
-Usage below).
+After that, you should be able to import the module and do things with it (see
+Example Usage below).
 
 If you want to contribute to this package by developing, the included Makefile
 provides some useful commands to help you with that task:
@@ -62,8 +62,8 @@ and `xxh <https://github.com/lebedov/xxh>`__.
 Authors
 -------
 The Python bindings were originally written by Alexander [Amper] Marshalov and
-were subsequently edited and packaged by Eugene Scherba. The original CityHash
-algorithm is by Google.
+were subsequently edited for more speed/versatility and packaged for PyPI by
+Eugene Scherba. The original CityHash algorithm is by Google.
 
 License
 -------
