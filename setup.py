@@ -5,10 +5,17 @@ __jabber__  = "alone.amper@gmail.com"
 __twitter__ = "amper"
 __url__     = "http://amper.github.com/cityhash"
 
-from setuptools import setup, Extension
+from setuptools import setup
+from setuptools.extension import Extension
 from setuptools.dist import Distribution
 from pkg_resources import resource_string
-from Cython.Distutils import build_ext
+
+try:
+    from Cython.Distutils import build_ext
+except ImportError:
+    USE_CYTHON = False
+else:
+    USE_CYTHON = True
 
 
 class BinaryDistribution(Distribution):
@@ -21,32 +28,6 @@ class BinaryDistribution(Distribution):
         return False
 
 
-class build_ext_subclass(build_ext):
-    """
-    This class is an ugly hack to a problem that arises when one must force
-    a compiler to use specific flags by adding to the environment somethiing
-    like the following:
-
-        CXX="clang --some_flagA --some_flagB -I/usr/bin/include/mylibC"
-
-    (as opposed to setting CXXFLAGS). Distutils in that case will complain
-    that it cannot run the entire command as given because it is not
-    found as an executable (specific error message is: "unable to execute...
-    ... no such file or directory").
-
-    This subclass of ``build_ext`` will extract the compiler name from the
-    command line and insert any remaining arguments right after it.
-    """
-    def build_extensions(self):
-        ccm = self.compiler.compiler
-        if ' ' in ccm[0]:
-            self.compiler.compiler = ccm[0].split(' ') + ccm[1:]
-        cxx = self.compiler.compiler_cxx
-        if ' ' in cxx[0]:
-            self.compiler.compiler_cxx = cxx[0].split(' ') + cxx[1:]
-        build_ext.build_extensions(self)
-
-
 CXXFLAGS = u"""
 -O3
 -msse4.2
@@ -54,7 +35,29 @@ CXXFLAGS = u"""
 -Wno-unused-function
 """.split()
 
-VERSION = '0.1.4'
+INCLUDE_DIRS = ['include']
+
+CMDCLASS = {}
+EXT_MODULES = []
+
+if USE_CYTHON:
+    EXT_MODULES.append(
+        Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
+                  language="c++",
+                  extra_compile_args=CXXFLAGS,
+                  include_dirs=INCLUDE_DIRS)
+    )
+    CMDCLASS['build_ext'] = build_ext
+else:
+    EXT_MODULES.append(
+        Extension("cityhash", ["src/city.cc", "src/cityhash.cpp"],
+                  language="c++",
+                  extra_compile_args=CXXFLAGS,
+                  include_dirs=INCLUDE_DIRS)
+    )
+
+
+VERSION = '0.1.5'
 URL = "https://github.com/escherba/python-cityhash"
 
 setup(
@@ -66,11 +69,8 @@ setup(
     download_url=URL + "/tarball/master/" + VERSION,
     name='cityhash',
     license='MIT',
-    cmdclass={'build_ext': build_ext_subclass},
-    ext_modules=[Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
-                           language="c++",
-                           extra_compile_args=CXXFLAGS,
-                           include_dirs=['include'])],
+    cmdclass=CMDCLASS,
+    ext_modules=EXT_MODULES,
     keywords=['hash', 'hashing', 'cityhash'],
     classifiers=[
         'Development Status :: 4 - Beta',

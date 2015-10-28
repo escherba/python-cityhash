@@ -19,6 +19,9 @@ package: env build_ext
 release: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
 
+shell: extras build_ext
+	$(PYENV) $(ENV_EXTRA) ipython
+
 build_ext: $(EXTENSION)
 	@echo "done building '$(EXTENSION)' extension"
 
@@ -30,12 +33,13 @@ test: extras build_ext | test_cpp
 	$(PYENV) py.test README.rst
 
 nuke: clean
+	rm -f $(EXTENSION_INTERMEDIATE)
 	rm -rf *.egg *.egg-info env
 
 clean: | clean_cpp
 	python setup.py clean
 	rm -rf dist build
-	rm -f $(EXTENSION) $(EXTENSION_INTERMEDIATE)
+	rm -f $(EXTENSION)
 	find . -path ./env -prune -o -type f -name "*.pyc" -exec rm {} \;
 
 develop:
@@ -49,10 +53,17 @@ env/make.extras: $(EXTRAS_REQS) | env
 	$(PYENV) for req in $?; do pip install -r $$req; done
 	touch $@
 
+ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
+VENV_OPTS="--system-site-packages"
+else
+VENV_OPTS="--no-site-packages"
+endif
+
 env virtualenv: env/bin/activate
 env/bin/activate: setup.py
-	test -f $@ || virtualenv --no-site-packages env
+	test -f $@ || virtualenv $(VENV_OPTS) env
 	$(PYENV) easy_install -U pip
-	$(PIP) install -U wheel cython
+	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | python
+	$(PIP) install -U setuptools distribute wheel cython
 	$(PIP) install -e .
 	touch $@

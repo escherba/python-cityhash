@@ -18,6 +18,4 @@ env/
 .cache/
 
 *.so
-
-# Cython intermediate
-src/cityhash.cpp
+*.zip
