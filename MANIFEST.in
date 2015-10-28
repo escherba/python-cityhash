@@ -3,4 +3,5 @@ include README.rst
 include include/*.h
 include src/*.cc
 include src/*.cpp
+include src/*.pyx
 include *requirements.txt
