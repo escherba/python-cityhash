@@ -19,6 +19,9 @@ package: env build_ext
 release: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
 
+shell: extras build_ext
+	$(PYENV) $(ENV_EXTRA) ipython
+
 build_ext: $(EXTENSION)
 	@echo "done building '$(EXTENSION)' extension"
 
