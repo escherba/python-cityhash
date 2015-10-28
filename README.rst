@@ -44,7 +44,7 @@ The package contains 64- and 128-bit implementations of CityHash algorithm.
 
 See Also
 --------
-For other fast non-cryptographic hashing implementations, see `MetroHash <https://github.com/escherba/python-metrohash>`__ and `xxh <https://github.com/lebedov/xxh>`__.
+For other fast non-cryptographic hashing implementations available as Python extensions, see `MetroHash <https://github.com/escherba/python-metrohash>`__ and `xxh <https://github.com/lebedov/xxh>`__.
 
 Authors
 -------
