@@ -1,4 +1,6 @@
 include LICENSE
 include README.rst
 include include/*.h
+include src/*.cc
+include src/*.cpp
 include *requirements.txt
