@@ -25,19 +25,7 @@ To use this package in your program, simply type
     pip install cityhash
 
 
-After that, you should be able to import the module and do things with it (see
-Example Usage below).
-
-If you want to contribute to this package by developing, the included Makefile
-provides some useful commands to help you with that task:
-
-.. code-block:: bash
-
-    git clone https://github.com/escherba/python-cityhash.git
-    cd python-cityhash
-    make env           # creates a Python virtualenv
-    make test          # runs both Python and C++ tests
-
+After that, you should be able to import the module and do things with it (see Example Usage below).
 
 Example Usage
 -------------
@@ -53,6 +41,18 @@ are named as such:
     >>> CityHash128("abc")
     76434233956484675513733017140465933893L
 
+Development
+-----------
+If you want to contribute to this package by developing, the included Makefile
+provides some useful commands to help you with that task:
+
+.. code-block:: bash
+
+    git clone https://github.com/escherba/python-cityhash.git
+    cd python-cityhash
+    make env           # creates a Python virtualenv
+    make test          # runs both Python and C++ tests
+    
 See Also
 --------
 For other fast non-cryptographic hashing implementations available as Python
