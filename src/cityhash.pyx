@@ -67,6 +67,7 @@ cdef object _type_error(str argname, expected, value):
         (argname, expected, type(value))
     )
 
+
 cpdef CityHash32(data):
     """32-bit hash function for a basestring or buffer type
     """
