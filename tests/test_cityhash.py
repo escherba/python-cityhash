@@ -53,7 +53,7 @@ class TestStandalone(unittest.TestCase):
     def test_unicode_1_32(self):
         """Accepts Unicode input"""
         test_case = u"abc"
-        self.assertTrue(isinstance(CityHash32(test_case), long))
+        self.assertTrue(isinstance(CityHash32(test_case), int))
 
     def test_unicode_1_64(self):
         """Accepts Unicode input"""
@@ -68,7 +68,7 @@ class TestStandalone(unittest.TestCase):
     def test_unicode_2_32(self):
         """Accepts Unicode input outside of ASCII range"""
         test_case = u'\u2661'
-        self.assertTrue(isinstance(CityHash32(test_case), long))
+        self.assertTrue(isinstance(CityHash32(test_case), int))
 
     def test_unicode_2_64(self):
         """Accepts Unicode input outside of ASCII range"""
