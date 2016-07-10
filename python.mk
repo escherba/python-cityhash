@@ -64,6 +64,10 @@ env/bin/activate: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	$(PYENV) easy_install -U pip
 	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | python
-	$(PIP) install -U setuptools distribute wheel cython
+	$(PYENV) easy_install -U setuptools
+	$(PYENV) easy_install -U markerlib
+	$(PYENV) easy_install -U distribute
+	$(PYENV) easy_install -U wheel
+	$(PIP) install -U cython
 	$(PIP) install -e .
 	touch $@

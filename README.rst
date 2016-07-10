@@ -35,7 +35,9 @@ are named as such:
 
 .. code-block:: python
 
-    >>> from cityhash import CityHash64, CityHash128
+    >>> from cityhash import CityHash32, CityHash64, CityHash128
+    >>> CityHash32("abc")
+    795041479
     >>> CityHash64("abc")
     2640714258260161385L
     >>> CityHash128("abc")
@@ -52,7 +54,7 @@ provides some useful commands to help you with that task:
     cd python-cityhash
     make env           # creates a Python virtualenv
     make test          # runs both Python and C++ tests
-    
+
 See Also
 --------
 For other fast non-cryptographic hashing implementations available as Python
