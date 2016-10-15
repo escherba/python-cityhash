@@ -3,5 +3,5 @@ coverage
 nosexcover
 mock
 pytest
-ipython>=4.0.0
-ipdb>=0.8
+ipython
+ipdb

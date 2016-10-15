@@ -62,8 +62,8 @@ endif
 env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
-	$(PYENV) easy_install -U pip
 	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | python
+	$(PYENV) easy_install -U pip
 	$(PYENV) easy_install -U setuptools
 	$(PYENV) easy_install -U markerlib
 	$(PYENV) easy_install -U distribute
