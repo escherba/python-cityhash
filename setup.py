@@ -8,7 +8,6 @@ __url__     = "http://amper.github.com/cityhash"
 from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
-from pkg_resources import resource_string
 
 try:
     from Cython.Distutils import build_ext
@@ -60,6 +59,10 @@ else:
 VERSION = '0.1.7'
 URL = "https://github.com/escherba/python-cityhash"
 
+with open('README.rst', 'rb') as fd:
+    LONG_DESCRIPTION = fd.read().decode('utf-8')
+
+
 setup(
     version=VERSION,
     description="Python-bindings for CityHash, a fast non-cryptographic hash algorithm",
@@ -88,6 +91,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    long_description=resource_string(__name__, 'README.rst'),
+    long_description=LONG_DESCRIPTION,
     distclass=BinaryDistribution,
 )
