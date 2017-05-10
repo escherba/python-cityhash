@@ -36,12 +36,12 @@ are named as such:
 .. code-block:: python
 
     >>> from cityhash import CityHash32, CityHash64, CityHash128
-    >>> CityHash32("abc")
+    >>> print(CityHash32("abc"))
     795041479
-    >>> CityHash64("abc")
-    2640714258260161385L
-    >>> CityHash128("abc")
-    76434233956484675513733017140465933893L
+    >>> print(CityHash64("abc"))
+    2640714258260161385
+    >>> print(CityHash128("abc"))
+    76434233956484675513733017140465933893
 
 Development
 -----------

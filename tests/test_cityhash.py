@@ -1,7 +1,12 @@
 import unittest
 import random
 import string
+import sys
 from cityhash import CityHash32, CityHash64WithSeed, CityHash128WithSeed
+
+
+if sys.version_info[0] >= 3:
+    long = int
 
 
 def random_string(n, alphabet=string.ascii_lowercase):
