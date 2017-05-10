@@ -56,7 +56,7 @@ else:
     )
 
 
-VERSION = '0.1.8'
+VERSION = '0.1.9'
 URL = "https://github.com/escherba/python-cityhash"
 
 with open('README.rst', 'rb') as fd:
