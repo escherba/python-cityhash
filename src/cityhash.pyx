@@ -55,9 +55,17 @@ from cpython.buffer cimport PyObject_GetBuffer
 from cpython.unicode cimport PyUnicode_Check
 from cpython.unicode cimport PyUnicode_AsUTF8String
 
-from cpython.string cimport PyString_Check
-from cpython.string cimport PyString_GET_SIZE
-from cpython.string cimport PyString_AS_STRING
+from sys import version_info
+
+if version_info[0] == 2:
+    from cpython.string cimport PyString_Check
+    from cpython.string cimport PyString_GET_SIZE
+    from cpython.string cimport PyString_AS_STRING
+else:
+    from cpython.bytes cimport PyBytes_Check as PyString_Check
+    from cpython.bytes cimport PyBytes_GET_SIZE as PyString_GET_SIZE
+    from cpython.bytes cimport PyBytes_AS_STRING as PyString_AS_STRING
+
 from cpython cimport Py_DECREF
 
 
