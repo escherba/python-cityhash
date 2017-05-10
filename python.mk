@@ -8,7 +8,7 @@ PYPI_HOST := pypi
 DISTRIBUTE := sdist bdist_wheel
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
-PYENV := . env/bin/activate;
+PYENV := PYTHONPATH=. . env/bin/activate;
 PYTHON := $(PYENV) python
 PIP := $(PYENV) pip
 
@@ -63,11 +63,11 @@ env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | python
-	$(PYENV) easy_install -U pip
-	$(PYENV) easy_install -U markerlib
-	$(PYENV) easy_install -U distribute
+	$(PIP) install -U pip
 	$(PIP) install -U setuptools
+	$(PIP) install -U markerlib
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
+	$(PIP) install -U Distribute
 	$(PIP) install -e .
 	touch $@
