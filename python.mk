@@ -68,6 +68,6 @@ env/bin/activate: setup.py
 	$(PIP) install -U markerlib
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
-	$(PYENV) easy_install -U Distribute
+	$(PIP) install -U Distribute
 	$(PIP) install -e .
 	touch $@
