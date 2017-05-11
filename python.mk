@@ -2,8 +2,9 @@
 
 PYMODULE := cityhash
 EXTENSION := $(PYMODULE).so
-EXTENSION_INTERMEDIATE := ./src/$(PYMODULE).cpp
-EXTENSION_DEPS := ./src/$(PYMODULE).pyx
+SRC_DIR := src
+EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
+EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
 PYPI_HOST := pypi
 DISTRIBUTE := sdist bdist_wheel
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
@@ -28,7 +29,7 @@ build_ext: $(EXTENSION)
 $(EXTENSION): env $(EXTENSION_DEPS)
 	$(PYTHON) setup.py build_ext --inplace
 
-test: extras build_ext | test_cpp
+test: extras build_ext
 	$(PYENV) nosetests $(NOSEARGS)
 	$(PYENV) py.test README.rst
 
@@ -36,11 +37,13 @@ nuke: clean
 	rm -f $(EXTENSION_INTERMEDIATE)
 	rm -rf *.egg *.egg-info env
 
-clean: | clean_cpp
+clean:
 	python setup.py clean
 	rm -rf dist build
 	rm -f $(EXTENSION)
-	find . -path ./env -prune -o -type f -name "*.pyc" -exec rm {} \;
+	find $(SRC_DIR) -type f -name "*.pyc" -exec rm {} \;
+	find $(SRC_DIR) -type f -name "*.cpp" -exec rm {} \;
+	find $(SRC_DIR) -type f -name "*.so" -exec rm {} \;
 
 develop:
 	@echo "Installing for " `which pip`
