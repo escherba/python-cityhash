@@ -56,7 +56,7 @@ else:
     )
 
 
-VERSION = '0.1.10'
+VERSION = '0.1.10.post0'
 URL = "https://github.com/escherba/python-cityhash"
 
 with open('README.rst', 'rb') as fd:
@@ -84,6 +84,7 @@ setup(
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Internet',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Information Analysis',
