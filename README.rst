@@ -35,13 +35,11 @@ are named as such:
 
 .. code-block:: python
 
-    >>> from cityhash import CityHash32, CityHash64, CityHash128
-    >>> print(CityHash32("abc"))
-    795041479
+    >>> from cityhash import CityHash64, CityHash128
     >>> print(CityHash64("abc"))
-    2640714258260161385
+    4220206313085259313
     >>> print(CityHash128("abc"))
-    76434233956484675513733017140465933893
+    191491615738686005514802259311635598718
 
 Development
 -----------
