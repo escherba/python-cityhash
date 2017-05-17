@@ -1,19 +1,13 @@
 CityHash
 ========
 
-A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
+A fork of Python wrapper around `CityHash <https://github.com/google/cityhash>`__
+with downgraded version of algorithm. This fork used as 3-rd party library
+for hashing data in ClickHouse protocol. Unfortunately ClickHouse
+server comes with built-in old version of this algorithm.
 
-.. image:: https://img.shields.io/pypi/v/cityhash.svg
-    :target: https://pypi.python.org/pypi/cityhash
-    :alt: Latest Version
-
-.. image:: https://img.shields.io/pypi/dm/cityhash.svg
-    :target: https://pypi.python.org/pypi/cityhash
-    :alt: Downloads
-
-.. image:: https://circleci.com/gh/escherba/python-cityhash.png?style=shield
-    :target: https://circleci.com/gh/escherba/python-cityhash
-    :alt: Tests Status
+Please use original `python-cityhash <https://github.com/escherba/python-cityhash>`_
+package for other purposes.
 
 Getting Started
 ---------------
@@ -22,28 +16,11 @@ To use this package in your program, simply type
 
 .. code-block:: bash
 
-    pip install cityhash
-
-
-After that, you should be able to import the module and do things with it (see Example Usage below).
-
-Example Usage
--------------
-
-The package contains 64- and 128-bit implementations of CityHash algorithm that
-are named as such:
-
-.. code-block:: python
-
-    >>> from cityhash import CityHash64, CityHash128
-    >>> print(CityHash64("abc"))
-    4220206313085259313
-    >>> print(CityHash128("abc"))
-    191491615738686005514802259311635598718
+    pip install clickhouse-cityhash
 
 Development
 -----------
-If you want to contribute to this package by developing, the included Makefile
+If you want to contribute to original package by developing, the included Makefile
 provides some useful commands to help you with that task:
 
 .. code-block:: bash
