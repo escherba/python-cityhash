@@ -8,6 +8,7 @@ __url__     = "http://amper.github.com/cityhash"
 from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
+from os.path import join, dirname
 
 try:
     from Cython.Distutils import build_ext
@@ -29,7 +30,6 @@ class BinaryDistribution(Distribution):
 
 CXXFLAGS = u"""
 -O3
--msse4.2
 -Wno-unused-value
 -Wno-unused-function
 """.split()
@@ -56,11 +56,22 @@ else:
     )
 
 
-VERSION = '0.1.10.post0'
+VERSION = '0.2.0'
 URL = "https://github.com/escherba/python-cityhash"
 
-with open('README.rst', 'rb') as fd:
-    LONG_DESCRIPTION = fd.read().decode('utf-8')
+
+LONG_DESCRIPTION = """
+
+"""
+
+
+def long_description():
+    fname = join(dirname(__file__), 'README.rst')
+    try:
+        with open(fname, 'rb') as fd:
+            return fd.read().decode('utf-8')
+    except Exception:
+        return LONG_DESCRIPTION
 
 
 setup(
@@ -92,6 +103,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    long_description=LONG_DESCRIPTION,
+    long_description=long_description(),
     distclass=BinaryDistribution,
 )
