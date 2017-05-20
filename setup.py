@@ -9,6 +9,11 @@ from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
 from os.path import join, dirname
+from cpuinfo import get_cpu_info
+
+
+cpu_info = get_cpu_info()
+have_sse42 = 'sse4.2' in cpu_info['flags']
 
 try:
     from Cython.Distutils import build_ext
@@ -34,6 +39,10 @@ CXXFLAGS = u"""
 -Wno-unused-function
 """.split()
 
+if have_sse42:
+    CXXFLAGS.append('-msse4.2')
+
+
 INCLUDE_DIRS = ['include']
 
 CMDCLASS = {}
@@ -56,7 +65,7 @@ else:
     )
 
 
-VERSION = '0.2.0'
+VERSION = '0.2.1'
 URL = "https://github.com/escherba/python-cityhash"
 
 
