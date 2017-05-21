@@ -27,7 +27,7 @@ class BinaryDistribution(Distribution):
         return False
 
 
-CXXFLAGS = u"""
+CXXFLAGS = """
 -O3
 -msse4.2
 -Wno-unused-value
