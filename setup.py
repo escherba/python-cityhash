@@ -33,7 +33,7 @@ class BinaryDistribution(Distribution):
         return False
 
 
-CXXFLAGS = u"""
+CXXFLAGS = """
 -O3
 -Wno-unused-value
 -Wno-unused-function
@@ -65,7 +65,7 @@ else:
     )
 
 
-VERSION = '0.2.1'
+VERSION = '0.2.1.post0'
 URL = "https://github.com/escherba/python-cityhash"
 
 
