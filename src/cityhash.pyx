@@ -51,6 +51,7 @@ from cpython.buffer cimport PyObject_CheckBuffer
 from cpython.buffer cimport PyBUF_SIMPLE
 from cpython.buffer cimport Py_buffer
 from cpython.buffer cimport PyObject_GetBuffer
+from cpython.buffer cimport PyBuffer_Release
 
 from cpython.unicode cimport PyUnicode_Check
 from cpython.unicode cimport PyUnicode_AsUTF8String
@@ -79,13 +80,14 @@ cpdef CityHash32(data):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash32(<const char*>buf.buf, buf.len)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash32(<const char*>PyBytes_AS_STRING(data),
                               PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash32(<const char*>buf.buf, buf.len)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
@@ -101,13 +103,14 @@ cpdef CityHash64(data):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64(<const char*>buf.buf, buf.len)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash64(<const char*>PyBytes_AS_STRING(data),
                               PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64(<const char*>buf.buf, buf.len)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
@@ -124,13 +127,14 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash64WithSeed(<const char*>PyBytes_AS_STRING(data),
                                       PyBytes_GET_SIZE(data), seed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
@@ -146,13 +150,14 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash64WithSeeds(<const char*>PyBytes_AS_STRING(data),
                                        PyBytes_GET_SIZE(data), seed0, seed1)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
@@ -167,13 +172,14 @@ cpdef CityHash128(data):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash128(<const char*>buf.buf, buf.len)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash128(<const char*>PyBytes_AS_STRING(data),
                                PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash128(<const char*>buf.buf, buf.len)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     final = 0x10000000000000000L * long(result.first) + long(result.second)
@@ -195,13 +201,14 @@ cpdef CityHash128WithSeed(data, seed=0L):
         obj = PyUnicode_AsUTF8String(data)
         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
-        Py_DECREF(obj)
+        PyBuffer_Release(&buf)
     elif PyBytes_Check(data):
         result = c_CityHash128WithSeed(<const char*>PyBytes_AS_STRING(data),
                                        PyBytes_GET_SIZE(data), tseed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
+        PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
     final = 0x10000000000000000L * long(result.first) + long(result.second)
