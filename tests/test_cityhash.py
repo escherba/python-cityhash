@@ -1,8 +1,13 @@
+import array
 import unittest
 import random
 import string
 import sys
-from cityhash import CityHash32, CityHash64WithSeed, CityHash128WithSeed
+
+from cityhash import (
+    CityHash32, CityHash64, CityHash64WithSeed, CityHash64WithSeeds,
+    CityHash128, CityHash128WithSeed,
+    )
 
 
 if sys.version_info[0] >= 3:
@@ -89,3 +94,25 @@ class TestStandalone(unittest.TestCase):
         """Accepts Unicode input outside of ASCII range"""
         test_case = u'\u2661'
         self.assertTrue(isinstance(CityHash128WithSeed(test_case, seed=CityHash128WithSeed(test_case)), long))
+
+    def test_argument_types(self):
+        """Accepts different kinds of buffer-compatible objects"""
+        funcs = [CityHash32, CityHash64, CityHash128,
+                 CityHash64WithSeed, CityHash64WithSeeds,
+                 CityHash128WithSeed]
+        args = [b'ab\x00c', bytearray(b'ab\x00c'), memoryview(b'ab\x00c')]
+        for func in funcs:
+            values = set(func(arg) for arg in args)
+            self.assertEqual(len(values), 1, values)
+
+    def test_refcounts(self):
+        """Doesn't leak references to its argument"""
+        funcs = [CityHash32, CityHash64, CityHash128,
+                 CityHash64WithSeed, CityHash64WithSeeds,
+                 CityHash128WithSeed]
+        args = ['abc', b'abc', bytearray(b'def'), memoryview(b'ghi')]
+        for func in funcs:
+            for arg in args:
+                old_refcount = sys.getrefcount(arg)
+                func(arg)
+                self.assertEqual(sys.getrefcount(arg), old_refcount)
