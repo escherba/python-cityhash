@@ -9,11 +9,13 @@ from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
 from os.path import join, dirname
-from cpuinfo import get_cpu_info
 
-
-cpu_info = get_cpu_info()
-have_sse42 = 'sse4.2' in cpu_info['flags']
+try:
+    from cpuinfo import get_cpu_info
+    cpu_info = get_cpu_info()
+    have_sse42 = 'sse4.2' in cpu_info['flags']
+except Exception:
+    have_sse42 = False
 
 try:
     from Cython.Distutils import build_ext
