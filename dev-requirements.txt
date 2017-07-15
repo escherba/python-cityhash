@@ -5,3 +5,4 @@ mock
 pytest
 ipython
 ipdb
+requests[security]
