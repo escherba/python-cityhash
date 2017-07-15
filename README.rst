@@ -11,9 +11,17 @@ A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
 
-.. image:: https://circleci.com/gh/escherba/python-cityhash.png?style=shield
+.. image:: https://circleci.com/gh/escherba/python-cityhash.svg?style=shield
     :target: https://circleci.com/gh/escherba/python-cityhash
     :alt: Tests Status
+
+.. image:: https://img.shields.io/pypi/pyversions/cityhash.svg
+    :target: https://pypi.python.org/pypi/cityhash
+    :alt: Supported Python versions
+
+.. image:: https://img.shields.io/pypi/l/cityhash.svg
+    :target: https://pypi.python.org/pypi/cityhash
+    :alt: License
 
 Getting Started
 ---------------

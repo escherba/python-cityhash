@@ -17,6 +17,7 @@ PIP := $(PYENV) pip
 package: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE)
 
+# See https://packaging.python.org/guides/migrating-to-pypi-org/
 release: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
 
