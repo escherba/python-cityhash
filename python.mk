@@ -5,28 +5,40 @@ EXTENSION := $(PYMODULE).so
 SRC_DIR := src
 EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
 EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
-PYPI_HOST := pypi
-DISTRIBUTE := sdist bdist_wheel
+PYPI_URL := https://upload.pypi.org/legacy/
+UNAME_S := $(shell uname -s)
+DISTRIBUTE := sdist
+ifeq ($(UNAME_S),Darwin)
+	DISTRIBUTE += bdist_wheel
+endif
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
 PYENV := PYTHONPATH=. . env/bin/activate;
-PYTHON := $(PYENV) python
-PIP := $(PYENV) pip
+INTERPRETER := python3
+PACKAGE_MGR := pip3
+PYVERSION := $(shell $(INTERPRETER) --version 2>&1)
+PYTHON := $(PYENV) $(INTERPRETER)
+PIP := $(PYENV) $(PACKAGE_MGR)
 
 
 package: env build_ext
+	@echo "Packaging using $(PYVERSION)"
 	$(PYTHON) setup.py $(DISTRIBUTE)
 
+# See https://packaging.python.org/guides/migrating-to-pypi-org/
 release: env build_ext
-	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
+	@echo "Releasing using $(PYVERSION)"
+	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 shell: extras build_ext
+	@echo "Using $(PYVERSION)"
 	$(PYENV) $(ENV_EXTRA) ipython
 
 build_ext: $(EXTENSION)
 	@echo "done building '$(EXTENSION)' extension"
 
 $(EXTENSION): env $(EXTENSION_DEPS)
+	@echo "Building using $(PYVERSION)"
 	$(PYTHON) setup.py build_ext --inplace
 
 test: extras build_ext
@@ -56,21 +68,20 @@ env/make.extras: $(EXTRAS_REQS) | env
 	$(PYENV) for req in $?; do pip install -r $$req; done
 	touch $@
 
+VENV_OPTS := --python="$(shell which $(INTERPRETER))"
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
-VENV_OPTS="--system-site-packages"
+VENV_OPTS += --system-site-packages
 else
-VENV_OPTS="--no-site-packages"
+VENV_OPTS += --no-site-packages
 endif
 
 env virtualenv: env/bin/activate
 env/bin/activate: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
-	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | python
+	$(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
-	$(PIP) install -U setuptools
 	$(PIP) install -U markerlib
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
-	$(PIP) install -U Distribute
 	$(PIP) install -e .
 	touch $@

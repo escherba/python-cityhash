@@ -67,7 +67,7 @@ else:
     )
 
 
-VERSION = '0.2.2'
+VERSION = '0.2.3.post9'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -106,6 +106,8 @@ setup(
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Topic :: Internet',
         'Topic :: Scientific/Engineering',
