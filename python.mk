@@ -5,7 +5,6 @@ EXTENSION := $(PYMODULE).so
 SRC_DIR := src
 EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
 EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
-PYPI_HOST := pypi
 DISTRIBUTE := sdist bdist_wheel
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
@@ -18,7 +17,7 @@ package: env build_ext
 	$(PYTHON) setup.py $(DISTRIBUTE)
 
 release: env build_ext
-	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_HOST)
+	$(PYTHON) setup.py $(DISTRIBUTE) upload
 
 shell: extras build_ext
 	$(PYENV) $(ENV_EXTRA) ipython
