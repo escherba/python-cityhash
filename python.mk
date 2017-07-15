@@ -6,7 +6,11 @@ SRC_DIR := src
 EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
 EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
 PYPI_HOST := pypi
-DISTRIBUTE := sdist bdist_wheel
+UNAME_S := $(shell uname -s)
+DISTRIBUTE := sdist
+ifeq ($(UNAME_S),Darwin)
+	DISTRIBUTE += bdist_wheel
+endif
 EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
 PYENV := PYTHONPATH=. . env/bin/activate;
