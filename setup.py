@@ -41,7 +41,7 @@ EXT_MODULES = []
 
 if USE_CYTHON:
     EXT_MODULES.append(
-        Extension("clickhouse_driver.util.cityhash", ["src/city.cc", "src/cityhash.pyx"],
+        Extension("clickhouse_cityhash.cityhash", ["src/city.cc", "src/cityhash.pyx"],
                   language="c++",
                   extra_compile_args=CXXFLAGS,
                   include_dirs=INCLUDE_DIRS)
@@ -49,14 +49,14 @@ if USE_CYTHON:
     CMDCLASS['build_ext'] = build_ext
 else:
     EXT_MODULES.append(
-        Extension("clickhouse_driver.util.cityhash", ["src/city.cc", "src/cityhash.cpp"],
+        Extension("clickhouse_cityhash.cityhash", ["src/city.cc", "src/cityhash.cpp"],
                   language="c++",
                   extra_compile_args=CXXFLAGS,
                   include_dirs=INCLUDE_DIRS)
     )
 
 
-VERSION = '1.0.2'
+VERSION = '1.0.2.1'
 URL = "https://github.com/xzkostyan/python-cityhash"
 
 with open('README.rst', 'rb') as fd:
@@ -75,7 +75,7 @@ setup(
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
     keywords=['hash', 'hashing', 'cityhash'],
-    packages=['clickhouse_driver', 'clickhouse_driver.util'],
+    packages=['clickhouse_cityhash'],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Operating System :: OS Independent',
