@@ -8,6 +8,7 @@ __url__     = "http://amper.github.com/cityhash"
 from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
+import sys
 
 try:
     from Cython.Distutils import build_ext
@@ -26,13 +27,16 @@ class BinaryDistribution(Distribution):
         # TODO: check if this is still necessary with Python v2.7
         return False
 
+CXXFLAGS = None
 
-CXXFLAGS = """
--O3
--msse4.2
--Wno-unused-value
--Wno-unused-function
-""".split()
+# We need only CityHash128 from this package.
+# Therefore -msse4.2 removed alongside with CityHashCrc256Long.
+if sys.platform != 'win32':
+    CXXFLAGS = """
+    -O3
+    -Wno-unused-value
+    -Wno-unused-function
+    """.split()
 
 INCLUDE_DIRS = ['include']
 
@@ -56,7 +60,7 @@ else:
     )
 
 
-VERSION = '1.0.2.2'
+VERSION = '1.0.2.3'
 URL = "https://github.com/xzkostyan/python-cityhash"
 
 with open('README.rst', 'rb') as fd:

@@ -3,14 +3,228 @@ language: python
 python:
   - "2.7"
 
-branches:
-  only:
-    - master
-
 script: make test
 
-before_install:
+install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
   - sudo apt-get install -qq g++-4.8
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
+
+jobs:
+  include:
+    - stage: wheels
+      name: Wheels for Linux
+      os: linux
+      language: python
+      python:
+        - "3.6"
+
+      install:
+        - pip install --upgrade pip setuptools
+        - pip install cython cibuildwheel==0.11.1
+
+      script:
+        - cibuildwheel --output-dir wheelhouse
+
+      env:
+        - CIBW_BEFORE_BUILD='pip install cython'
+      deploy:
+        name: Linux
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for OS X
+      os: osx
+      language: generic
+
+      install:
+        - pip install --upgrade pip setuptools
+        - pip install cython cibuildwheel==0.11.1
+
+      script:
+        - cibuildwheel --output-dir wheelhouse
+
+      env:
+        - CIBW_BEFORE_BUILD='pip install cython'
+      deploy:
+        name: Mac OS X
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for Windows Python 2.7
+      os: windows
+      language: shell
+
+      install:
+        - choco install python2 --version 2.7.16 --sidebyside -y --forcex86 --force --params "/InstallDir:C:\Python27"
+        - choco install --ignore-dependencies vcpython27
+        # extra include for stdint.h
+        - export INCLUDE="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\include"
+
+      script:
+        - C:/Python27/python -m pip install cibuildwheel==0.11.1
+        - C:/Python27/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+      env:
+        - CIBW_BUILD='cp27-win32'
+        - CIBW_BEFORE_BUILD='python -m pip install cython'
+      deploy:
+        name: Windows Python 2.7
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for Windows Python 2.7 x64
+      os: windows
+      language: shell
+
+      install:
+        - choco install python2 --version 2.7.16 --sidebyside -y --force --params "/InstallDir:C:\Python27-x64"
+        - choco install --ignore-dependencies vcpython27
+
+        - export PATH="C:\\Program Files (x86)\\common files\\Microsoft\\Visual C++ for Python\\9.0\\VC\\bin\\amd64;$PATH"
+        - export INCLUDE="C:\\Program Files (x86)\\common files\\Microsoft\\Visual C++ for Python\\9.0\\VC\\Include;C:\\Program Files (x86)\\common files\\Microsoft\\Visual C++ for Python\\9.0\\WinSDK\\Include;C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\include"
+        - export LIB="C:\\Program Files (x86)\\common files\\Microsoft\\Visual C++ for Python\\9.0\\VC\\Lib\\amd64;C:\\Program Files (x86)\\common files\\Microsoft\\Visual C++ for Python\\9.0\\WinSDK\\Lib\\x64"
+
+      script:
+        - C:/Python27-x64/python -m pip install cibuildwheel==0.11.1
+        - C:/Python27-x64/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+      env:
+        - CIBW_BUILD='cp27-win_amd64'
+        - CIBW_BEFORE_BUILD='python -m pip install cython'
+      deploy:
+        name: Windows Python 2.7 x64
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for Windows Python 3.5
+      os: windows
+      language: shell
+
+      install:
+        - choco install python3 --version 3.5.2.20161029 -y --forcex86 --force --params "/InstallDir:C:\Python35"
+
+      script:
+        - C:/Python35/python -m pip install cibuildwheel==0.11.1
+        - C:/Python35/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+      env:
+        - CIBW_BUILD='cp35-win32'
+        - CIBW_BEFORE_BUILD='python -m pip install cython'
+      deploy:
+        name: Windows Python 3.5
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for Windows Python 3.5 x64
+      os: windows
+      language: shell
+
+      install:
+        - choco install python3 --version 3.5.2.20161029 -y --force --params "/InstallDir:C:\Python35-x64"
+
+      script:
+        - C:/Python35-x64/python -m pip install cibuildwheel==0.11.1
+        - C:/Python35-x64/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+      env:
+        - CIBW_BUILD='cp35-win_amd64'
+        - CIBW_BEFORE_BUILD='python -m pip install cython'
+      deploy:
+        name: Windows Python 3.5 x64
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
+
+    - stage: wheels
+      name: Wheels for Windows Python 3.[67]
+      os: windows
+      language: shell
+
+      install:
+        - choco install python3 --version 3.6.8 --sidebyside -y --forcex86 --force --params "/InstallDir:C:\Python36"
+        - choco install python3 --version 3.6.8 --sidebyside -y --force --params "/InstallDir:C:\Python36-x64"
+
+        - choco install python3 --version 3.7.4 --sidebyside -y --forcex86 --force --params "/InstallDir:C:\Python37"
+        - choco install python3 --version 3.7.4 --sidebyside -y --force --params "/InstallDir:C:\Python37-x64"
+      script:
+        - C:/Python36/python -m pip install cibuildwheel==0.11.1
+        - C:/Python36-x64/python -m pip install cibuildwheel==0.11.1
+
+        - C:/Python37/python -m pip install cibuildwheel==0.11.1
+        - C:/Python37-x64/python -m pip install cibuildwheel==0.11.1
+
+        - C:/Python36/python -m cibuildwheel --platform windows --output-dir wheelhouse
+        - C:/Python36-x64/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+        - C:/Python37/python -m cibuildwheel --platform windows --output-dir wheelhouse
+        - C:/Python37-x64/python -m cibuildwheel --platform windows --output-dir wheelhouse
+
+      env:
+        - CIBW_BUILD='cp3[67]-*'
+        - CIBW_BEFORE_BUILD='python -m pip install cython'
+      deploy:
+        name: Windows Python 3.[67]
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file_glob: true
+        file: wheelhouse/*
+        skip_cleanup: true
+        draft: true
+        prerelease: true
+        overwrite: true
+        on:
+          tags: true
