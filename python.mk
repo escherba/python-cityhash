@@ -72,7 +72,7 @@ clean:  ## remove temporary files
 	find $(SRC_DIR) -type f -name "*.so" -exec rm {} \;
 
 .PHONY: install
-install:  ## install package
+install:  build_ext  ## install package
 	@echo "Installing for " `which pip`
 	-pip uninstall --yes $(PYMODULE)
 	pip install -e .

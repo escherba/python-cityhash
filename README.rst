@@ -53,6 +53,7 @@ named as follows:
 
 Development
 -----------
+
 For those who want to contribute, here is a quick start using some makefile
 commands:
 
@@ -62,6 +63,13 @@ commands:
     cd python-cityhash
     make env           # creates a Python virtualenv
     make test          # runs both Python and C++ tests
+
+The Makefiles provided have self-documenting targets. To find out which targets
+are available, type:
+
+.. code-block:: bash
+
+    make help
 
 See Also
 --------
