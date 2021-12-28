@@ -31,7 +31,7 @@ class BinaryDistribution(Distribution):
     See https://lucumr.pocoo.org/2014/1/27/python-on-wheels/
     """
     def is_pure(self):
-        # TODO: check if this is still necessary with Python v2.7
+        """Returns purity flag"""
         return False
 
 
@@ -67,7 +67,7 @@ else:
     )
 
 
-VERSION = '0.2.4.post1'
+VERSION = '0.2.4.post2'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -111,6 +111,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Internet',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Information Analysis',
