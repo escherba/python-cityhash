@@ -22,7 +22,7 @@ VENV_OPTS := --python="$(shell which $(INTERPRETER))"
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
 VENV_OPTS += --system-site-packages
 else
-VENV_OPTS += --no-site-packages
+# VENV_OPTS += --no-site-packages
 endif
 
 BOLD := $(shell tput bold)
