@@ -9,7 +9,6 @@ DISTRIBUTE := sdist
 ifeq ($(UNAME_S),Darwin)
 	DISTRIBUTE += bdist_wheel
 endif
-EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
 PYENV := PYTHONPATH=. . env/bin/activate;
 INTERPRETER := python3
@@ -41,7 +40,7 @@ release: env build_ext  ## upload package to PyPI
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 .PHONY: shell
-shell: extras build_ext  ## open IPython shell within the virtualenv
+shell: build_ext  ## open IPython shell within the virtualenv
 	@echo "Using $(PYVERSION)"
 	$(PYENV) $(ENV_EXTRA) ipython
 
@@ -54,7 +53,7 @@ $(EXTENSION): env $(EXTENSION_DEPS)
 	$(PYTHON) setup.py build_ext --inplace
 
 .PHONY: test
-test: extras build_ext  ## run Python unit tests
+test: build_ext  ## run Python unit tests
 	$(PYENV) pytest
 	$(PYENV) pytest README.rst
 
@@ -77,13 +76,6 @@ install:  build_ext  ## install package
 	@echo "Installing for " `which pip`
 	-pip uninstall --yes $(PYMODULE)
 	pip install -e .
-
-.PHONY: extras
-extras: pip-freeze-extras.txt  ## install optional dependencies
-pip-freeze-extras.txt: $(EXTRAS_REQS) | env
-	rm -rf env/build
-	$(PYENV) for req in $?; do pip install -r $$req; done
-	$(PIP) freeze > $@
 
 .PHONY: env
 env: pip-freeze.txt  ## set up a virtual environment
