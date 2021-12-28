@@ -37,10 +37,6 @@ jobs:
             - pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
             - pip-packages-v1-{{ .Branch }}-
             - pip-packages-v1-
-      - save_cache:
-          paths:
-            - env  # this path depends on where pipenv creates a virtualenv
-          key: pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
       - python/install-packages:
           pkg-manager: pip-dist
           # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
@@ -52,6 +48,10 @@ jobs:
           command: |
             make env
             make test
+      - save_cache:
+          paths:
+            - env  # this path depends on where pipenv creates a virtualenv
+          key: pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
