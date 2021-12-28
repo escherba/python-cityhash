@@ -4,10 +4,10 @@ SRC_DIR := src
 EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
 EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
 PYPI_URL := https://upload.pypi.org/legacy/
-UNAME_S := $(shell uname -s)
+
 DISTRIBUTE := sdist
-ifeq ($(UNAME_S),Darwin)
-	DISTRIBUTE += bdist_wheel
+ifeq ($(shell uname -s),Darwin)
+DISTRIBUTE += bdist_wheel
 endif
 
 PYENV := PYTHONPATH=. . env/bin/activate;
@@ -20,9 +20,6 @@ PIP := $(PYENV) $(PACKAGE_MGR)
 VENV_OPTS := --python="$(shell which $(INTERPRETER))"
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
 VENV_OPTS += --system-site-packages
-else
-# --no-site-packages does not work on CircleCI (virtualenv version compat?)
-# VENV_OPTS += --no-site-packages
 endif
 
 BOLD := $(shell tput bold)
