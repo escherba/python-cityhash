@@ -33,7 +33,8 @@ To use this package in your program, simply type
     pip install cityhash
 
 
-After that, you should be able to import the module and do things with it (see Example Usage below).
+After that, you should be able to import the module and do things with it (see
+Example Usage below).
 
 Example Usage
 -------------
