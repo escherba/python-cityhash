@@ -1,3 +1,10 @@
+SHELL := /usr/bin/env bash -c
+
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+.DEFAULT_GOAL := help
+.SUFFIXES:
+
 include python.mk
 include cpp.mk
 

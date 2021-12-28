@@ -1,7 +1,4 @@
 cython
-distribute
-ipdb
-ipython
 pytest
 setuptools
 virtualenv

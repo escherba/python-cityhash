@@ -4,9 +4,9 @@
 A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 """
 
-__author__      = "Alexander [Amper] Marshalov"
-__email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.2.4.post2'
+__author__      = "Eugene Scherbam Alexander [Amper] Marshalov"
+__email__       = "escherba+cityhash@gmail.com"
+__version__     = '0.2.4.post3'
 __all__         = [
     "CityHash32",
     "CityHash64",

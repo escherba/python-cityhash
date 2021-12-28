@@ -1,10 +1,3 @@
-__author__  = "Alexander [Amper] Marshalov"
-__email__   = "alone.amper+cityhash@gmail.com"
-__icq__     = "87-555-3"
-__jabber__  = "alone.amper@gmail.com"
-__twitter__ = "amper"
-__url__     = "https://amper.github.com/cityhash"
-
 from os.path import join, dirname
 from setuptools import setup
 from setuptools.extension import Extension
@@ -81,7 +74,7 @@ else:
         )
 
 
-VERSION = '0.2.4.post2'
+VERSION = '0.2.4.post3'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -102,8 +95,8 @@ def get_long_description():
 setup(
     version=VERSION,
     description="Python bindings for CityHash, a fast non-cryptographic hash algorithm",
-    author="Alexander [Amper] Marshalov",
-    author_email="alone.amper+cityhash@gmail.com",
+    author="Eugene Scherba, Alexander [Amper] Marshalov",
+    author_email="escherba+cityhash@gmail.com",
     url=URL,
     download_url=URL + "/tarball/master/" + VERSION,
     name='cityhash',
@@ -135,5 +128,6 @@ setup(
         'Topic :: Utilities'
     ],
     long_description=get_long_description(),
+    tests_require=['pytest'],
     distclass=BinaryDistribution,
 )
