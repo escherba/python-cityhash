@@ -905,9 +905,9 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "src/cityhash.pyx",
-  "env/lib/python3.8/site-packages/Cython/Includes/cpython/type.pxd",
-  "env/lib/python3.8/site-packages/Cython/Includes/cpython/bool.pxd",
-  "env/lib/python3.8/site-packages/Cython/Includes/cpython/complex.pxd",
+  "env/lib/python3.7/site-packages/Cython/Includes/cpython/type.pxd",
+  "env/lib/python3.7/site-packages/Cython/Includes/cpython/bool.pxd",
+  "env/lib/python3.7/site-packages/Cython/Includes/cpython/complex.pxd",
 };
 
 /*--- Type declarations ---*/

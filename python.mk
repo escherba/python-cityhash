@@ -9,7 +9,6 @@ DISTRIBUTE := sdist
 ifeq ($(UNAME_S),Darwin)
 	DISTRIBUTE += bdist_wheel
 endif
-EXTRAS_REQS := dev-requirements.txt $(wildcard extras-*-requirements.txt)
 
 PYENV := PYTHONPATH=. . env/bin/activate;
 INTERPRETER := python3
@@ -22,7 +21,8 @@ VENV_OPTS := --python="$(shell which $(INTERPRETER))"
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
 VENV_OPTS += --system-site-packages
 else
-VENV_OPTS += --no-site-packages
+# --no-site-packages does not work on CircleCI (virtualenv version compat?)
+# VENV_OPTS += --no-site-packages
 endif
 
 BOLD := $(shell tput bold)
@@ -40,7 +40,7 @@ release: env build_ext  ## upload package to PyPI
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 .PHONY: shell
-shell: extras build_ext  ## open IPython shell within the virtualenv
+shell: build_ext  ## open IPython shell within the virtualenv
 	@echo "Using $(PYVERSION)"
 	$(PYENV) $(ENV_EXTRA) ipython
 
@@ -53,7 +53,7 @@ $(EXTENSION): env $(EXTENSION_DEPS)
 	$(PYTHON) setup.py build_ext --inplace
 
 .PHONY: test
-test: extras build_ext  ## run Python unit tests
+test: build_ext  ## run Python unit tests
 	$(PYENV) pytest
 	$(PYENV) pytest README.rst
 
@@ -65,7 +65,7 @@ nuke: clean  ## clean and remove virtual environment
 .PHONY: clean
 clean:  ## remove temporary files
 	python setup.py clean
-	rm -rf dist build
+	rm -rf dist build __pycache__
 	rm -f *.so
 	find $(SRC_DIR) -type f -name "*.pyc" -exec rm {} \;
 	find $(SRC_DIR) -type f -name "*.cpp" -exec rm {} \;
@@ -77,16 +77,9 @@ install:  build_ext  ## install package
 	-pip uninstall --yes $(PYMODULE)
 	pip install -e .
 
-.PHONY: extras
-extras: env/make.extras  ## install optional dependencies
-env/make.extras: $(EXTRAS_REQS) | env
-	rm -rf env/build
-	$(PYENV) for req in $?; do pip install -r $$req; done
-	touch $@
-
 .PHONY: env
-env: env/bin/activate  ## set up a virtual environment
-env/bin/activate: setup.py
+env: pip-freeze.txt  ## set up a virtual environment
+pip-freeze.txt: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
@@ -94,4 +87,4 @@ env/bin/activate: setup.py
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
 	$(PIP) install -e .
-	touch $@
+	$(PIP) freeze > $@

@@ -33,7 +33,8 @@ To use this package in your program, simply type
     pip install cityhash
 
 
-After that, you should be able to import the module and do things with it (see Example Usage below).
+After that, you should be able to import the module and do things with it (see
+Example Usage below).
 
 Example Usage
 -------------
@@ -62,7 +63,7 @@ commands:
     git clone https://github.com/escherba/python-cityhash.git
     cd python-cityhash
     make env           # creates a Python virtualenv
-    make test          # runs both Python and C++ tests
+    make test          # runs tests
 
 The Makefiles provided have self-documenting targets. To find out which targets
 are available, type:
