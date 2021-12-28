@@ -37,9 +37,9 @@ release: env build_ext  ## upload package to PyPI
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 .PHONY: shell
-shell: build_ext  ## open IPython shell within the virtualenv
+shell: build_ext  ## open Python shell within the virtualenv
 	@echo "Using $(PYVERSION)"
-	$(PYENV) $(ENV_EXTRA) ipython
+	$(PYENV) $(ENV_EXTRA) python
 
 .PHONY: build_ext
 build_ext: $(EXTENSION)  ## build C extension(s)
@@ -58,7 +58,7 @@ test: build_ext  ## run Python unit tests
 nuke: clean  ## clean and remove virtual environment
 	rm -f $(EXTENSION_INTERMEDIATE)
 	rm -rf *.egg *.egg-info env
-	find $(SRC_DIR) -d -type d -name *.egg-info -exec rm -rf {} \;
+	find $(SRC_DIR) -depth -type d -name *.egg-info -exec rm -rf {} \;
 
 .PHONY: clean
 clean:  ## remove temporary files
@@ -75,14 +75,14 @@ install:  build_ext  ## install package
 	-pip uninstall --yes $(PYMODULE)
 	pip install -e .
 
+.PRECIOUS: env/bin/activate
 .PHONY: env
 env: env/bin/activate  ## set up a virtual environment
-env/bin/activate: setup.py
+env/bin/activate: setup.py requirements.txt
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
-	$(PIP) install -U markerlib
-	$(PIP) install -U wheel
-	$(PIP) install -U cython
+	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PIP) install -r requirements.txt
 	$(PIP) install -e .
 	$(PIP) freeze > pip-freeze.txt
+	touch $@

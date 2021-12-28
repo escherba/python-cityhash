@@ -1,23 +1,31 @@
-# Python
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
-*.egg-info/
-build/
-dist/
-data/
-bin/
 
-# Misc IDE and editor stuff
-.idea/
-.ropeproject/
-*.sw[op]
-
-# virtualenv
-env/
-
-.cache/
-
+# C extensions
 *.so
 *.zip
 
-# vscode
-.vscode
+# Misc artifacts
+.DS_Store
+.cache/
+*.sw[op]
+
+# Exclude these directories
+bin/
+data/
+
+# Distribution / packaging
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+
+# IDE and editor stuff
+.idea/
+.vscode/
+.ropeproject/

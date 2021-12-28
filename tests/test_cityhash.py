@@ -1,5 +1,5 @@
 """
-Various Python-based tests
+Python-based tests for cityhash extension
 """
 import unittest
 import random
@@ -37,7 +37,7 @@ def random_splits(s, n, nsplits=2):
 
 class TestStandalone(unittest.TestCase):
 
-    """runs a battery of small tests"""
+    """test single-line methods"""
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string
@@ -135,4 +135,3 @@ class TestStandalone(unittest.TestCase):
         self.assertNotEqual(CityHash64WithSeed(test_string, 0), CityHash64WithSeed(test_string, 1))
         self.assertNotEqual(CityHash64WithSeeds(test_string, 0, 0), CityHash64WithSeeds(test_string, 0, 1))
         self.assertNotEqual(CityHash128WithSeed(test_string, 0), CityHash128WithSeed(test_string, 1))
-        

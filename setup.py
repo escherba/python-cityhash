@@ -1,10 +1,3 @@
-__author__  = "Alexander [Amper] Marshalov"
-__email__   = "alone.amper+cityhash@gmail.com"
-__icq__     = "87-555-3"
-__jabber__  = "alone.amper@gmail.com"
-__twitter__ = "amper"
-__url__     = "https://amper.github.com/cityhash"
-
 from os.path import join, dirname
 from setuptools import setup
 from setuptools.extension import Extension
@@ -46,28 +39,42 @@ if have_sse42:
 
 
 INCLUDE_DIRS = ['include']
+CXXHEADERS = [
+    "include/citycrc.h",
+    "include/city.h",
+    "include/config.h",
+]
+CXXSOURCES = [
+    "src/city.cc",
+]
 
 CMDCLASS = {}
 EXT_MODULES = []
 
 if USE_CYTHON:
     EXT_MODULES.append(
-        Extension("cityhash", ["src/city.cc", "src/cityhash.pyx"],
-                  language="c++",
-                  extra_compile_args=CXXFLAGS,
-                  include_dirs=INCLUDE_DIRS)
-    )
+        Extension(
+            "cityhash",
+            CXXSOURCES + ["src/cityhash.pyx"],
+            depends=CXXHEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS)
+        )
     CMDCLASS['build_ext'] = build_ext
 else:
     EXT_MODULES.append(
-        Extension("cityhash", ["src/city.cc", "src/cityhash.cpp"],
-                  language="c++",
-                  extra_compile_args=CXXFLAGS,
-                  include_dirs=INCLUDE_DIRS)
-    )
+        Extension(
+            "cityhash",
+            CXXSOURCES + ["src/cityhash.cpp"],
+            depends=CXXHEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS)
+        )
 
 
-VERSION = '0.2.4.post2'
+VERSION = '0.2.4.post3'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -88,21 +95,22 @@ def get_long_description():
 setup(
     version=VERSION,
     description="Python bindings for CityHash, a fast non-cryptographic hash algorithm",
-    author="Alexander [Amper] Marshalov",
-    author_email="alone.amper+cityhash@gmail.com",
+    author="Eugene Scherba, Alexander [Amper] Marshalov",
+    author_email="escherba+cityhash@gmail.com",
     url=URL,
     download_url=URL + "/tarball/master/" + VERSION,
     name='cityhash',
     license='MIT',
+    zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
     keywords=['hash', 'hashing', 'cityhash'],
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Operating System :: OS Independent',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
         'Programming Language :: C++',
         'Programming Language :: Cython',
         'Programming Language :: Python :: 2.7',
@@ -120,5 +128,6 @@ setup(
         'Topic :: Utilities'
     ],
     long_description=get_long_description(),
+    tests_require=['pytest'],
     distclass=BinaryDistribution,
 )
