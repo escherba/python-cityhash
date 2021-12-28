@@ -58,6 +58,7 @@ test: build_ext  ## run Python unit tests
 nuke: clean  ## clean and remove virtual environment
 	rm -f $(EXTENSION_INTERMEDIATE)
 	rm -rf *.egg *.egg-info env
+	find $(SRC_DIR) -d -type d -name *.egg-info -exec rm -rf {} \;
 
 .PHONY: clean
 clean:  ## remove temporary files

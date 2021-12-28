@@ -6,14 +6,16 @@ A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Alexander [Amper] Marshalov"
 __email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.2.4.post1'
-__all__         = ["CityHash32",
-                   "CityHash64",
-                   "CityHash64WithSeed",
-                   "CityHash64WithSeeds",
-                   "CityHash128",
-                   "CityHash128WithSeed",
-                  ]
+__version__     = '0.2.4.post2'
+__all__         = [
+    "CityHash32",
+    "CityHash64",
+    "CityHash64WithSeed",
+    "CityHash64WithSeeds",
+    "CityHash128",
+    "CityHash128WithSeed",
+]
+
 
 cdef extern from * nogil:
     ctypedef unsigned long int uint32_t
