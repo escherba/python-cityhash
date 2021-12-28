@@ -904,7 +904,7 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "src/cityhash.pyx",
-  "env/lib/python3.8/site-packages/Cython/Includes/cpython/type.pxd",
+  "env/lib/python3.9/site-packages/Cython/Includes/cpython/type.pxd",
 };
 
 /*--- Type declarations ---*/
@@ -2910,8 +2910,6 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   PyObject *__pyx_v_obj = 0;
   std::pair<uint64,uint64>  __pyx_v_result;
   std::pair<uint64,uint64>  __pyx_v_tseed;
-  CYTHON_UNUSED uint64 __pyx_v_seed_0;
-  CYTHON_UNUSED uint64 __pyx_v_seed_1;
   PyObject *__pyx_v_final = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2934,20 +2932,20 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   /* "cityhash.pyx":197
  *     cdef pair[uint64, uint64] tseed
  * 
- *     cdef uint64 seed_0 = seed >> 64ULL             # <<<<<<<<<<<<<<
- *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
+ *     tseed.first = seed >> 64ULL             # <<<<<<<<<<<<<<
+ *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  */
   __pyx_t_1 = PyNumber_Rshift(__pyx_v_seed, __pyx_int_64L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_seed_0 = __pyx_t_2;
+  __pyx_v_tseed.first = __pyx_t_2;
 
   /* "cityhash.pyx":198
  * 
- *     cdef uint64 seed_0 = seed >> 64ULL
- *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)             # <<<<<<<<<<<<<<
+ *     tseed.first = seed >> 64ULL
+ *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)             # <<<<<<<<<<<<<<
  * 
  *     if PyUnicode_Check(data):
  */
@@ -2955,10 +2953,10 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_seed_1 = __pyx_t_2;
+  __pyx_v_tseed.second = __pyx_t_2;
 
   /* "cityhash.pyx":200
- *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
+ *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
  *         obj = PyUnicode_AsUTF8String(data)
@@ -3007,7 +3005,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     PyBuffer_Release((&__pyx_v_buf));
 
     /* "cityhash.pyx":200
- *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
+ *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
  *         obj = PyUnicode_AsUTF8String(data)

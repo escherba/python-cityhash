@@ -194,8 +194,8 @@ cpdef CityHash128WithSeed(data, seed=0L):
     cdef pair[uint64, uint64] result
     cdef pair[uint64, uint64] tseed
 
-    cdef uint64 seed_0 = seed >> 64ULL
-    cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
+    tseed.first = seed >> 64ULL
+    tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
 
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)

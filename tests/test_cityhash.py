@@ -129,3 +129,10 @@ class TestStandalone(unittest.TestCase):
                 old_refcount = sys.getrefcount(arg)
                 func(arg)
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
+
+    def test_different_seeds(self):
+        test_string = 'just a string'
+        self.assertNotEqual(CityHash64WithSeed(test_string, 0), CityHash64WithSeed(test_string, 1))
+        self.assertNotEqual(CityHash64WithSeeds(test_string, 0, 0), CityHash64WithSeeds(test_string, 0, 1))
+        self.assertNotEqual(CityHash128WithSeed(test_string, 0), CityHash128WithSeed(test_string, 1))
+        
