@@ -79,15 +79,15 @@ install:  build_ext  ## install package
 	pip install -e .
 
 .PHONY: extras
-extras: env/pip-freeze-extras.txt  ## install optional dependencies
-env/pip-freeze-extras.txt: $(EXTRAS_REQS) | env
+extras: pip-freeze-extras.txt  ## install optional dependencies
+pip-freeze-extras.txt: $(EXTRAS_REQS) | env
 	rm -rf env/build
 	$(PYENV) for req in $?; do pip install -r $$req; done
 	$(PIP) freeze > $@
 
 .PHONY: env
-env: env/pip-freeze.txt  ## set up a virtual environment
-env/pip-freeze.txt: setup.py
+env: pip-freeze.txt  ## set up a virtual environment
+pip-freeze.txt: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
