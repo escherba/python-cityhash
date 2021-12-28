@@ -51,7 +51,7 @@ jobs:
           paths:
             - env  # this path depends on where pipenv creates a virtualenv
           key: pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
-  puiblish-to-pypi:
+  build-and-publish:
     docker:
       - image: cimg/python:3.8
         environment:
