@@ -1278,7 +1278,7 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_CityHash32[] = "CityHash32";
 static const char __pyx_k_CityHash64[] = "CityHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_2_4_post0[] = "0.2.4.post0";
+static const char __pyx_k_0_2_4_post1[] = "0.2.4.post1";
 static const char __pyx_k_CityHash128[] = "CityHash128";
 static const char __pyx_k_CityHash64WithSeed[] = "CityHash64WithSeed";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
@@ -1288,7 +1288,7 @@ static const char __pyx_k_Alexander_Amper_Marshalov[] = "Alexander [Amper] Marsh
 static const char __pyx_k_alone_amper_cityhash_gmail_com[] = "alone.amper+cityhash@gmail.com";
 static const char __pyx_k_A_Python_wrapper_around_CityHas[] = "\nA Python wrapper around CityHash, a fast non-cryptographic hashing algorithm\n";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type (expected %s, got %s)";
-static PyObject *__pyx_kp_s_0_2_4_post0;
+static PyObject *__pyx_kp_s_0_2_4_post1;
 static PyObject *__pyx_kp_s_Alexander_Amper_Marshalov;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_n_s_CityHash128;
@@ -3326,7 +3326,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_2_4_post0, __pyx_k_0_2_4_post0, sizeof(__pyx_k_0_2_4_post0), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_2_4_post1, __pyx_k_0_2_4_post1, sizeof(__pyx_k_0_2_4_post1), 0, 0, 1, 0},
   {&__pyx_kp_s_Alexander_Amper_Marshalov, __pyx_k_Alexander_Amper_Marshalov, sizeof(__pyx_k_Alexander_Amper_Marshalov), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_n_s_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 0, 1, 1},
@@ -3666,7 +3666,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Alexander [Amper] Marshalov"             # <<<<<<<<<<<<<<
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.4.post0'
+ * __version__     = '0.2.4.post1'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Alexander_Amper_Marshalov) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
 
@@ -3674,7 +3674,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Alexander [Amper] Marshalov"
  * __email__       = "alone.amper+cityhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.2.4.post0'
+ * __version__     = '0.2.4.post1'
  * __all__         = ["CityHash32",
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_alone_amper_cityhash_gmail_com) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
@@ -3682,15 +3682,15 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":9
  * __author__      = "Alexander [Amper] Marshalov"
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.4.post0'             # <<<<<<<<<<<<<<
+ * __version__     = '0.2.4.post1'             # <<<<<<<<<<<<<<
  * __all__         = ["CityHash32",
  *                    "CityHash64",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_2_4_post0) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_2_4_post1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "cityhash.pyx":10
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.4.post0'
+ * __version__     = '0.2.4.post1'
  * __all__         = ["CityHash32",             # <<<<<<<<<<<<<<
  *                    "CityHash64",
  *                    "CityHash64WithSeed",
