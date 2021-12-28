@@ -62,7 +62,7 @@ commands:
     git clone https://github.com/escherba/python-cityhash.git
     cd python-cityhash
     make env           # creates a Python virtualenv
-    make test          # runs both Python and C++ tests
+    make test          # runs tests
 
 The Makefiles provided have self-documenting targets. To find out which targets
 are available, type:
