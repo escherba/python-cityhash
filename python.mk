@@ -22,6 +22,7 @@ VENV_OPTS := --python="$(shell which $(INTERPRETER))"
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
 VENV_OPTS += --system-site-packages
 else
+# --no-site-packages does not work on CircleCI (virtualenv version compat?)
 # VENV_OPTS += --no-site-packages
 endif
 
@@ -78,15 +79,15 @@ install:  build_ext  ## install package
 	pip install -e .
 
 .PHONY: extras
-extras: env/make.extras  ## install optional dependencies
-env/make.extras: $(EXTRAS_REQS) | env
+extras: env/pip-freeze-extras.txt  ## install optional dependencies
+env/pip-freeze-extras.txt: $(EXTRAS_REQS) | env
 	rm -rf env/build
 	$(PYENV) for req in $?; do pip install -r $$req; done
-	touch $@
+	$(PIP) freeze > $@
 
 .PHONY: env
-env: env/bin/activate  ## set up a virtual environment
-env/bin/activate: setup.py
+env: env/pip-freeze.txt  ## set up a virtual environment
+env/pip-freeze.txt: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
@@ -94,4 +95,4 @@ env/bin/activate: setup.py
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
 	$(PIP) install -e .
-	touch $@
+	$(PIP) freeze > $@
