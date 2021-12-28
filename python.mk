@@ -66,7 +66,7 @@ nuke: clean  ## clean and remove virtual environment
 .PHONY: clean
 clean:  ## remove temporary files
 	python setup.py clean
-	rm -rf dist build
+	rm -rf dist build __pycache__
 	rm -f *.so
 	find $(SRC_DIR) -type f -name "*.pyc" -exec rm {} \;
 	find $(SRC_DIR) -type f -name "*.cpp" -exec rm {} \;
