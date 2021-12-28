@@ -4,11 +4,10 @@
 build/
 dist/
 data/
-
-# ignore executables
 bin/
 
-# Misc editor stuff
+# Misc IDE and editor stuff
+.idea/
 .ropeproject/
 *.sw[op]
 

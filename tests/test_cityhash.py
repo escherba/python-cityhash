@@ -1,5 +1,5 @@
 """
-Various python-based tests
+Various Python-based tests
 """
 import unittest
 import random
