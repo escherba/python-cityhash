@@ -1,5 +1,8 @@
-virtualenv
-setuptools
-distribute
-wheel
 cython
+distribute
+ipdb
+ipython
+pytest
+setuptools
+virtualenv
+wheel

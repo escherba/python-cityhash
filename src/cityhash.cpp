@@ -694,7 +694,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "city.h"
 #include <string.h>
 #include <stdio.h>
-#include "pythread.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -905,9 +904,7 @@ static const char *__pyx_filename;
 
 static const char *__pyx_f[] = {
   "src/cityhash.pyx",
-  "env/lib/python3.9/site-packages/Cython/Includes/cpython/type.pxd",
-  "env/lib/python3.9/site-packages/Cython/Includes/cpython/bool.pxd",
-  "env/lib/python3.9/site-packages/Cython/Includes/cpython/complex.pxd",
+  "env/lib/python3.8/site-packages/Cython/Includes/cpython/type.pxd",
 };
 
 /*--- Type declarations ---*/
@@ -1230,6 +1227,8 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
+/* Module declarations from 'cpython.long' */
+
 /* Module declarations from 'cpython.buffer' */
 
 /* Module declarations from 'cpython.unicode' */
@@ -1242,70 +1241,6 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from 'cpython.type' */
 static PyTypeObject *__pyx_ptype_7cpython_4type_type = 0;
-
-/* Module declarations from 'cpython.version' */
-
-/* Module declarations from 'cpython.ref' */
-
-/* Module declarations from 'cpython.exc' */
-
-/* Module declarations from 'cpython.module' */
-
-/* Module declarations from 'cpython.mem' */
-
-/* Module declarations from 'cpython.tuple' */
-
-/* Module declarations from 'cpython.list' */
-
-/* Module declarations from 'cpython.sequence' */
-
-/* Module declarations from 'cpython.mapping' */
-
-/* Module declarations from 'cpython.iterator' */
-
-/* Module declarations from 'cpython.number' */
-
-/* Module declarations from 'cpython.int' */
-
-/* Module declarations from '__builtin__' */
-
-/* Module declarations from 'cpython.bool' */
-static PyTypeObject *__pyx_ptype_7cpython_4bool_bool = 0;
-
-/* Module declarations from 'cpython.long' */
-
-/* Module declarations from 'cpython.float' */
-
-/* Module declarations from '__builtin__' */
-
-/* Module declarations from 'cpython.complex' */
-static PyTypeObject *__pyx_ptype_7cpython_7complex_complex = 0;
-
-/* Module declarations from 'cpython.string' */
-
-/* Module declarations from 'cpython.dict' */
-
-/* Module declarations from 'cpython.instance' */
-
-/* Module declarations from 'cpython.function' */
-
-/* Module declarations from 'cpython.method' */
-
-/* Module declarations from 'cpython.weakref' */
-
-/* Module declarations from 'cpython.getargs' */
-
-/* Module declarations from 'cpython.pythread' */
-
-/* Module declarations from 'cpython.pystate' */
-
-/* Module declarations from 'cpython.cobject' */
-
-/* Module declarations from 'cpython.oldbuffer' */
-
-/* Module declarations from 'cpython.set' */
-
-/* Module declarations from 'cpython.pycapsule' */
 
 /* Module declarations from 'cpython' */
 
@@ -1343,7 +1278,7 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_CityHash32[] = "CityHash32";
 static const char __pyx_k_CityHash64[] = "CityHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_2_3_post9[] = "0.2.3.post9";
+static const char __pyx_k_0_2_4_post1[] = "0.2.4.post1";
 static const char __pyx_k_CityHash128[] = "CityHash128";
 static const char __pyx_k_CityHash64WithSeed[] = "CityHash64WithSeed";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
@@ -1353,7 +1288,7 @@ static const char __pyx_k_Alexander_Amper_Marshalov[] = "Alexander [Amper] Marsh
 static const char __pyx_k_alone_amper_cityhash_gmail_com[] = "alone.amper+cityhash@gmail.com";
 static const char __pyx_k_A_Python_wrapper_around_CityHas[] = "\nA Python wrapper around CityHash, a fast non-cryptographic hashing algorithm\n";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type (expected %s, got %s)";
-static PyObject *__pyx_kp_s_0_2_3_post9;
+static PyObject *__pyx_kp_s_0_2_4_post1;
 static PyObject *__pyx_kp_s_Alexander_Amper_Marshalov;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_n_s_CityHash128;
@@ -2975,6 +2910,8 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   PyObject *__pyx_v_obj = 0;
   std::pair<uint64,uint64>  __pyx_v_result;
   std::pair<uint64,uint64>  __pyx_v_tseed;
+  CYTHON_UNUSED uint64 __pyx_v_seed_0;
+  CYTHON_UNUSED uint64 __pyx_v_seed_1;
   PyObject *__pyx_v_final = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2997,20 +2934,20 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   /* "cityhash.pyx":197
  *     cdef pair[uint64, uint64] tseed
  * 
- *     tseed.first = seed >> 64ULL             # <<<<<<<<<<<<<<
- *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
+ *     cdef uint64 seed_0 = seed >> 64ULL             # <<<<<<<<<<<<<<
+ *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  */
   __pyx_t_1 = PyNumber_Rshift(__pyx_v_seed, __pyx_int_64L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_tseed.first = __pyx_t_2;
+  __pyx_v_seed_0 = __pyx_t_2;
 
   /* "cityhash.pyx":198
  * 
- *     tseed.first = seed >> 64ULL
- *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)             # <<<<<<<<<<<<<<
+ *     cdef uint64 seed_0 = seed >> 64ULL
+ *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)             # <<<<<<<<<<<<<<
  * 
  *     if PyUnicode_Check(data):
  */
@@ -3018,10 +2955,10 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_tseed.second = __pyx_t_2;
+  __pyx_v_seed_1 = __pyx_t_2;
 
   /* "cityhash.pyx":200
- *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
+ *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
  *         obj = PyUnicode_AsUTF8String(data)
@@ -3070,7 +3007,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     PyBuffer_Release((&__pyx_v_buf));
 
     /* "cityhash.pyx":200
- *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
+ *     cdef uint64 seed_1 = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
  *         obj = PyUnicode_AsUTF8String(data)
@@ -3389,7 +3326,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_2_3_post9, __pyx_k_0_2_3_post9, sizeof(__pyx_k_0_2_3_post9), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_2_4_post1, __pyx_k_0_2_4_post1, sizeof(__pyx_k_0_2_4_post1), 0, 0, 1, 0},
   {&__pyx_kp_s_Alexander_Amper_Marshalov, __pyx_k_Alexander_Amper_Marshalov, sizeof(__pyx_k_Alexander_Amper_Marshalov), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_n_s_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 0, 1, 1},
@@ -3499,16 +3436,6 @@ static int __Pyx_modinit_type_import_code(void) {
   #endif
   __Pyx_ImportType_CheckSize_Warn);
    if (!__pyx_ptype_7cpython_4type_type) __PYX_ERR(1, 9, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 8, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_4bool_bool = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "bool", sizeof(PyBoolObject), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_7cpython_4bool_bool) __PYX_ERR(2, 8, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_7cpython_7complex_complex = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "complex", sizeof(PyComplexObject), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_7cpython_7complex_complex) __PYX_ERR(3, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -3739,7 +3666,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Alexander [Amper] Marshalov"             # <<<<<<<<<<<<<<
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.3.post9'
+ * __version__     = '0.2.4.post1'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Alexander_Amper_Marshalov) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
 
@@ -3747,7 +3674,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Alexander [Amper] Marshalov"
  * __email__       = "alone.amper+cityhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.2.3.post9'
+ * __version__     = '0.2.4.post1'
  * __all__         = ["CityHash32",
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_alone_amper_cityhash_gmail_com) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
@@ -3755,15 +3682,15 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":9
  * __author__      = "Alexander [Amper] Marshalov"
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.3.post9'             # <<<<<<<<<<<<<<
+ * __version__     = '0.2.4.post1'             # <<<<<<<<<<<<<<
  * __all__         = ["CityHash32",
  *                    "CityHash64",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_2_3_post9) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_2_4_post1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "cityhash.pyx":10
  * __email__       = "alone.amper+cityhash@gmail.com"
- * __version__     = '0.2.3.post9'
+ * __version__     = '0.2.4.post1'
  * __all__         = ["CityHash32",             # <<<<<<<<<<<<<<
  *                    "CityHash64",
  *                    "CityHash64WithSeed",

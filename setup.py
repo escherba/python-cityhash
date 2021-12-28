@@ -3,12 +3,12 @@ __email__   = "alone.amper+cityhash@gmail.com"
 __icq__     = "87-555-3"
 __jabber__  = "alone.amper@gmail.com"
 __twitter__ = "amper"
-__url__     = "http://amper.github.com/cityhash"
+__url__     = "https://amper.github.com/cityhash"
 
+from os.path import join, dirname
 from setuptools import setup
 from setuptools.extension import Extension
 from setuptools.dist import Distribution
-from os.path import join, dirname
 
 try:
     from cpuinfo import get_cpu_info
@@ -20,15 +20,15 @@ except Exception:
 try:
     from Cython.Distutils import build_ext
 except ImportError:
-    USE_CYTHON = False
-else:
-    USE_CYTHON = True
+    build_ext = None
+
+USE_CYTHON = build_ext is not None
 
 
 class BinaryDistribution(Distribution):
     """
     Subclass the setuptools Distribution to flip the purity flag to false.
-    See http://lucumr.pocoo.org/2014/1/27/python-on-wheels/
+    See https://lucumr.pocoo.org/2014/1/27/python-on-wheels/
     """
     def is_pure(self):
         # TODO: check if this is still necessary with Python v2.7
@@ -67,7 +67,7 @@ else:
     )
 
 
-VERSION = '0.2.3.post9'
+VERSION = '0.2.4.post1'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -76,18 +76,18 @@ LONG_DESCRIPTION = """
 """
 
 
-def long_description():
+def get_long_description():
     fname = join(dirname(__file__), 'README.rst')
     try:
-        with open(fname, 'rb') as fd:
-            return fd.read().decode('utf-8')
+        with open(fname, 'rb') as fh:
+            return fh.read().decode('utf-8')
     except Exception:
         return LONG_DESCRIPTION
 
 
 setup(
     version=VERSION,
-    description="Python-bindings for CityHash, a fast non-cryptographic hash algorithm",
+    description="Python bindings for CityHash, a fast non-cryptographic hash algorithm",
     author="Alexander [Amper] Marshalov",
     author_email="alone.amper+cityhash@gmail.com",
     url=URL,
@@ -109,6 +109,8 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Internet',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Information Analysis',
@@ -116,6 +118,6 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Utilities'
     ],
-    long_description=long_description(),
+    long_description=get_long_description(),
     distclass=BinaryDistribution,
 )

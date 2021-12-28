@@ -1,7 +1,0 @@
-nose
-coverage
-nosexcover
-mock
-pytest
-ipython
-ipdb

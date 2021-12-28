@@ -6,7 +6,7 @@ A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Alexander [Amper] Marshalov"
 __email__       = "alone.amper+cityhash@gmail.com"
-__version__     = '0.2.3.post9'
+__version__     = '0.2.4.post1'
 __all__         = ["CityHash32",
                    "CityHash64",
                    "CityHash64WithSeed",
@@ -39,13 +39,15 @@ cdef extern from "city.h" nogil:
     ctypedef pair uint128
     cdef uint64  c_Uint128Low64 "Uint128Low64" (uint128& x)
     cdef uint64  c_Uint128High64 "Uint128High64" (uint128& x)
-    cdef uint32  c_CityHash32 "CityHash32" (char *buff, size_t len)
-    cdef uint64  c_CityHash64 "CityHash64" (char *buff, size_t len)
-    cdef uint64  c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t len, uint64 seed)
-    cdef uint64  c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t len, uint64 seed0, uint64 seed1)
-    cdef uint128[uint64,uint64] c_CityHash128 "CityHash128" (char *s, size_t len)
-    cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t len, uint128[uint64,uint64] seed)
+    cdef uint32  c_CityHash32 "CityHash32" (char *buff, size_t length)
+    cdef uint64  c_CityHash64 "CityHash64" (char *buff, size_t length)
+    cdef uint64  c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
+    cdef uint64  c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
+    cdef uint128[uint64,uint64] c_CityHash128 "CityHash128" (char *s, size_t length)
+    cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64,uint64] seed)
 
+
+from cpython.long cimport long
 
 from cpython.buffer cimport PyObject_CheckBuffer
 from cpython.buffer cimport PyBUF_SIMPLE
@@ -59,8 +61,6 @@ from cpython.unicode cimport PyUnicode_AsUTF8String
 from cpython.bytes cimport PyBytes_Check 
 from cpython.bytes cimport PyBytes_GET_SIZE 
 from cpython.bytes cimport PyBytes_AS_STRING 
-
-from cpython cimport Py_DECREF
 
 
 cdef object _type_error(str argname, expected, value):
