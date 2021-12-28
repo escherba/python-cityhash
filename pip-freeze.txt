@@ -1,3 +1,3 @@
--e git+ssh://git@github.com/escherba/python-cityhash.git@51f43b79221be7878eb566c141703ec747f21104#egg=cityhash
+-e git+ssh://git@github.com/escherba/python-cityhash.git@e1da7d302bb79f50893819883728fecf70f3b0d9#egg=cityhash
 Cython==0.29.26
 markerlib==0.6.0

@@ -75,8 +75,8 @@ install:  build_ext  ## install package
 	pip install -e .
 
 .PHONY: env
-env: pip-freeze.txt  ## set up a virtual environment
-pip-freeze.txt: setup.py
+env: env/bin/activate  ## set up a virtual environment
+env/bin/activate: setup.py
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip
@@ -84,4 +84,4 @@ pip-freeze.txt: setup.py
 	$(PIP) install -U wheel
 	$(PIP) install -U cython
 	$(PIP) install -e .
-	$(PIP) freeze > $@
+	$(PIP) freeze > pip-freeze.txt

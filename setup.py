@@ -3,7 +3,7 @@ __email__   = "alone.amper+cityhash@gmail.com"
 __icq__     = "87-555-3"
 __jabber__  = "alone.amper@gmail.com"
 __twitter__ = "amper"
-__url__     = "http://amper.github.com/cityhash"
+__url__     = "https://amper.github.com/cityhash"
 
 from os.path import join, dirname
 from setuptools import setup
@@ -20,15 +20,15 @@ except Exception:
 try:
     from Cython.Distutils import build_ext
 except ImportError:
-    USE_CYTHON = False
-else:
-    USE_CYTHON = True
+    build_ext = None
+
+USE_CYTHON = build_ext is not None
 
 
 class BinaryDistribution(Distribution):
     """
     Subclass the setuptools Distribution to flip the purity flag to false.
-    See http://lucumr.pocoo.org/2014/1/27/python-on-wheels/
+    See https://lucumr.pocoo.org/2014/1/27/python-on-wheels/
     """
     def is_pure(self):
         # TODO: check if this is still necessary with Python v2.7
@@ -67,7 +67,7 @@ else:
     )
 
 
-VERSION = '0.2.4.post0'
+VERSION = '0.2.4.post1'
 URL = "https://github.com/escherba/python-cityhash"
 
 
