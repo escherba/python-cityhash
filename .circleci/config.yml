@@ -44,7 +44,6 @@ jobs:
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
-          # command: pytest
           command: |
             make env
             make test
@@ -52,6 +51,33 @@ jobs:
           paths:
             - env  # this path depends on where pipenv creates a virtualenv
           key: pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
+  puiblish-to-pypi:
+    docker:
+      - image: cimg/python:3.8
+        environment:
+          SETUPTOOLS_USE_DISTUTILS: stdlib
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
+            - pip-packages-v1-{{ .Branch }}-
+            - pip-packages-v1-
+      - python/install-packages:
+          pkg-manager: pip-dist
+          pip-dependency-file: requirements.txt
+      - run:
+          name: Publish to PyPI
+          command: |
+            bash create_pypirc.sh
+            make test
+            make release
+      - save_cache:
+          paths:
+            - env  # this path depends on where pipenv creates a virtualenv
+          key: pip-packages-v1-{{ .Branch }}-{{ checksum "pip-freeze.txt" }}
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -59,3 +85,9 @@ workflows:
   run-tests:
     jobs:
       - build-and-test
+  publish-to-pypi:
+    jobs:
+      - build-and-publish:
+          filters:
+            branches:
+              only: master
