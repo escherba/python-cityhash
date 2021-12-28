@@ -3,7 +3,7 @@ EXTENSION := $(PYMODULE).so
 SRC_DIR := src
 EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
 EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
-PYPI_URL := https://upload.pypi.org/legacy/
+PYPI_URL := https://pypi.python.org/pypi/
 UNAME_S := $(shell uname -s)
 DISTRIBUTE := sdist
 ifeq ($(UNAME_S),Darwin)
