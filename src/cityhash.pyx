@@ -1,7 +1,9 @@
 #cython: infer_types=True
+#cython: language_level=3
+#distutils: language=c++
 
 """
-A Python wrapper around CityHash, a fast non-cryptographic hashing algorithm
+Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
 """
 
 __author__      = "Eugene Scherbam Alexander [Amper] Marshalov"
@@ -21,6 +23,7 @@ cdef extern from * nogil:
     ctypedef unsigned long int uint32_t
     ctypedef unsigned long long int uint64_t
 
+
 cdef extern from "<utility>" namespace "std":
     cdef cppclass pair[T, U]:
         T first
@@ -34,6 +37,7 @@ cdef extern from "<utility>" namespace "std":
         bint operator >  (pair&, pair&)
         bint operator <= (pair&, pair&)
         bint operator >= (pair&, pair&)
+
 
 cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
@@ -49,23 +53,23 @@ cdef extern from "city.h" nogil:
     cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64,uint64] seed)
 
 
-from cpython.long cimport long
+from cpython cimport long
+from cython import basestring
 
 from cpython.buffer cimport PyObject_CheckBuffer
 from cpython.buffer cimport PyBUF_SIMPLE
-from cpython.buffer cimport Py_buffer
 from cpython.buffer cimport PyObject_GetBuffer
 from cpython.buffer cimport PyBuffer_Release
 
 from cpython.unicode cimport PyUnicode_Check
 from cpython.unicode cimport PyUnicode_AsUTF8String
 
-from cpython.bytes cimport PyBytes_Check 
-from cpython.bytes cimport PyBytes_GET_SIZE 
-from cpython.bytes cimport PyBytes_AS_STRING 
+from cpython.bytes cimport PyBytes_Check
+from cpython.bytes cimport PyBytes_GET_SIZE
+from cpython.bytes cimport PyBytes_AS_STRING
 
 
-cdef object _type_error(str argname, expected, value):
+cdef object _type_error(argname: basestring, expected: object, value: object):
     return TypeError(
         "Argument '%s' has incorrect type (expected %s, got %s)" %
         (argname, expected, type(value))
@@ -76,7 +80,7 @@ cpdef CityHash32(data):
     """32-bit hash function for a basestring or buffer type
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef uint32 result
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)
@@ -99,7 +103,7 @@ cpdef CityHash64(data):
     """64-bit hash function for a basestring or buffer type
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef uint64 result
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)
@@ -123,7 +127,7 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     For convenience, a 64-bit seed is also hashed into the result.
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef uint64 result
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)
@@ -146,7 +150,7 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     For convenience, two seeds are also hashed into the result.
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef uint64 result
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)
@@ -168,7 +172,7 @@ cpdef CityHash128(data):
     """128-bit hash function for a basestring or buffer type
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef pair[uint64, uint64] result
     if PyUnicode_Check(data):
         obj = PyUnicode_AsUTF8String(data)
@@ -192,7 +196,7 @@ cpdef CityHash128WithSeed(data, seed=0L):
     For convenience, a 128-bit seed is also hashed into the result.
     """
     cdef Py_buffer buf
-    cdef object obj
+    cdef bytes obj
     cdef pair[uint64, uint64] result
     cdef pair[uint64, uint64] tseed
 
