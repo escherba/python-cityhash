@@ -36,8 +36,11 @@ To use this package in your program, simply type
 After that, you should be able to import the module and do things with it (see
 usage example below).
 
-Example Usage
--------------
+Usage Examples
+--------------
+
+Simple Hashing
+~~~~~~~~~~~~~~
 
 The package contains 64- and 128-bit implementations of the CityHash algorithm,
 named as follows:
@@ -52,8 +55,16 @@ named as follows:
     >>> print(CityHash128("abc"))
     76434233956484675513733017140465933893
 
+Incremental Hashing
+~~~~~~~~~~~~~~~~~~~
+
+The current implementation of CityHash does not support incremental hashing. If
+you require this feature, use `MetroHash
+<https://github.com/escherba/python-metrohash>`__ instead, which does support
+it.
+
 Buffer Protocol Support
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The methods in this module support Python `Buffer Protocol
 <https://docs.python.org/3/c-api/buffer.html>`__, which allows them to be used
