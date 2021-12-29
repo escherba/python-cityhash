@@ -1,5 +1,5 @@
 #cython: infer_types=True
-#cython: language_level=3
+#cython: embedsignature=True
 #distutils: language=c++
 
 """
@@ -8,7 +8,7 @@ Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Eugene Scherba, Alexander [Amper] Marshalov"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.2.4.post8'
+__version__     = '0.2.4.post9'
 __all__         = [
     "CityHash32",
     "CityHash64",
@@ -70,13 +70,19 @@ from cpython.bytes cimport PyBytes_AS_STRING
 
 cdef object _type_error(argname: str, expected: object, value: object):
     return TypeError(
-        "Argument '%s' has incorrect type (expected %s, got %s)" %
-        (argname, expected, type(value))
+        "Argument '%s' has incorrect type (expected %s, got '%s')" %
+        (argname, expected, type(value).__name__)
     )
 
 
 cpdef CityHash32(data):
-    """32-bit hash function for a basestring or buffer type
+    """Obtain a 32-bit hash from input data.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+    Returns:
+        int: a 32-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -99,7 +105,13 @@ cpdef CityHash32(data):
 
 
 cpdef CityHash64(data):
-    """64-bit hash function for a basestring or buffer type
+    """Obtain a 64-bit hash from input data.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+    Returns:
+        int: a 64-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -122,8 +134,14 @@ cpdef CityHash64(data):
 
 
 cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
-    """64-bit hash function for a basestring or buffer type.
-    For convenience, a 64-bit seed is also hashed into the result.
+    """Obtain a 64-bit hash from input data given a seed.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+        seed (int): seed for random number generator
+    Returns:
+        int: a 64-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -144,9 +162,17 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
 
+
 cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
-    """64-bit hash function for a basestring or buffer type.
-    For convenience, two seeds are also hashed into the result.
+    """Obtain a 64-bit hash from input data given two seeds.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+        seed0 (int): seed for random number generator
+        seed1 (int): seed for random number generator
+    Returns:
+        int: a 64-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -167,8 +193,15 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
         raise _type_error("data", ["basestring", "buffer"], data)
     return result
 
+
 cpdef CityHash128(data):
-    """128-bit hash function for a basestring or buffer type
+    """Obtain a 128-bit hash from input data.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+    Returns:
+        int: a 128-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -187,12 +220,18 @@ cpdef CityHash128(data):
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    final = 0x10000000000000000L * long(result.first) + long(result.second)
-    return final
+    return 0x10000000000000000L * long(result.first) + long(result.second)
+
 
 cpdef CityHash128WithSeed(data, seed=0L):
-    """128-bit ash function for a basestring or buffer type.
-    For convenience, a 128-bit seed is also hashed into the result.
+    """Obtain a 128-bit hash from input data given a seed.
+    Args:
+        data (str, buffer): input data (either string or buffer type)
+        seed (int): seed for random number generator
+    Returns:
+        int: a 128-bit hash of the input data
+    Raises:
+        TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -216,5 +255,4 @@ cpdef CityHash128WithSeed(data, seed=0L):
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    final = 0x10000000000000000L * long(result.first) + long(result.second)
-    return final
+    return 0x10000000000000000L * long(result.first) + long(result.second)

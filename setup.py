@@ -74,7 +74,7 @@ else:
         )
 
 
-VERSION = '0.2.4.post8'
+VERSION = '0.2.4.post9'
 URL = "https://github.com/escherba/python-cityhash"
 
 
