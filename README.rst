@@ -34,7 +34,7 @@ To use this package in your program, simply type
 
 
 After that, you should be able to import the module and do things with it (see
-Example Usage below).
+usage example below).
 
 Example Usage
 -------------
@@ -51,6 +51,24 @@ named as follows:
     2640714258260161385
     >>> print(CityHash128("abc"))
     76434233956484675513733017140465933893
+
+Buffer Protocol Support
+-----------------------
+
+The methods in this module support Python [Buffer
+Protocol](https://docs.python.org/3/c-api/buffer.html), which allows them to be
+used on any object that exports a buffer interface. Here is an example showing
+hashing of a 4D NumPy array:
+
+.. code-block:: python
+
+    >>> import numpy as np
+    >>> arr = np.zeros((256, 256, 4))
+    >>> CityHash64(arr)
+    11496798039784891892
+
+Note that arrays need to be contiguous for this to work. To convert a
+non-contiguous array, use `np.ascontiguousarray()` method.
 
 Development
 -----------
