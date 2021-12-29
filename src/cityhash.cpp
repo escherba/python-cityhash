@@ -11,7 +11,7 @@
 #else
 #define CYTHON_ABI "0_29_26"
 #define CYTHON_HEX_VERSION 0x001D1AF0
-#define CYTHON_FUTURE_DIVISION 1
+#define CYTHON_FUTURE_DIVISION 0
 #include <stddef.h>
 #ifndef offsetof
   #define offsetof(type, member) ( (size_t) & ((type*)0) -> member )
@@ -915,24 +915,24 @@ struct __pyx_opt_args_8cityhash_CityHash64WithSeed;
 struct __pyx_opt_args_8cityhash_CityHash64WithSeeds;
 struct __pyx_opt_args_8cityhash_CityHash128WithSeed;
 
-/* "cityhash.pyx":124
+/* "cityhash.pyx":136
  * 
  * 
  * cpdef CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, a 64-bit seed is also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given a seed.
+ *     Args:
  */
 struct __pyx_opt_args_8cityhash_CityHash64WithSeed {
   int __pyx_n;
   uint64 seed;
 };
 
-/* "cityhash.pyx":147
- *     return result
+/* "cityhash.pyx":166
+ * 
  * 
  * cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, two seeds are also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given two seeds.
+ *     Args:
  */
 struct __pyx_opt_args_8cityhash_CityHash64WithSeeds {
   int __pyx_n;
@@ -940,12 +940,12 @@ struct __pyx_opt_args_8cityhash_CityHash64WithSeeds {
   uint64 seed1;
 };
 
-/* "cityhash.pyx":193
- *     return final
+/* "cityhash.pyx":226
+ * 
  * 
  * cpdef CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
- *     """128-bit ash function for a basestring or buffer type.
- *     For convenience, a 128-bit seed is also hashed into the result.
+ *     """Obtain a 128-bit hash from input data given a seed.
+ *     Args:
  */
 struct __pyx_opt_args_8cityhash_CityHash128WithSeed {
   int __pyx_n;
@@ -1025,20 +1025,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
-
-/* PyUnicode_Unicode.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Unicode(PyObject *obj);
-
-/* PyObjectFormatAndDecref.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_FormatSimpleAndDecref(PyObject* s, PyObject* f);
-static CYTHON_INLINE PyObject* __Pyx_PyObject_FormatAndDecref(PyObject* s, PyObject* f);
-
-/* IncludeStringH.proto */
-#include <string.h>
-
-/* JoinPyUnicode.proto */
-static PyObject* __Pyx_PyUnicode_Join(PyObject* value_tuple, Py_ssize_t value_count, Py_ssize_t result_ulength,
-                                      Py_UCS4 max_char);
 
 /* PyCFunctionFastCall.proto */
 #if CYTHON_FAST_PYCCALL
@@ -1341,10 +1327,7 @@ int __pyx_module_is_main_cityhash = 0;
 
 /* Implementation of 'cityhash' */
 static PyObject *__pyx_builtin_TypeError;
-static const char __pyx_k_[] = ")";
 static const char __pyx_k_all[] = "__all__";
-static const char __pyx_k_got[] = ", got ";
-static const char __pyx_k_None[] = "None";
 static const char __pyx_k_data[] = "data";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -1356,44 +1339,38 @@ static const char __pyx_k_seed1[] = "seed1";
 static const char __pyx_k_author[] = "__author__";
 static const char __pyx_k_buffer[] = "buffer";
 static const char __pyx_k_version[] = "__version__";
-static const char __pyx_k_Argument[] = "Argument '";
 static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_CityHash32[] = "CityHash32";
 static const char __pyx_k_CityHash64[] = "CityHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_2_4_post8[] = "0.2.4.post8";
+static const char __pyx_k_0_2_4_post9[] = "0.2.4.post9";
 static const char __pyx_k_CityHash128[] = "CityHash128";
 static const char __pyx_k_CityHash64WithSeed[] = "CityHash64WithSeed";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_CityHash128WithSeed[] = "CityHash128WithSeed";
 static const char __pyx_k_CityHash64WithSeeds[] = "CityHash64WithSeeds";
 static const char __pyx_k_escherba_cityhash_gmail_com[] = "escherba+cityhash@gmail.com";
-static const char __pyx_k_has_incorrect_type_expected[] = "' has incorrect type (expected ";
 static const char __pyx_k_Python_wrapper_for_CityHash_a_f[] = "\nPython wrapper for CityHash, a fast non-cryptographic hashing algorithm\n";
+static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type (expected %s, got '%s')";
 static const char __pyx_k_Eugene_Scherba_Alexander_Amper_M[] = "Eugene Scherba, Alexander [Amper] Marshalov";
-static PyObject *__pyx_kp_u_;
-static PyObject *__pyx_kp_u_0_2_4_post8;
-static PyObject *__pyx_kp_u_Argument;
-static PyObject *__pyx_n_u_CityHash128;
-static PyObject *__pyx_n_u_CityHash128WithSeed;
-static PyObject *__pyx_n_u_CityHash32;
-static PyObject *__pyx_n_u_CityHash64;
-static PyObject *__pyx_n_u_CityHash64WithSeed;
-static PyObject *__pyx_n_u_CityHash64WithSeeds;
-static PyObject *__pyx_kp_u_Eugene_Scherba_Alexander_Amper_M;
-static PyObject *__pyx_kp_u_None;
+static PyObject *__pyx_kp_s_0_2_4_post9;
+static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
+static PyObject *__pyx_n_s_CityHash128;
+static PyObject *__pyx_n_s_CityHash128WithSeed;
+static PyObject *__pyx_n_s_CityHash32;
+static PyObject *__pyx_n_s_CityHash64;
+static PyObject *__pyx_n_s_CityHash64WithSeed;
+static PyObject *__pyx_n_s_CityHash64WithSeeds;
+static PyObject *__pyx_kp_s_Eugene_Scherba_Alexander_Amper_M;
 static PyObject *__pyx_n_s_TypeError;
 static PyObject *__pyx_n_s_all;
 static PyObject *__pyx_n_s_author;
-static PyObject *__pyx_n_u_basestring;
-static PyObject *__pyx_n_u_buffer;
+static PyObject *__pyx_n_s_basestring;
+static PyObject *__pyx_n_s_buffer;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_data;
-static PyObject *__pyx_n_u_data;
 static PyObject *__pyx_n_s_email;
-static PyObject *__pyx_kp_u_escherba_cityhash_gmail_com;
-static PyObject *__pyx_kp_u_got;
-static PyObject *__pyx_kp_u_has_incorrect_type_expected;
+static PyObject *__pyx_kp_s_escherba_cityhash_gmail_com;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_seed;
@@ -1418,16 +1395,14 @@ static PyObject *__pyx_int_18446744073709551616L;
  * 
  * cdef object _type_error(argname: str, expected: object, value: object):             # <<<<<<<<<<<<<<
  *     return TypeError(
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %
  */
 
 static PyObject *__pyx_f_8cityhash__type_error(PyObject *__pyx_v_argname, PyObject *__pyx_v_expected, PyObject *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  Py_ssize_t __pyx_t_2;
-  Py_UCS4 __pyx_t_3;
-  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_2 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1437,91 +1412,55 @@ static PyObject *__pyx_f_8cityhash__type_error(PyObject *__pyx_v_argname, PyObje
  * 
  * cdef object _type_error(argname: str, expected: object, value: object):
  *     return TypeError(             # <<<<<<<<<<<<<<
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %
- *         (argname, expected, type(value))
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %
+ *         (argname, expected, type(value).__name__)
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "cityhash.pyx":73
- * cdef object _type_error(argname: str, expected: object, value: object):
- *     return TypeError(
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %             # <<<<<<<<<<<<<<
- *         (argname, expected, type(value))
- *     )
- */
-  __pyx_t_1 = PyTuple_New(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = 0;
-  __pyx_t_3 = 127;
-  __Pyx_INCREF(__pyx_kp_u_Argument);
-  __pyx_t_2 += 10;
-  __Pyx_GIVEREF(__pyx_kp_u_Argument);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_kp_u_Argument);
-
   /* "cityhash.pyx":74
  *     return TypeError(
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %
- *         (argname, expected, type(value))             # <<<<<<<<<<<<<<
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %
+ *         (argname, expected, type(value).__name__)             # <<<<<<<<<<<<<<
  *     )
  * 
  */
-  __pyx_t_4 = __Pyx_PyUnicode_Unicode(__pyx_v_argname); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
-  __pyx_t_2 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_4);
-  __pyx_t_4 = 0;
-  __Pyx_INCREF(__pyx_kp_u_has_incorrect_type_expected);
-  __pyx_t_2 += 31;
-  __Pyx_GIVEREF(__pyx_kp_u_has_incorrect_type_expected);
-  PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_kp_u_has_incorrect_type_expected);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimpleAndDecref(PyObject_Unicode(__pyx_v_expected), __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
-  __pyx_t_2 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_1, 3, __pyx_t_4);
-  __pyx_t_4 = 0;
-  __Pyx_INCREF(__pyx_kp_u_got);
-  __pyx_t_2 += 6;
-  __Pyx_GIVEREF(__pyx_kp_u_got);
-  PyTuple_SET_ITEM(__pyx_t_1, 4, __pyx_kp_u_got);
-  __pyx_t_4 = __Pyx_PyObject_FormatSimpleAndDecref(PyObject_Unicode(((PyObject *)Py_TYPE(__pyx_v_value))), __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 74, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) > __pyx_t_3) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_4) : __pyx_t_3;
-  __pyx_t_2 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_1, 5, __pyx_t_4);
-  __pyx_t_4 = 0;
-  __Pyx_INCREF(__pyx_kp_u_);
-  __pyx_t_2 += 1;
-  __Pyx_GIVEREF(__pyx_kp_u_);
-  PyTuple_SET_ITEM(__pyx_t_1, 6, __pyx_kp_u_);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)Py_TYPE(__pyx_v_value)), __pyx_n_s_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_v_argname);
+  __Pyx_GIVEREF(__pyx_v_argname);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_argname);
+  __Pyx_INCREF(__pyx_v_expected);
+  __Pyx_GIVEREF(__pyx_v_expected);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_expected);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_t_1);
+  __pyx_t_1 = 0;
 
   /* "cityhash.pyx":73
  * cdef object _type_error(argname: str, expected: object, value: object):
  *     return TypeError(
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %             # <<<<<<<<<<<<<<
- *         (argname, expected, type(value))
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %             # <<<<<<<<<<<<<<
+ *         (argname, expected, type(value).__name__)
  *     )
  */
-  __pyx_t_4 = __Pyx_PyUnicode_Join(__pyx_t_1, 7, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "cityhash.pyx":72
  * 
  * cdef object _type_error(argname: str, expected: object, value: object):
  *     return TypeError(             # <<<<<<<<<<<<<<
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %
- *         (argname, expected, type(value))
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %
+ *         (argname, expected, type(value).__name__)
  */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
   goto __pyx_L0;
 
   /* "cityhash.pyx":71
@@ -1529,13 +1468,13 @@ static PyObject *__pyx_f_8cityhash__type_error(PyObject *__pyx_v_argname, PyObje
  * 
  * cdef object _type_error(argname: str, expected: object, value: object):             # <<<<<<<<<<<<<<
  *     return TypeError(
- *         "Argument '%s' has incorrect type (expected %s, got %s)" %
+ *         "Argument '%s' has incorrect type (expected %s, got '%s')" %
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("cityhash._type_error", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -1548,8 +1487,8 @@ static PyObject *__pyx_f_8cityhash__type_error(PyObject *__pyx_v_argname, PyObje
  * 
  * 
  * cpdef CityHash32(data):             # <<<<<<<<<<<<<<
- *     """32-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 32-bit hash from input data.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_1CityHash32(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
@@ -1568,7 +1507,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("CityHash32", 0);
 
-  /* "cityhash.pyx":84
+  /* "cityhash.pyx":90
  *     cdef bytes obj
  *     cdef uint32 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -1578,28 +1517,28 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":85
+    /* "cityhash.pyx":91
  *     cdef uint32 result
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_obj = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cityhash.pyx":86
+    /* "cityhash.pyx":92
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 86, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 92, __pyx_L1_error)
 
-    /* "cityhash.pyx":87
+    /* "cityhash.pyx":93
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -1608,7 +1547,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash32(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":88
+    /* "cityhash.pyx":94
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -1617,7 +1556,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":84
+    /* "cityhash.pyx":90
  *     cdef bytes obj
  *     cdef uint32 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -1627,7 +1566,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":89
+  /* "cityhash.pyx":95
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -1637,7 +1576,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":90
+    /* "cityhash.pyx":96
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash32(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -1646,7 +1585,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash32(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data));
 
-    /* "cityhash.pyx":89
+    /* "cityhash.pyx":95
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -1656,7 +1595,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":92
+  /* "cityhash.pyx":98
  *         result = c_CityHash32(<const char*>PyBytes_AS_STRING(data),
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -1666,16 +1605,16 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_1)) {
 
-    /* "cityhash.pyx":93
+    /* "cityhash.pyx":99
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 93, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 99, __pyx_L1_error)
 
-    /* "cityhash.pyx":94
+    /* "cityhash.pyx":100
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -1684,7 +1623,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash32(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":95
+    /* "cityhash.pyx":101
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash32(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -1693,7 +1632,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":92
+    /* "cityhash.pyx":98
  *         result = c_CityHash32(<const char*>PyBytes_AS_STRING(data),
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -1703,7 +1642,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":97
+  /* "cityhash.pyx":103
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
@@ -1711,24 +1650,24 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  * 
  */
   /*else*/ {
-    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_buffer);
-    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_buffer);
+    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 97, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":98
+  /* "cityhash.pyx":104
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
  *     return result             # <<<<<<<<<<<<<<
@@ -1736,7 +1675,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_uint32_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
@@ -1746,8 +1685,8 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
  * 
  * 
  * cpdef CityHash32(data):             # <<<<<<<<<<<<<<
- *     """32-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 32-bit hash from input data.
+ *     Args:
  */
 
   /* function exit code */
@@ -1765,7 +1704,7 @@ static PyObject *__pyx_f_8cityhash_CityHash32(PyObject *__pyx_v_data, CYTHON_UNU
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_1CityHash32(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_CityHash32[] = "32-bit hash function for a basestring or buffer type\n    ";
+static char __pyx_doc_8cityhash_CityHash32[] = "CityHash32(data)\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_1CityHash32(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -1803,12 +1742,12 @@ static PyObject *__pyx_pf_8cityhash_CityHash32(CYTHON_UNUSED PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "cityhash.pyx":101
+/* "cityhash.pyx":107
  * 
  * 
  * cpdef CityHash64(data):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 64-bit hash from input data.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_3CityHash64(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
@@ -1827,7 +1766,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("CityHash64", 0);
 
-  /* "cityhash.pyx":107
+  /* "cityhash.pyx":119
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -1837,28 +1776,28 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":108
+    /* "cityhash.pyx":120
  *     cdef uint64 result
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_obj = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cityhash.pyx":109
+    /* "cityhash.pyx":121
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 121, __pyx_L1_error)
 
-    /* "cityhash.pyx":110
+    /* "cityhash.pyx":122
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -1867,7 +1806,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash64(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":111
+    /* "cityhash.pyx":123
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -1876,7 +1815,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":107
+    /* "cityhash.pyx":119
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -1886,7 +1825,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":112
+  /* "cityhash.pyx":124
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -1896,7 +1835,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":113
+    /* "cityhash.pyx":125
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash64(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -1905,7 +1844,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash64(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data));
 
-    /* "cityhash.pyx":112
+    /* "cityhash.pyx":124
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -1915,7 +1854,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":115
+  /* "cityhash.pyx":127
  *         result = c_CityHash64(<const char*>PyBytes_AS_STRING(data),
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -1925,16 +1864,16 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
   __pyx_t_1 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_1)) {
 
-    /* "cityhash.pyx":116
+    /* "cityhash.pyx":128
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 128, __pyx_L1_error)
 
-    /* "cityhash.pyx":117
+    /* "cityhash.pyx":129
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -1943,7 +1882,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  */
     __pyx_v_result = CityHash64(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":118
+    /* "cityhash.pyx":130
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -1952,7 +1891,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":115
+    /* "cityhash.pyx":127
  *         result = c_CityHash64(<const char*>PyBytes_AS_STRING(data),
  *                               PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -1962,7 +1901,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":120
+  /* "cityhash.pyx":132
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
@@ -1970,24 +1909,24 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  * 
  */
   /*else*/ {
-    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_buffer);
-    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_buffer);
+    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 120, __pyx_L1_error)
+    __PYX_ERR(0, 132, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":121
+  /* "cityhash.pyx":133
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
  *     return result             # <<<<<<<<<<<<<<
@@ -1995,18 +1934,18 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "cityhash.pyx":101
+  /* "cityhash.pyx":107
  * 
  * 
  * cpdef CityHash64(data):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 64-bit hash from input data.
+ *     Args:
  */
 
   /* function exit code */
@@ -2024,7 +1963,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64(PyObject *__pyx_v_data, CYTHON_UNU
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_3CityHash64(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_2CityHash64[] = "64-bit hash function for a basestring or buffer type\n    ";
+static char __pyx_doc_8cityhash_2CityHash64[] = "CityHash64(data)\nObtain a 64-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_3CityHash64(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -2045,7 +1984,7 @@ static PyObject *__pyx_pf_8cityhash_2CityHash64(CYTHON_UNUSED PyObject *__pyx_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("CityHash64", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8cityhash_CityHash64(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8cityhash_CityHash64(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2062,12 +2001,12 @@ static PyObject *__pyx_pf_8cityhash_2CityHash64(CYTHON_UNUSED PyObject *__pyx_se
   return __pyx_r;
 }
 
-/* "cityhash.pyx":124
+/* "cityhash.pyx":136
  * 
  * 
  * cpdef CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, a 64-bit seed is also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given a seed.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
@@ -2092,7 +2031,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
     }
   }
 
-  /* "cityhash.pyx":131
+  /* "cityhash.pyx":149
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2102,28 +2041,28 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":132
+    /* "cityhash.pyx":150
  *     cdef uint64 result
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_obj = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cityhash.pyx":133
+    /* "cityhash.pyx":151
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 151, __pyx_L1_error)
 
-    /* "cityhash.pyx":134
+    /* "cityhash.pyx":152
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)             # <<<<<<<<<<<<<<
@@ -2132,7 +2071,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  */
     __pyx_v_result = CityHash64WithSeed(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_seed);
 
-    /* "cityhash.pyx":135
+    /* "cityhash.pyx":153
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2141,7 +2080,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":131
+    /* "cityhash.pyx":149
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2151,7 +2090,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":136
+  /* "cityhash.pyx":154
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2161,7 +2100,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
   __pyx_t_1 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":137
+    /* "cityhash.pyx":155
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash64WithSeed(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -2170,7 +2109,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  */
     __pyx_v_result = CityHash64WithSeed(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data), __pyx_v_seed);
 
-    /* "cityhash.pyx":136
+    /* "cityhash.pyx":154
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2180,7 +2119,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":139
+  /* "cityhash.pyx":157
  *         result = c_CityHash64WithSeed(<const char*>PyBytes_AS_STRING(data),
  *                                       PyBytes_GET_SIZE(data), seed)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2190,16 +2129,16 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
   __pyx_t_1 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_1)) {
 
-    /* "cityhash.pyx":140
+    /* "cityhash.pyx":158
  *                                       PyBytes_GET_SIZE(data), seed)
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 140, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 158, __pyx_L1_error)
 
-    /* "cityhash.pyx":141
+    /* "cityhash.pyx":159
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)             # <<<<<<<<<<<<<<
@@ -2208,7 +2147,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  */
     __pyx_v_result = CityHash64WithSeed(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_seed);
 
-    /* "cityhash.pyx":142
+    /* "cityhash.pyx":160
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2217,7 +2156,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":139
+    /* "cityhash.pyx":157
  *         result = c_CityHash64WithSeed(<const char*>PyBytes_AS_STRING(data),
  *                                       PyBytes_GET_SIZE(data), seed)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2227,7 +2166,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":144
+  /* "cityhash.pyx":162
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
@@ -2235,43 +2174,43 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
  * 
  */
   /*else*/ {
-    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_buffer);
-    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_buffer);
+    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 144, __pyx_L1_error)
+    __PYX_ERR(0, 162, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":145
+  /* "cityhash.pyx":163
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
  *     return result             # <<<<<<<<<<<<<<
  * 
- * cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "cityhash.pyx":124
+  /* "cityhash.pyx":136
  * 
  * 
  * cpdef CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, a 64-bit seed is also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given a seed.
+ *     Args:
  */
 
   /* function exit code */
@@ -2289,7 +2228,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeed(PyObject *__pyx_v_data, CY
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_4CityHash64WithSeed[] = "64-bit hash function for a basestring or buffer type.\n    For convenience, a 64-bit seed is also hashed into the result.\n    ";
+static char __pyx_doc_8cityhash_4CityHash64WithSeed[] = "CityHash64WithSeed(data, uint64 seed=0)\nObtain a 64-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
   uint64 __pyx_v_seed;
@@ -2326,7 +2265,7 @@ static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, Py
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash64WithSeed") < 0)) __PYX_ERR(0, 124, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash64WithSeed") < 0)) __PYX_ERR(0, 136, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2339,14 +2278,14 @@ static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, Py
     }
     __pyx_v_data = values[0];
     if (values[1]) {
-      __pyx_v_seed = __Pyx_PyInt_As_uint64_t(values[1]); if (unlikely((__pyx_v_seed == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
+      __pyx_v_seed = __Pyx_PyInt_As_uint64_t(values[1]); if (unlikely((__pyx_v_seed == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 136, __pyx_L3_error)
     } else {
       __pyx_v_seed = ((uint64)0ULL);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("CityHash64WithSeed", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 124, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("CityHash64WithSeed", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 136, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cityhash.CityHash64WithSeed", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2371,7 +2310,7 @@ static PyObject *__pyx_pf_8cityhash_4CityHash64WithSeed(CYTHON_UNUSED PyObject *
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.seed = __pyx_v_seed;
-  __pyx_t_1 = __pyx_f_8cityhash_CityHash64WithSeed(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8cityhash_CityHash64WithSeed(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2388,12 +2327,12 @@ static PyObject *__pyx_pf_8cityhash_4CityHash64WithSeed(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "cityhash.pyx":147
- *     return result
+/* "cityhash.pyx":166
+ * 
  * 
  * cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, two seeds are also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given two seeds.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
@@ -2422,7 +2361,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
     }
   }
 
-  /* "cityhash.pyx":154
+  /* "cityhash.pyx":180
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2432,28 +2371,28 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":155
+    /* "cityhash.pyx":181
  *     cdef uint64 result
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_obj = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cityhash.pyx":156
+    /* "cityhash.pyx":182
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 182, __pyx_L1_error)
 
-    /* "cityhash.pyx":157
+    /* "cityhash.pyx":183
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)             # <<<<<<<<<<<<<<
@@ -2462,7 +2401,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash64WithSeeds(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_seed0, __pyx_v_seed1);
 
-    /* "cityhash.pyx":158
+    /* "cityhash.pyx":184
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2471,7 +2410,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":154
+    /* "cityhash.pyx":180
  *     cdef bytes obj
  *     cdef uint64 result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2481,7 +2420,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":159
+  /* "cityhash.pyx":185
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2491,7 +2430,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
   __pyx_t_1 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":160
+    /* "cityhash.pyx":186
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash64WithSeeds(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -2500,7 +2439,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash64WithSeeds(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data), __pyx_v_seed0, __pyx_v_seed1);
 
-    /* "cityhash.pyx":159
+    /* "cityhash.pyx":185
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2510,7 +2449,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":162
+  /* "cityhash.pyx":188
  *         result = c_CityHash64WithSeeds(<const char*>PyBytes_AS_STRING(data),
  *                                        PyBytes_GET_SIZE(data), seed0, seed1)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2520,16 +2459,16 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
   __pyx_t_1 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_1)) {
 
-    /* "cityhash.pyx":163
+    /* "cityhash.pyx":189
  *                                        PyBytes_GET_SIZE(data), seed0, seed1)
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 189, __pyx_L1_error)
 
-    /* "cityhash.pyx":164
+    /* "cityhash.pyx":190
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)             # <<<<<<<<<<<<<<
@@ -2538,7 +2477,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash64WithSeeds(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_seed0, __pyx_v_seed1);
 
-    /* "cityhash.pyx":165
+    /* "cityhash.pyx":191
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2547,7 +2486,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":162
+    /* "cityhash.pyx":188
  *         result = c_CityHash64WithSeeds(<const char*>PyBytes_AS_STRING(data),
  *                                        PyBytes_GET_SIZE(data), seed0, seed1)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2557,7 +2496,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":167
+  /* "cityhash.pyx":193
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
@@ -2565,43 +2504,43 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
  * 
  */
   /*else*/ {
-    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_buffer);
-    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_buffer);
+    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 167, __pyx_L1_error)
+    __PYX_ERR(0, 193, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":168
+  /* "cityhash.pyx":194
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
  *     return result             # <<<<<<<<<<<<<<
  * 
- * cpdef CityHash128(data):
+ * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 194, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "cityhash.pyx":147
- *     return result
+  /* "cityhash.pyx":166
+ * 
  * 
  * cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
- *     """64-bit hash function for a basestring or buffer type.
- *     For convenience, two seeds are also hashed into the result.
+ *     """Obtain a 64-bit hash from input data given two seeds.
+ *     Args:
  */
 
   /* function exit code */
@@ -2619,7 +2558,7 @@ static PyObject *__pyx_f_8cityhash_CityHash64WithSeeds(PyObject *__pyx_v_data, C
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_6CityHash64WithSeeds[] = "64-bit hash function for a basestring or buffer type.\n    For convenience, two seeds are also hashed into the result.\n    ";
+static char __pyx_doc_8cityhash_6CityHash64WithSeeds[] = "CityHash64WithSeeds(data, uint64 seed0=0, uint64 seed1=0)\nObtain a 64-bit hash from input data given two seeds.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed0 (int): seed for random number generator\n        seed1 (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
   uint64 __pyx_v_seed0;
@@ -2665,7 +2604,7 @@ static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, P
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash64WithSeeds") < 0)) __PYX_ERR(0, 147, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash64WithSeeds") < 0)) __PYX_ERR(0, 166, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -2680,19 +2619,19 @@ static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, P
     }
     __pyx_v_data = values[0];
     if (values[1]) {
-      __pyx_v_seed0 = __Pyx_PyInt_As_uint64_t(values[1]); if (unlikely((__pyx_v_seed0 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 147, __pyx_L3_error)
+      __pyx_v_seed0 = __Pyx_PyInt_As_uint64_t(values[1]); if (unlikely((__pyx_v_seed0 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 166, __pyx_L3_error)
     } else {
       __pyx_v_seed0 = ((uint64)0LL);
     }
     if (values[2]) {
-      __pyx_v_seed1 = __Pyx_PyInt_As_uint64_t(values[2]); if (unlikely((__pyx_v_seed1 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 147, __pyx_L3_error)
+      __pyx_v_seed1 = __Pyx_PyInt_As_uint64_t(values[2]); if (unlikely((__pyx_v_seed1 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 166, __pyx_L3_error)
     } else {
       __pyx_v_seed1 = ((uint64)0LL);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("CityHash64WithSeeds", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 147, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("CityHash64WithSeeds", 0, 1, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 166, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cityhash.CityHash64WithSeeds", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2718,7 +2657,7 @@ static PyObject *__pyx_pf_8cityhash_6CityHash64WithSeeds(CYTHON_UNUSED PyObject 
   __pyx_t_2.__pyx_n = 2;
   __pyx_t_2.seed0 = __pyx_v_seed0;
   __pyx_t_2.seed1 = __pyx_v_seed1;
-  __pyx_t_1 = __pyx_f_8cityhash_CityHash64WithSeeds(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8cityhash_CityHash64WithSeeds(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2735,12 +2674,12 @@ static PyObject *__pyx_pf_8cityhash_6CityHash64WithSeeds(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "cityhash.pyx":170
- *     return result
+/* "cityhash.pyx":197
+ * 
  * 
  * cpdef CityHash128(data):             # <<<<<<<<<<<<<<
- *     """128-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 128-bit hash from input data.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_9CityHash128(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
@@ -2748,7 +2687,6 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   Py_buffer __pyx_v_buf;
   PyObject *__pyx_v_obj = 0;
   std::pair<uint64,uint64>  __pyx_v_result;
-  PyObject *__pyx_v_final = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -2761,7 +2699,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("CityHash128", 0);
 
-  /* "cityhash.pyx":176
+  /* "cityhash.pyx":209
  *     cdef bytes obj
  *     cdef pair[uint64, uint64] result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2771,28 +2709,28 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   __pyx_t_1 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":177
+    /* "cityhash.pyx":210
  *     cdef pair[uint64, uint64] result
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  */
-    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
+    __pyx_t_2 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_v_obj = ((PyObject*)__pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "cityhash.pyx":178
+    /* "cityhash.pyx":211
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 178, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 211, __pyx_L1_error)
 
-    /* "cityhash.pyx":179
+    /* "cityhash.pyx":212
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -2801,7 +2739,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
  */
     __pyx_v_result = CityHash128(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":180
+    /* "cityhash.pyx":213
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2810,7 +2748,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":176
+    /* "cityhash.pyx":209
  *     cdef bytes obj
  *     cdef pair[uint64, uint64] result
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -2820,7 +2758,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":181
+  /* "cityhash.pyx":214
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2830,7 +2768,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   __pyx_t_1 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_1) {
 
-    /* "cityhash.pyx":182
+    /* "cityhash.pyx":215
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash128(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -2839,7 +2777,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
  */
     __pyx_v_result = CityHash128(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data));
 
-    /* "cityhash.pyx":181
+    /* "cityhash.pyx":214
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -2849,7 +2787,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":184
+  /* "cityhash.pyx":217
  *         result = c_CityHash128(<const char*>PyBytes_AS_STRING(data),
  *                                PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2859,16 +2797,16 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   __pyx_t_1 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_1)) {
 
-    /* "cityhash.pyx":185
+    /* "cityhash.pyx":218
  *                                PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 185, __pyx_L1_error)
+    __pyx_t_3 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 218, __pyx_L1_error)
 
-    /* "cityhash.pyx":186
+    /* "cityhash.pyx":219
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)             # <<<<<<<<<<<<<<
@@ -2877,7 +2815,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
  */
     __pyx_v_result = CityHash128(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len);
 
-    /* "cityhash.pyx":187
+    /* "cityhash.pyx":220
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128(<const char*>buf.buf, buf.len)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -2886,7 +2824,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":184
+    /* "cityhash.pyx":217
  *         result = c_CityHash128(<const char*>PyBytes_AS_STRING(data),
  *                                PyBytes_GET_SIZE(data))
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -2896,77 +2834,66 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":189
+  /* "cityhash.pyx":222
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)
- *     return final
+ *     return 0x10000000000000000L * long(result.first) + long(result.second)
+ * 
  */
   /*else*/ {
-    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_buffer);
-    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_buffer);
+    __pyx_t_4 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_2, __pyx_v_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 189, __pyx_L1_error)
+    __PYX_ERR(0, 222, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":190
+  /* "cityhash.pyx":223
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)             # <<<<<<<<<<<<<<
- *     return final
+ *     return 0x10000000000000000L * long(result.first) + long(result.second)             # <<<<<<<<<<<<<<
+ * 
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.first); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_4 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.first); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Multiply(__pyx_int_18446744073709551616L, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_int_18446744073709551616L, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(PyLong_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "long", Py_TYPE(__pyx_t_2)->tp_name), 0))) __PYX_ERR(0, 190, __pyx_L1_error)
-  __pyx_v_final = ((PyObject*)__pyx_t_2);
+  __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
-
-  /* "cityhash.pyx":191
- *         raise _type_error("data", ["basestring", "buffer"], data)
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)
- *     return final             # <<<<<<<<<<<<<<
- * 
- * cpdef CityHash128WithSeed(data, seed=0L):
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_final);
-  __pyx_r = __pyx_v_final;
   goto __pyx_L0;
 
-  /* "cityhash.pyx":170
- *     return result
+  /* "cityhash.pyx":197
+ * 
  * 
  * cpdef CityHash128(data):             # <<<<<<<<<<<<<<
- *     """128-bit hash function for a basestring or buffer type
- *     """
+ *     """Obtain a 128-bit hash from input data.
+ *     Args:
  */
 
   /* function exit code */
@@ -2978,7 +2905,6 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_obj);
-  __Pyx_XDECREF(__pyx_v_final);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -2986,7 +2912,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128(PyObject *__pyx_v_data, CYTHON_UN
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_9CityHash128(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_8CityHash128[] = "128-bit hash function for a basestring or buffer type\n    ";
+static char __pyx_doc_8cityhash_8CityHash128[] = "CityHash128(data)\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_9CityHash128(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3007,7 +2933,7 @@ static PyObject *__pyx_pf_8cityhash_8CityHash128(CYTHON_UNUSED PyObject *__pyx_s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("CityHash128", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8cityhash_CityHash128(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8cityhash_CityHash128(__pyx_v_data, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3024,12 +2950,12 @@ static PyObject *__pyx_pf_8cityhash_8CityHash128(CYTHON_UNUSED PyObject *__pyx_s
   return __pyx_r;
 }
 
-/* "cityhash.pyx":193
- *     return final
+/* "cityhash.pyx":226
+ * 
  * 
  * cpdef CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
- *     """128-bit ash function for a basestring or buffer type.
- *     For convenience, a 128-bit seed is also hashed into the result.
+ *     """Obtain a 128-bit hash from input data given a seed.
+ *     Args:
  */
 
 static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
@@ -3039,7 +2965,6 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   PyObject *__pyx_v_obj = 0;
   std::pair<uint64,uint64>  __pyx_v_result;
   std::pair<uint64,uint64>  __pyx_v_tseed;
-  PyObject *__pyx_v_final = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3058,33 +2983,33 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     }
   }
 
-  /* "cityhash.pyx":202
+  /* "cityhash.pyx":241
  *     cdef pair[uint64, uint64] tseed
  * 
  *     tseed.first = seed >> 64ULL             # <<<<<<<<<<<<<<
  *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  */
-  __pyx_t_1 = PyNumber_Rshift(__pyx_v_seed, __pyx_int_64L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Rshift(__pyx_v_seed, __pyx_int_64L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_tseed.first = __pyx_t_2;
 
-  /* "cityhash.pyx":203
+  /* "cityhash.pyx":242
  * 
  *     tseed.first = seed >> 64ULL
  *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)             # <<<<<<<<<<<<<<
  * 
  *     if PyUnicode_Check(data):
  */
-  __pyx_t_1 = PyNumber_And(__pyx_v_seed, __pyx_int_18446744073709551615L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_And(__pyx_v_seed, __pyx_int_18446744073709551615L); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_As_uint64_t(__pyx_t_1); if (unlikely((__pyx_t_2 == ((uint64)-1)) && PyErr_Occurred())) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_tseed.second = __pyx_t_2;
 
-  /* "cityhash.pyx":205
+  /* "cityhash.pyx":244
  *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -3094,28 +3019,28 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __pyx_t_3 = (PyUnicode_Check(__pyx_v_data) != 0);
   if (__pyx_t_3) {
 
-    /* "cityhash.pyx":206
+    /* "cityhash.pyx":245
  * 
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)             # <<<<<<<<<<<<<<
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  */
-    __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+    __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_data); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_obj = ((PyObject*)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "cityhash.pyx":207
+    /* "cityhash.pyx":246
  *     if PyUnicode_Check(data):
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_4 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetBuffer(__pyx_v_obj, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 246, __pyx_L1_error)
 
-    /* "cityhash.pyx":208
+    /* "cityhash.pyx":247
  *         obj = PyUnicode_AsUTF8String(data)
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)             # <<<<<<<<<<<<<<
@@ -3124,7 +3049,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash128WithSeed(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_tseed);
 
-    /* "cityhash.pyx":209
+    /* "cityhash.pyx":248
  *         PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -3133,7 +3058,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":205
+    /* "cityhash.pyx":244
  *     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
  * 
  *     if PyUnicode_Check(data):             # <<<<<<<<<<<<<<
@@ -3143,7 +3068,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":210
+  /* "cityhash.pyx":249
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -3153,7 +3078,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __pyx_t_3 = (PyBytes_Check(__pyx_v_data) != 0);
   if (__pyx_t_3) {
 
-    /* "cityhash.pyx":211
+    /* "cityhash.pyx":250
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):
  *         result = c_CityHash128WithSeed(<const char*>PyBytes_AS_STRING(data),             # <<<<<<<<<<<<<<
@@ -3162,7 +3087,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash128WithSeed(((char const *)PyBytes_AS_STRING(__pyx_v_data)), PyBytes_GET_SIZE(__pyx_v_data), __pyx_v_tseed);
 
-    /* "cityhash.pyx":210
+    /* "cityhash.pyx":249
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)
  *     elif PyBytes_Check(data):             # <<<<<<<<<<<<<<
@@ -3172,7 +3097,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":213
+  /* "cityhash.pyx":252
  *         result = c_CityHash128WithSeed(<const char*>PyBytes_AS_STRING(data),
  *                                        PyBytes_GET_SIZE(data), tseed)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -3182,16 +3107,16 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __pyx_t_3 = (PyObject_CheckBuffer(__pyx_v_data) != 0);
   if (likely(__pyx_t_3)) {
 
-    /* "cityhash.pyx":214
+    /* "cityhash.pyx":253
  *                                        PyBytes_GET_SIZE(data), tseed)
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)             # <<<<<<<<<<<<<<
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)
  */
-    __pyx_t_4 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 214, __pyx_L1_error)
+    __pyx_t_4 = PyObject_GetBuffer(__pyx_v_data, (&__pyx_v_buf), PyBUF_SIMPLE); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 253, __pyx_L1_error)
 
-    /* "cityhash.pyx":215
+    /* "cityhash.pyx":254
  *     elif PyObject_CheckBuffer(data):
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)             # <<<<<<<<<<<<<<
@@ -3200,7 +3125,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
  */
     __pyx_v_result = CityHash128WithSeed(((char const *)__pyx_v_buf.buf), __pyx_v_buf.len, __pyx_v_tseed);
 
-    /* "cityhash.pyx":216
+    /* "cityhash.pyx":255
  *         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
  *         result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
  *         PyBuffer_Release(&buf)             # <<<<<<<<<<<<<<
@@ -3209,7 +3134,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
  */
     PyBuffer_Release((&__pyx_v_buf));
 
-    /* "cityhash.pyx":213
+    /* "cityhash.pyx":252
  *         result = c_CityHash128WithSeed(<const char*>PyBytes_AS_STRING(data),
  *                                        PyBytes_GET_SIZE(data), tseed)
  *     elif PyObject_CheckBuffer(data):             # <<<<<<<<<<<<<<
@@ -3219,74 +3144,63 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
     goto __pyx_L3;
   }
 
-  /* "cityhash.pyx":218
+  /* "cityhash.pyx":257
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)
- *     return final
+ *     return 0x10000000000000000L * long(result.first) + long(result.second)
  */
   /*else*/ {
-    __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_INCREF(__pyx_n_u_basestring);
-    __Pyx_GIVEREF(__pyx_n_u_basestring);
-    PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_basestring);
-    __Pyx_INCREF(__pyx_n_u_buffer);
-    __Pyx_GIVEREF(__pyx_n_u_buffer);
-    PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_buffer);
-    __pyx_t_5 = __pyx_f_8cityhash__type_error(__pyx_n_u_data, __pyx_t_1, __pyx_v_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __Pyx_INCREF(__pyx_n_s_basestring);
+    __Pyx_GIVEREF(__pyx_n_s_basestring);
+    PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_basestring);
+    __Pyx_INCREF(__pyx_n_s_buffer);
+    __Pyx_GIVEREF(__pyx_n_s_buffer);
+    PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_buffer);
+    __pyx_t_5 = __pyx_f_8cityhash__type_error(__pyx_n_s_data, __pyx_t_1, __pyx_v_data); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 218, __pyx_L1_error)
+    __PYX_ERR(0, 257, __pyx_L1_error)
   }
   __pyx_L3:;
 
-  /* "cityhash.pyx":219
+  /* "cityhash.pyx":258
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)             # <<<<<<<<<<<<<<
- *     return final
+ *     return 0x10000000000000000L * long(result.first) + long(result.second)             # <<<<<<<<<<<<<<
  */
-  __pyx_t_5 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.first); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_5 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.first); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_int_18446744073709551616L, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_int_18446744073709551616L, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (!(likely(PyLong_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "long", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 219, __pyx_L1_error)
-  __pyx_v_final = ((PyObject*)__pyx_t_1);
+  __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
-
-  /* "cityhash.pyx":220
- *         raise _type_error("data", ["basestring", "buffer"], data)
- *     final = 0x10000000000000000L * long(result.first) + long(result.second)
- *     return final             # <<<<<<<<<<<<<<
- */
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF(__pyx_v_final);
-  __pyx_r = __pyx_v_final;
   goto __pyx_L0;
 
-  /* "cityhash.pyx":193
- *     return final
+  /* "cityhash.pyx":226
+ * 
  * 
  * cpdef CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
- *     """128-bit ash function for a basestring or buffer type.
- *     For convenience, a 128-bit seed is also hashed into the result.
+ *     """Obtain a 128-bit hash from input data given a seed.
+ *     Args:
  */
 
   /* function exit code */
@@ -3298,7 +3212,6 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_obj);
-  __Pyx_XDECREF(__pyx_v_final);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -3306,7 +3219,7 @@ static PyObject *__pyx_f_8cityhash_CityHash128WithSeed(PyObject *__pyx_v_data, C
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_10CityHash128WithSeed[] = "128-bit ash function for a basestring or buffer type.\n    For convenience, a 128-bit seed is also hashed into the result.\n    ";
+static char __pyx_doc_8cityhash_10CityHash128WithSeed[] = "CityHash128WithSeed(data, seed=0)\nObtain a 128-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
   PyObject *__pyx_v_seed = 0;
@@ -3344,7 +3257,7 @@ static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, 
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash128WithSeed") < 0)) __PYX_ERR(0, 193, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "CityHash128WithSeed") < 0)) __PYX_ERR(0, 226, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -3360,7 +3273,7 @@ static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, 
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("CityHash128WithSeed", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 193, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("CityHash128WithSeed", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 226, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("cityhash.CityHash128WithSeed", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -3385,7 +3298,7 @@ static PyObject *__pyx_pf_8cityhash_10CityHash128WithSeed(CYTHON_UNUSED PyObject
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2.__pyx_n = 1;
   __pyx_t_2.seed = __pyx_v_seed;
-  __pyx_t_1 = __pyx_f_8cityhash_CityHash128WithSeed(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8cityhash_CityHash128WithSeed(__pyx_v_data, 0, &__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3454,29 +3367,24 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_u_, __pyx_k_, sizeof(__pyx_k_), 0, 1, 0, 0},
-  {&__pyx_kp_u_0_2_4_post8, __pyx_k_0_2_4_post8, sizeof(__pyx_k_0_2_4_post8), 0, 1, 0, 0},
-  {&__pyx_kp_u_Argument, __pyx_k_Argument, sizeof(__pyx_k_Argument), 0, 1, 0, 0},
-  {&__pyx_n_u_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 1, 0, 1},
-  {&__pyx_n_u_CityHash128WithSeed, __pyx_k_CityHash128WithSeed, sizeof(__pyx_k_CityHash128WithSeed), 0, 1, 0, 1},
-  {&__pyx_n_u_CityHash32, __pyx_k_CityHash32, sizeof(__pyx_k_CityHash32), 0, 1, 0, 1},
-  {&__pyx_n_u_CityHash64, __pyx_k_CityHash64, sizeof(__pyx_k_CityHash64), 0, 1, 0, 1},
-  {&__pyx_n_u_CityHash64WithSeed, __pyx_k_CityHash64WithSeed, sizeof(__pyx_k_CityHash64WithSeed), 0, 1, 0, 1},
-  {&__pyx_n_u_CityHash64WithSeeds, __pyx_k_CityHash64WithSeeds, sizeof(__pyx_k_CityHash64WithSeeds), 0, 1, 0, 1},
-  {&__pyx_kp_u_Eugene_Scherba_Alexander_Amper_M, __pyx_k_Eugene_Scherba_Alexander_Amper_M, sizeof(__pyx_k_Eugene_Scherba_Alexander_Amper_M), 0, 1, 0, 0},
-  {&__pyx_kp_u_None, __pyx_k_None, sizeof(__pyx_k_None), 0, 1, 0, 0},
+  {&__pyx_kp_s_0_2_4_post9, __pyx_k_0_2_4_post9, sizeof(__pyx_k_0_2_4_post9), 0, 0, 1, 0},
+  {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
+  {&__pyx_n_s_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 0, 1, 1},
+  {&__pyx_n_s_CityHash128WithSeed, __pyx_k_CityHash128WithSeed, sizeof(__pyx_k_CityHash128WithSeed), 0, 0, 1, 1},
+  {&__pyx_n_s_CityHash32, __pyx_k_CityHash32, sizeof(__pyx_k_CityHash32), 0, 0, 1, 1},
+  {&__pyx_n_s_CityHash64, __pyx_k_CityHash64, sizeof(__pyx_k_CityHash64), 0, 0, 1, 1},
+  {&__pyx_n_s_CityHash64WithSeed, __pyx_k_CityHash64WithSeed, sizeof(__pyx_k_CityHash64WithSeed), 0, 0, 1, 1},
+  {&__pyx_n_s_CityHash64WithSeeds, __pyx_k_CityHash64WithSeeds, sizeof(__pyx_k_CityHash64WithSeeds), 0, 0, 1, 1},
+  {&__pyx_kp_s_Eugene_Scherba_Alexander_Amper_M, __pyx_k_Eugene_Scherba_Alexander_Amper_M, sizeof(__pyx_k_Eugene_Scherba_Alexander_Amper_M), 0, 0, 1, 0},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
   {&__pyx_n_s_all, __pyx_k_all, sizeof(__pyx_k_all), 0, 0, 1, 1},
   {&__pyx_n_s_author, __pyx_k_author, sizeof(__pyx_k_author), 0, 0, 1, 1},
-  {&__pyx_n_u_basestring, __pyx_k_basestring, sizeof(__pyx_k_basestring), 0, 1, 0, 1},
-  {&__pyx_n_u_buffer, __pyx_k_buffer, sizeof(__pyx_k_buffer), 0, 1, 0, 1},
+  {&__pyx_n_s_basestring, __pyx_k_basestring, sizeof(__pyx_k_basestring), 0, 0, 1, 1},
+  {&__pyx_n_s_buffer, __pyx_k_buffer, sizeof(__pyx_k_buffer), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
-  {&__pyx_n_u_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 1, 0, 1},
   {&__pyx_n_s_email, __pyx_k_email, sizeof(__pyx_k_email), 0, 0, 1, 1},
-  {&__pyx_kp_u_escherba_cityhash_gmail_com, __pyx_k_escherba_cityhash_gmail_com, sizeof(__pyx_k_escherba_cityhash_gmail_com), 0, 1, 0, 0},
-  {&__pyx_kp_u_got, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
-  {&__pyx_kp_u_has_incorrect_type_expected, __pyx_k_has_incorrect_type_expected, sizeof(__pyx_k_has_incorrect_type_expected), 0, 1, 0, 0},
+  {&__pyx_kp_s_escherba_cityhash_gmail_com, __pyx_k_escherba_cityhash_gmail_com, sizeof(__pyx_k_escherba_cityhash_gmail_com), 0, 0, 1, 0},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_seed, __pyx_k_seed, sizeof(__pyx_k_seed), 0, 0, 1, 1},
@@ -3809,61 +3717,61 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba, Alexander [Amper] Marshalov"             # <<<<<<<<<<<<<<
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.2.4.post8'
+ * __version__     = '0.2.4.post9'
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_u_Eugene_Scherba_Alexander_Amper_M) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Eugene_Scherba_Alexander_Amper_M) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "cityhash.pyx":10
  * 
  * __author__      = "Eugene Scherba, Alexander [Amper] Marshalov"
  * __email__       = "escherba+cityhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.2.4.post8'
+ * __version__     = '0.2.4.post9'
  * __all__         = [
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_u_escherba_cityhash_gmail_com) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_cityhash_gmail_com) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
 
   /* "cityhash.pyx":11
  * __author__      = "Eugene Scherba, Alexander [Amper] Marshalov"
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.2.4.post8'             # <<<<<<<<<<<<<<
+ * __version__     = '0.2.4.post9'             # <<<<<<<<<<<<<<
  * __all__         = [
  *     "CityHash32",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_u_0_2_4_post8) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_2_4_post9) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
   /* "cityhash.pyx":12
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.2.4.post8'
+ * __version__     = '0.2.4.post9'
  * __all__         = [             # <<<<<<<<<<<<<<
  *     "CityHash32",
  *     "CityHash64",
  */
   __pyx_t_1 = PyList_New(6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_u_CityHash32);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash32);
-  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_CityHash32);
-  __Pyx_INCREF(__pyx_n_u_CityHash64);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash64);
-  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_CityHash64);
-  __Pyx_INCREF(__pyx_n_u_CityHash64WithSeed);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash64WithSeed);
-  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_CityHash64WithSeed);
-  __Pyx_INCREF(__pyx_n_u_CityHash64WithSeeds);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash64WithSeeds);
-  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_u_CityHash64WithSeeds);
-  __Pyx_INCREF(__pyx_n_u_CityHash128);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash128);
-  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_n_u_CityHash128);
-  __Pyx_INCREF(__pyx_n_u_CityHash128WithSeed);
-  __Pyx_GIVEREF(__pyx_n_u_CityHash128WithSeed);
-  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_n_u_CityHash128WithSeed);
+  __Pyx_INCREF(__pyx_n_s_CityHash32);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash32);
+  PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_CityHash32);
+  __Pyx_INCREF(__pyx_n_s_CityHash64);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash64);
+  PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_CityHash64);
+  __Pyx_INCREF(__pyx_n_s_CityHash64WithSeed);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash64WithSeed);
+  PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_s_CityHash64WithSeed);
+  __Pyx_INCREF(__pyx_n_s_CityHash64WithSeeds);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash64WithSeeds);
+  PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_s_CityHash64WithSeeds);
+  __Pyx_INCREF(__pyx_n_s_CityHash128);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash128);
+  PyList_SET_ITEM(__pyx_t_1, 4, __pyx_n_s_CityHash128);
+  __Pyx_INCREF(__pyx_n_s_CityHash128WithSeed);
+  __Pyx_GIVEREF(__pyx_n_s_CityHash128WithSeed);
+  PyList_SET_ITEM(__pyx_t_1, 5, __pyx_n_s_CityHash128WithSeed);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_all, __pyx_t_1) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "cityhash.pyx":1
  * #cython: infer_types=True             # <<<<<<<<<<<<<<
- * #cython: language_level=3
+ * #cython: embedsignature=True
  * #distutils: language=c++
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3939,94 +3847,6 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
 #endif
     }
     return result;
-}
-
-/* PyUnicode_Unicode */
-static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Unicode(PyObject *obj) {
-    if (unlikely(obj == Py_None))
-        obj = __pyx_kp_u_None;
-    return __Pyx_NewRef(obj);
-}
-
-/* PyObjectFormatAndDecref */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_FormatSimpleAndDecref(PyObject* s, PyObject* f) {
-    if (unlikely(!s)) return NULL;
-    if (likely(PyUnicode_CheckExact(s))) return s;
-    #if PY_MAJOR_VERSION < 3
-    if (likely(PyString_CheckExact(s))) {
-        PyObject *result = PyUnicode_FromEncodedObject(s, NULL, "strict");
-        Py_DECREF(s);
-        return result;
-    }
-    #endif
-    return __Pyx_PyObject_FormatAndDecref(s, f);
-}
-static CYTHON_INLINE PyObject* __Pyx_PyObject_FormatAndDecref(PyObject* s, PyObject* f) {
-    PyObject *result = PyObject_Format(s, f);
-    Py_DECREF(s);
-    return result;
-}
-
-/* JoinPyUnicode */
-static PyObject* __Pyx_PyUnicode_Join(PyObject* value_tuple, Py_ssize_t value_count, Py_ssize_t result_ulength,
-                                      CYTHON_UNUSED Py_UCS4 max_char) {
-#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    PyObject *result_uval;
-    int result_ukind;
-    Py_ssize_t i, char_pos;
-    void *result_udata;
-#if CYTHON_PEP393_ENABLED
-    result_uval = PyUnicode_New(result_ulength, max_char);
-    if (unlikely(!result_uval)) return NULL;
-    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
-    result_udata = PyUnicode_DATA(result_uval);
-#else
-    result_uval = PyUnicode_FromUnicode(NULL, result_ulength);
-    if (unlikely(!result_uval)) return NULL;
-    result_ukind = sizeof(Py_UNICODE);
-    result_udata = PyUnicode_AS_UNICODE(result_uval);
-#endif
-    char_pos = 0;
-    for (i=0; i < value_count; i++) {
-        int ukind;
-        Py_ssize_t ulength;
-        void *udata;
-        PyObject *uval = PyTuple_GET_ITEM(value_tuple, i);
-        if (unlikely(__Pyx_PyUnicode_READY(uval)))
-            goto bad;
-        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
-        if (unlikely(!ulength))
-            continue;
-        if (unlikely(char_pos + ulength < 0))
-            goto overflow;
-        ukind = __Pyx_PyUnicode_KIND(uval);
-        udata = __Pyx_PyUnicode_DATA(uval);
-        if (!CYTHON_PEP393_ENABLED || ukind == result_ukind) {
-            memcpy((char *)result_udata + char_pos * result_ukind, udata, (size_t) (ulength * result_ukind));
-        } else {
-            #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030300F0 || defined(_PyUnicode_FastCopyCharacters)
-            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
-            #else
-            Py_ssize_t j;
-            for (j=0; j < ulength; j++) {
-                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
-                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
-            }
-            #endif
-        }
-        char_pos += ulength;
-    }
-    return result_uval;
-overflow:
-    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
-bad:
-    Py_DECREF(result_uval);
-    return NULL;
-#else
-    result_ulength++;
-    value_count++;
-    return PyUnicode_Join(__pyx_empty_unicode, value_tuple);
-#endif
 }
 
 /* PyCFunctionFastCall */

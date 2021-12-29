@@ -1,5 +1,5 @@
 attrs==21.3.0
--e git+ssh://git@github.com/escherba/python-cityhash.git@e34c2a2750c04ff78ce05a7d014a4af675e4f5a7#egg=cityhash
+-e git+ssh://git@github.com/escherba/python-cityhash.git@6bf0c5cb685ce4126133acb84e19040bf400a82d#egg=cityhash
 Cython==0.29.26
 distlib==0.3.4
 filelock==3.4.2

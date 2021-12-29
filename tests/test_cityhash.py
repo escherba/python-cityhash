@@ -35,9 +35,9 @@ def random_splits(s, n, nsplits=2):
         yield s[begin:end]
 
 
-class TestStandalone(unittest.TestCase):
+class TestAtomic(unittest.TestCase):
 
-    """test single-line methods"""
+    """test atomic (functional) methods"""
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string
@@ -131,7 +131,24 @@ class TestStandalone(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
+        """test some inequalities"""
+
         test_string = 'just a string'
-        self.assertNotEqual(CityHash64WithSeed(test_string, 0), CityHash64WithSeed(test_string, 1))
-        self.assertNotEqual(CityHash64WithSeeds(test_string, 0, 0), CityHash64WithSeeds(test_string, 0, 1))
-        self.assertNotEqual(CityHash128WithSeed(test_string, 0), CityHash128WithSeed(test_string, 1))
+
+        self.assertNotEqual(CityHash64WithSeed(test_string, 0),
+                            CityHash64WithSeed(test_string, 1))
+
+        self.assertNotEqual(CityHash64WithSeeds(test_string, 0, 0),
+                            CityHash64WithSeeds(test_string, 0, 1))
+
+        self.assertNotEqual(CityHash128WithSeed(test_string, 0),
+                            CityHash128WithSeed(test_string, 1))
+
+    def test_func_raises_type_error(self):
+        """Check that functions raise type error"""
+        funcs = [CityHash32, CityHash64, CityHash128,
+                 CityHash64WithSeed, CityHash64WithSeeds,
+                 CityHash128WithSeed]
+        for func in funcs:
+            with self.assertRaises(TypeError):
+                func([])
