@@ -55,9 +55,9 @@ named as follows:
 Buffer Protocol Support
 -----------------------
 
-The methods in this module support Python [Buffer
-Protocol](https://docs.python.org/3/c-api/buffer.html), which allows them to be
-used on any object that exports a buffer interface. Here is an example showing
+The methods in this module support Python `Buffer Protocol
+<https://docs.python.org/3/c-api/buffer.html>`__, which allows them to be used
+on any object that exports a buffer interface. Here is an example showing
 hashing of a 4D NumPy array:
 
 .. code-block:: python
@@ -68,7 +68,7 @@ hashing of a 4D NumPy array:
     11496798039784891892
 
 Note that arrays need to be contiguous for this to work. To convert a
-non-contiguous array, use `np.ascontiguousarray()` method.
+non-contiguous array, use ``np.ascontiguousarray()`` method.
 
 Development
 -----------
