@@ -947,7 +947,9 @@ def get_cpu_info_from_cpuid():
     Returns None if SELinux is in enforcing mode.
     """
 
-    returncode, output = run_and_get_stdout([sys.executable, "-c", "import cpuinfo; print(cpuinfo.actual_get_cpu_info_from_cpuid())"])
+    returncode, output = run_and_get_stdout(
+        [sys.executable, "-c", "import cpuinfo; print(cpuinfo.actual_get_cpu_info_from_cpuid())"]
+    )
     if returncode != 0:
         return None
     info = b64_to_obj(output)
