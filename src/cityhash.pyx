@@ -8,7 +8,7 @@ Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Eugene Scherba, Alexander [Amper] Marshalov"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.2.4.post4'
+__version__     = '0.2.4.post5'
 __all__         = [
     "CityHash32",
     "CityHash64",
