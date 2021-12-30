@@ -8,15 +8,15 @@ from setuptools.dist import Distribution
 
 try:
     from cpuinfo import get_cpu_info
-    cpu_info = get_cpu_info()
-    HAVE_SSE42 = 'sse4_2' in cpu_info['flags']
+    CPU_FLAGS = get_cpu_info()['flags']
 except Exception as exc:
-    HAVE_SSE42 = False
+    CPU_FLAGS = {}
 
 try:
     from Cython.Distutils import build_ext
+    USE_CYTHON = True
 except ImportError:
-    build_ext = None
+    USE_CYTHON = False
 
 
 class BinaryDistribution(Distribution):
@@ -35,7 +35,9 @@ CXXFLAGS = """
 -Wno-unused-function
 """.split()
 
-if HAVE_SSE42:
+# Note: Only -msse4.2 has significant effect on performance;
+# so not using other flags such as -maes and -mavx
+if 'sse4_2' in CPU_FLAGS:
     warnings.warn("Compiling with SSE4.2 enabled")
     CXXFLAGS.append('-msse4.2')
 else:
@@ -55,7 +57,7 @@ FARM_HEADERS = [
 CMDCLASS = {}
 EXT_MODULES = []
 
-if build_ext is not None:
+if USE_CYTHON:
     CMDCLASS['build_ext'] = build_ext
     EXT_MODULES.extend([
         Extension(
@@ -64,15 +66,17 @@ if build_ext is not None:
             depends=CITY_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS),
+            include_dirs=INCLUDE_DIRS,
+        ),
         Extension(
             "farmhash",
             ["src/farm.cc", "src/farmhash.pyx"],
             depends=FARM_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS)
-        ])
+            include_dirs=INCLUDE_DIRS,
+        )
+    ])
 else:
     EXT_MODULES.extend([
         Extension(
@@ -81,17 +85,19 @@ else:
             depends=CITY_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS),
+            include_dirs=INCLUDE_DIRS,
+        ),
         Extension(
             "farmhash",
             ["src/farm.cc", "src/farmhash.pyx"],
             depends=FARM_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS)
-        ])
+            include_dirs=INCLUDE_DIRS,
+        )
+    ])
 
-VERSION = '0.3.0.post0'
+VERSION = '0.3.0.post1'
 URL = "https://github.com/escherba/python-cityhash"
 
 

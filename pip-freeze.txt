@@ -1,6 +1,6 @@
 attrs==21.4.0
 backcall==0.2.0
--e git+ssh://git@github.com/escherba/python-cityhash.git@ab1e5d6e4992bac4e6ac02d044a778d5270452ea#egg=cityhash
+-e git+ssh://git@github.com/escherba/python-cityhash.git@3a765ea6b24faeaf7ee25699ade07b7250d95a11#egg=cityhash
 Cython==0.29.26
 decorator==5.1.0
 distlib==0.3.4
@@ -21,7 +21,7 @@ pluggy==1.0.0
 prompt-toolkit==3.0.24
 ptyprocess==0.7.0
 py==1.11.0
-Pygments==2.10.0
+Pygments==2.11.0
 pyparsing==3.0.6
 pytest==6.2.5
 six==1.16.0
