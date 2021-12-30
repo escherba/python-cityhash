@@ -1,4 +1,4 @@
-python-cityhash - Python bindings for CityHash nad FarmHash
+python-cityhash - Python bindings for CityHash and FarmHash
 
 Copyright (c) 2021, Eugene Scherba <escherba+cityhash@gmail.com>,
 except where the file explicitly names other copyright holders and licenses.
