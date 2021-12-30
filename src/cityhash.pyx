@@ -1,15 +1,16 @@
 #cython: infer_types=True
 #cython: embedsignature=True
 #cython: binding=False
+#cython: language_level=2
 #distutils: language=c++
 
 """
 Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
 """
 
-__author__      = "Eugene Scherba, Alexander [Amper] Marshalov"
+__author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.2.4.post10'
+__version__     = '0.2.4.post11'
 __all__         = [
     "CityHash32",
     "CityHash64",
@@ -44,14 +45,12 @@ cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
     ctypedef uint64_t uint64
     ctypedef pair uint128
-    cdef uint64 c_Uint128Low64 "Uint128Low64" (uint128& x)
-    cdef uint64 c_Uint128High64 "Uint128High64" (uint128& x)
     cdef uint32 c_CityHash32 "CityHash32" (char *buff, size_t length)
     cdef uint64 c_CityHash64 "CityHash64" (char *buff, size_t length)
     cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
     cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
     cdef uint128[uint64,uint64] c_CityHash128 "CityHash128" (char *s, size_t length)
-    cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64,uint64] seed)
+    cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64, uint64] seed)
 
 
 from cpython cimport long
@@ -83,7 +82,8 @@ cpdef CityHash32(data):
     Returns:
         int: a 32-bit hash of the input data
     Raises:
-        TypeError
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -112,7 +112,8 @@ cpdef CityHash64(data):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        TypeError
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -142,7 +143,9 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        TypeError, OverflowError
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
+        OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -173,7 +176,9 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        TypeError, OverflowError
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
+        OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -202,7 +207,10 @@ cpdef CityHash128(data):
     Returns:
         int: a 128-bit hash of the input data
     Raises:
-        TypeError
+        ValueError, TypeError
+    Raises:
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -232,7 +240,11 @@ cpdef CityHash128WithSeed(data, seed=0L):
     Returns:
         int: a 128-bit hash of the input data
     Raises:
-        TypeError, OverflowError
+        ValueError, TypeError, OverflowError
+    Raises:
+        ValueError: if input buffer is not C-contiguous
+        TypeError: if input data is not a string or a buffer
+        OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
