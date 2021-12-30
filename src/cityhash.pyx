@@ -1,5 +1,6 @@
 #cython: infer_types=True
 #cython: embedsignature=True
+#cython: binding=False
 #distutils: language=c++
 
 """
@@ -43,12 +44,12 @@ cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
     ctypedef uint64_t uint64
     ctypedef pair uint128
-    cdef uint64  c_Uint128Low64 "Uint128Low64" (uint128& x)
-    cdef uint64  c_Uint128High64 "Uint128High64" (uint128& x)
-    cdef uint32  c_CityHash32 "CityHash32" (char *buff, size_t length)
-    cdef uint64  c_CityHash64 "CityHash64" (char *buff, size_t length)
-    cdef uint64  c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
-    cdef uint64  c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
+    cdef uint64 c_Uint128Low64 "Uint128Low64" (uint128& x)
+    cdef uint64 c_Uint128High64 "Uint128High64" (uint128& x)
+    cdef uint32 c_CityHash32 "CityHash32" (char *buff, size_t length)
+    cdef uint64 c_CityHash64 "CityHash64" (char *buff, size_t length)
+    cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
+    cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
     cdef uint128[uint64,uint64] c_CityHash128 "CityHash128" (char *s, size_t length)
     cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64,uint64] seed)
 
@@ -56,9 +57,9 @@ cdef extern from "city.h" nogil:
 from cpython cimport long
 
 from cpython.buffer cimport PyObject_CheckBuffer
-from cpython.buffer cimport PyBUF_SIMPLE
 from cpython.buffer cimport PyObject_GetBuffer
 from cpython.buffer cimport PyBuffer_Release
+from cpython.buffer cimport PyBUF_SIMPLE
 
 from cpython.unicode cimport PyUnicode_Check
 from cpython.unicode cimport PyUnicode_AsUTF8String
@@ -70,7 +71,7 @@ from cpython.bytes cimport PyBytes_AS_STRING
 
 cdef object _type_error(argname: str, expected: object, value: object):
     return TypeError(
-        "Argument '%s' has incorrect type (expected %s, got '%s')" %
+        "Argument '%s' has incorrect type: expected %s, got '%s' instead" %
         (argname, expected, type(value).__name__)
     )
 
@@ -141,7 +142,7 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        TypeError
+        TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -172,7 +173,7 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        TypeError
+        TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -231,7 +232,7 @@ cpdef CityHash128WithSeed(data, seed=0L):
     Returns:
         int: a 128-bit hash of the input data
     Raises:
-        TypeError
+        TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj

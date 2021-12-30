@@ -106,7 +106,7 @@ See Also
 --------
 For other fast non-cryptographic hashing implementations available as Python
 extensions, see `MetroHash <https://github.com/escherba/python-metrohash>`__
-and `xxHash <https://github.com/lebedov/xxh>`__.
+and `MurmurHash <https://github.com/hajimes/mmh3>`__.
 
 Authors
 -------
@@ -118,4 +118,4 @@ License
 -------
 This software is licensed under the `MIT License
 <http://www.opensource.org/licenses/mit-license>`_.  See the included LICENSE
-file for more information.
+file for details.

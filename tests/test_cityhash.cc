@@ -3,7 +3,7 @@
  *
  *       Filename:  test_cityhash64.cc
  *
- *    Description:  Some basic tests for 64-based CityHash
+ *    Description:  C++-based tests for CityHash
  *
  *        Version:  1.0
  *        Created:  10/12/2015 16:30:58
@@ -116,7 +116,6 @@ TEST_CASE( "CityHash64WithSeeds: basic test", "[basic]" )
     uint64 hash = CityHash64WithSeeds(test_string, STRLEN(test_string), 0, 0);
     REQUIRE(hash != 0);
 }
-
 
 TEST_CASE( "CityHash64WithSeeds: test different seeds", "[diff_seeds]" )
 {
