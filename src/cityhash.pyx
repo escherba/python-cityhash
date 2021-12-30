@@ -10,7 +10,7 @@ Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.2.4.post11'
+__version__     = '0.3.0'
 __all__         = [
     "CityHash32",
     "CityHash64",
@@ -75,7 +75,7 @@ cdef object _type_error(argname: str, expected: object, value: object):
     )
 
 
-cpdef CityHash32(data):
+def CityHash32(data):
     """Obtain a 32-bit hash from input data.
     Args:
         data (str, buffer): input data (either string or buffer type)
@@ -105,7 +105,7 @@ cpdef CityHash32(data):
     return result
 
 
-cpdef CityHash64(data):
+def CityHash64(data):
     """Obtain a 64-bit hash from input data.
     Args:
         data (str, buffer): input data (either string or buffer type)
@@ -135,7 +135,7 @@ cpdef CityHash64(data):
     return result
 
 
-cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
+def CityHash64WithSeed(data, uint64 seed=0ULL):
     """Obtain a 64-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)
@@ -167,7 +167,7 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     return result
 
 
-cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
+def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     """Obtain a 64-bit hash from input data given two seeds.
     Args:
         data (str, buffer): input data (either string or buffer type)
@@ -200,7 +200,7 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     return result
 
 
-cpdef CityHash128(data):
+def CityHash128(data):
     """Obtain a 128-bit hash from input data.
     Args:
         data (str, buffer): input data (either string or buffer type)
@@ -232,7 +232,7 @@ cpdef CityHash128(data):
     return 0x10000000000000000L * long(result.first) + long(result.second)
 
 
-cpdef CityHash128WithSeed(data, seed=0L):
+def CityHash128WithSeed(data, seed=0L):
     """Obtain a 128-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)

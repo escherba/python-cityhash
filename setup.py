@@ -43,13 +43,13 @@ else:
 
 
 INCLUDE_DIRS = ['include']
-CXXHEADERS = [
+CITY_HEADERS = [
     "include/citycrc.h",
     "include/city.h",
     "include/config.h",
 ]
-CXXSOURCES = [
-    "src/city.cc",
+FARM_HEADERS = [
+    "include/farm.h",
 ]
 
 CMDCLASS = {}
@@ -57,28 +57,41 @@ EXT_MODULES = []
 
 if build_ext is not None:
     CMDCLASS['build_ext'] = build_ext
-    EXT_MODULES.append(
+    EXT_MODULES.extend([
         Extension(
             "cityhash",
-            CXXSOURCES + ["src/cityhash.pyx"],
-            depends=CXXHEADERS,
+            ["src/city.cc", "src/cityhash.pyx"],
+            depends=CITY_HEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS),
+        Extension(
+            "farmhash",
+            ["src/farm.cc", "src/farmhash.pyx"],
+            depends=FARM_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
             include_dirs=INCLUDE_DIRS)
-        )
+        ])
 else:
-    EXT_MODULES.append(
+    EXT_MODULES.extend([
         Extension(
             "cityhash",
-            CXXSOURCES + ["src/cityhash.cpp"],
-            depends=CXXHEADERS,
+            ["src/city.cc", "src/cityhash.pyx"],
+            depends=CITY_HEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS),
+        Extension(
+            "farmhash",
+            ["src/farm.cc", "src/farmhash.pyx"],
+            depends=FARM_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
             include_dirs=INCLUDE_DIRS)
-        )
+        ])
 
-
-VERSION = '0.2.4.post11'
+VERSION = '0.3.0'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -98,7 +111,7 @@ def get_long_description():
 
 setup(
     version=VERSION,
-    description="Python bindings for CityHash, a fast non-cryptographic hash algorithm",
+    description="Python bindings for CityHash and FarmHash",
     author="Alexander [Amper] Marshalov",
     author_email="alone.amper+cityhash@gmail.com",
     maintainer="Eugene Scherba",
@@ -110,7 +123,7 @@ setup(
     zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
-    keywords=['hash', 'hashing', 'cityhash', 'murmurhash'],
+    keywords=['google', 'hash', 'hashing', 'cityhash', 'farmhash', 'murmurhash'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

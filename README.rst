@@ -1,7 +1,7 @@
 CityHash
 ========
 
-A Python wrapper around `CityHash <https://github.com/google/cityhash>`__
+A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and `CityHash <https://github.com/google/cityhash>`__
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
@@ -55,16 +55,28 @@ named as follows:
     >>> print(CityHash128("abc"))
     76434233956484675513733017140465933893
 
+Hardware-independent Fingerprints
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Fingerprints are seedless hashes which are guaranteed to be hardware- and platform-
+independent.
+
+.. code-block:: python
+
+    >>> from farmhash import Fingerprint128
+    >>> print(Fingerprint128("abc"))
+    76434233956484675513733017140465933893
+
 Incremental Hashing
 ~~~~~~~~~~~~~~~~~~~
 
-The current implementation of CityHash does not support incremental hashing. If
+this implementation of CityHash and FarmHash does not support incremental hashing. If
 you require this feature, use `MetroHash
 <https://github.com/escherba/python-metrohash>`__ instead, which does support
 it.
 
-Buffer Protocol Support
-~~~~~~~~~~~~~~~~~~~~~~~
+Fast Hashing of NumPy Arrays
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The methods in this module support Python `Buffer Protocol
 <https://docs.python.org/3/c-api/buffer.html>`__, which allows them to be used
@@ -74,9 +86,10 @@ hashing of a 4D NumPy array:
 .. code-block:: python
 
     >>> import numpy as np
+    >>> from farmhash import FarmHash64
     >>> arr = np.zeros((256, 256, 4))
-    >>> CityHash64(arr)
-    11496798039784891892
+    >>> FarmHash64(arr)
+    1550282412043536862
 
 Note that arrays need to be contiguous for this to work. To convert a
 non-contiguous array, use ``np.ascontiguousarray()`` method.
