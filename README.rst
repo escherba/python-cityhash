@@ -1,7 +1,8 @@
 CityHash
 ========
 
-A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and `CityHash <https://github.com/google/cityhash>`__
+A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
+`CityHash <https://github.com/google/cityhash>`__
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
@@ -39,7 +40,7 @@ usage example below).
 Usage Examples
 --------------
 
-Stateless Hashing
+Stateless hashing
 ~~~~~~~~~~~~~~~~~
 
 The package contains 64- and 128-bit implementations of the CityHash algorithm,
@@ -55,7 +56,7 @@ named as follows:
     >>> print(CityHash128("abc"))
     76434233956484675513733017140465933893
 
-Hardware-independent Fingerprints
+Hardware-independent fingerprints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fingerprints are seedless hashes which are guaranteed to be hardware- and platform-
@@ -67,15 +68,15 @@ independent.
     >>> print(Fingerprint128("abc"))
     76434233956484675513733017140465933893
 
-Incremental Hashing
+Incremental hashing
 ~~~~~~~~~~~~~~~~~~~
 
-this implementation of CityHash and FarmHash does not support incremental hashing. If
-you require this feature, use `MetroHash
+This implementation of CityHash and FarmHash does not support incremental
+hashing. If you require this feature, use `MetroHash
 <https://github.com/escherba/python-metrohash>`__ instead, which does support
 it.
 
-Fast Hashing of NumPy Arrays
+Fast hashing of NumPy arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The methods in this module support Python `Buffer Protocol
@@ -94,7 +95,7 @@ hashing of a 4D NumPy array:
 Note that arrays need to be contiguous for this to work. To convert a
 non-contiguous array, use ``np.ascontiguousarray()`` method.
 
-SSE4.2 Optimizations
+SSE4.2 optimizations
 ~~~~~~~~~~~~~~~~~~~~
 
 On CPUs that support SSE4.2 instruction set, optimized FarmHash has significant
@@ -102,15 +103,15 @@ advantage over non-optimized version and over CityHash, as can be seen below.
 The numbers below were recoreded on a 2.4 GHz Intel Xeon CPU (E5-2620), and the
 task was to hash a 512x512x3 NumPy array.
 
-+----------------------+-------------------+
-| Method               | Time (best of 3)  |
-+======================+===================+
-| FarmHash64 / SSE4.2  | 378 µs ± 43.4 µs  |
-+----------------------+-------------------+
-| FarmHash64           | 489 µs ± 13.7 µs  |
-+----------------------+-------------------+
-| CityHash64           | 499 µs ± 17.2 µs  |
-+----------------------+-------------------+
++--------------------+-------------------+-------------------+
+| Method             | Time (64-bit)     | Time (128-bit)    |
++====================+===================+===================+
+| FarmHash / SSE4.2  | 373 µs ± 48.3 µs  | 494 µs ± 30.2 µs  |
++--------------------+-------------------+-------------------+
+| FarmHash           | 494 µs ± 13.8 µs  | 490 µs ± 23.0 µs  |
++--------------------+-------------------+-------------------+
+| CityHash           | 497 µs ± 15.0 µs  | 493 µs ± 21.4 µs  |
++--------------------+-------------------+-------------------+
 
 Currently, the ``setup.py`` script automatically detects whether the CPU
 supports SSE4.2 instruction set and enables it during the compilation phase if
@@ -126,7 +127,7 @@ commands:
 
     git clone https://github.com/escherba/python-cityhash.git
     cd python-cityhash
-    make env           # creates a Python virtualenv
+    make env           # create a Python virtualenv
     make test          # run Python tests
     make cpp-test      # run C++ tests
 
@@ -145,9 +146,9 @@ and `MurmurHash <https://github.com/hajimes/mmh3>`__.
 
 Authors
 -------
-The Python bindings were written by Alexander [Amper] Marshalov, and are
-currently maintained by Eugene Scherba. The original CityHash algorithm is by
-Google.
+The original Python bindings were written by Alexander [Amper] Marshalov, then
+were largely rewritten for more flexibility by Eugene Scherba. The CityHash and
+FarmHash algorithms and their C++ implementation are by Google.
 
 License
 -------

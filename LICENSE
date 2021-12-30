@@ -1,6 +1,6 @@
-CityHash.py - Python-bindings for CityHash
+python-cityhash - Python bindings for CityHash and FarmHash
 
-Copyright (c) 2011, Alexander Marshalov <alone.amper@gmail.com>,
+Copyright (c) 2021, Eugene Scherba <escherba+cityhash@gmail.com>,
 except where the file explicitly names other copyright holders and licenses.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
