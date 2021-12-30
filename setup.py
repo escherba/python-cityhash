@@ -91,7 +91,7 @@ else:
             include_dirs=INCLUDE_DIRS)
         ])
 
-VERSION = '0.3.0'
+VERSION = '0.3.0.post0'
 URL = "https://github.com/escherba/python-cityhash"
 
 
