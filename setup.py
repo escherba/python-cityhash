@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
 import warnings
 from os.path import join, dirname
 from setuptools import setup

@@ -82,8 +82,8 @@ cpdef CityHash32(data):
     Returns:
         int: a 32-bit hash of the input data
     Raises:
-        ValueError: if input buffer is not C-contiguous
         TypeError: if input data is not a string or a buffer
+        ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -112,8 +112,8 @@ cpdef CityHash64(data):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        ValueError: if input buffer is not C-contiguous
         TypeError: if input data is not a string or a buffer
+        ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -143,8 +143,8 @@ cpdef CityHash64WithSeed(data, uint64 seed=0ULL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        ValueError: if input buffer is not C-contiguous
         TypeError: if input data is not a string or a buffer
+        ValueError: if input buffer is not C-contiguous
         OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
@@ -176,8 +176,8 @@ cpdef CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):
     Returns:
         int: a 64-bit hash of the input data
     Raises:
-        ValueError: if input buffer is not C-contiguous
         TypeError: if input data is not a string or a buffer
+        ValueError: if input buffer is not C-contiguous
         OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
@@ -242,8 +242,8 @@ cpdef CityHash128WithSeed(data, seed=0L):
     Raises:
         ValueError, TypeError, OverflowError
     Raises:
-        ValueError: if input buffer is not C-contiguous
         TypeError: if input data is not a string or a buffer
+        ValueError: if input buffer is not C-contiguous
         OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
