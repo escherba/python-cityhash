@@ -94,6 +94,28 @@ hashing of a 4D NumPy array:
 Note that arrays need to be contiguous for this to work. To convert a
 non-contiguous array, use ``np.ascontiguousarray()`` method.
 
+SSE4.2 Optimizations
+~~~~~~~~~~~~~~~~~~~~
+
+On CPUs that support SSE4.2 instruction set, optimized FarmHash has significant
+advantage over non-optimized version and over CityHash, as can be seen below.
+The numbers below were recoreded on a 2.4 GHz Intel Xeon CPU (E5-2620), and the
+task was to hash a 512x512x3 NumPy array.
+
++----------------------+-------------------+
+| Method               | Time (best of 3)  |
++======================+===================+
+| FarmHash64 / SSE4.2  | 378 µs ± 43.4 µs  |
++----------------------+-------------------+
+| FarmHash64           | 489 µs ± 13.7 µs  |
++----------------------+-------------------+
+| CityHash64           | 499 µs ± 17.2 µs  |
++----------------------+-------------------+
+
+Currently, the ``setup.py`` script automatically detects whether the CPU
+supports SSE4.2 instruction set and enables it during the compilation phase if
+it does.
+
 Development
 -----------
 
