@@ -94,8 +94,10 @@ def get_long_description():
 setup(
     version=VERSION,
     description="Python bindings for CityHash, a fast non-cryptographic hash algorithm",
-    author="Eugene Scherba, Alexander [Amper] Marshalov",
-    author_email="escherba+cityhash@gmail.com",
+    author="Alexander [Amper] Marshalov",
+    author_email="alone.amper+cityhash@gmail.com",
+    maintainer="Eugene Scherba",
+    maintainer_email="escherba+cityhash@gmail.com",
     url=URL,
     download_url=URL + "/tarball/master/" + VERSION,
     name='cityhash',
@@ -103,7 +105,7 @@ setup(
     zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
-    keywords=['hash', 'hashing', 'cityhash'],
+    keywords=['hash', 'hashing', 'cityhash', 'murmurhash'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

@@ -39,8 +39,8 @@ usage example below).
 Usage Examples
 --------------
 
-Simple Hashing
-~~~~~~~~~~~~~~
+Stateless Hashing
+~~~~~~~~~~~~~~~~~
 
 The package contains 64- and 128-bit implementations of the CityHash algorithm,
 named as follows:
@@ -110,9 +110,9 @@ and `MurmurHash <https://github.com/hajimes/mmh3>`__.
 
 Authors
 -------
-The Python bindings were originally written by Alexander [Amper] Marshalov,
-then repackaged for PyPI (with minor improvements) by Eugene Scherba. The
-original CityHash algorithm is by Google.
+The Python bindings were written by Alexander [Amper] Marshalov, and are
+currently maintained by Eugene Scherba. The original CityHash algorithm is by
+Google.
 
 License
 -------

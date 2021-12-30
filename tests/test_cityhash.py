@@ -131,7 +131,7 @@ class TestStateless(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
-        """Ensure that we get different results when passed different seeds"""
+        """Ensure we get different results with different seeds"""
 
         test_string = 'just a string'
 
