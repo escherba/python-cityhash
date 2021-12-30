@@ -35,9 +35,9 @@ def random_splits(s, n, nsplits=2):
         yield s[begin:end]
 
 
-class TestAtomic(unittest.TestCase):
+class TestStateless(unittest.TestCase):
 
-    """test atomic (functional) methods"""
+    """test stateless hashing"""
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string
@@ -131,7 +131,7 @@ class TestAtomic(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
-        """test some inequalities"""
+        """Ensure we get different results with different seeds"""
 
         test_string = 'just a string'
 

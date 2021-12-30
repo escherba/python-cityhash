@@ -39,7 +39,7 @@ release: env build_ext  ## upload package to PyPI
 .PHONY: shell
 shell: build_ext  ## open Python shell within the virtualenv
 	@echo "Using $(PYVERSION)"
-	$(PYENV) python
+	$(PYENV) ipython
 
 .PHONY: build_ext
 build_ext: $(EXTENSION)  ## build C extension(s)
