@@ -31,7 +31,9 @@ class BinaryDistribution(Distribution):
 
 CXXFLAGS = []
 
-print(f"building for platform: {os.name}")
+print("building for platform: %s" % os.name)
+print("available CPU flags: %s" % CPU_FLAGS)
+
 if os.name == "nt":
     CXXFLAGS.extend(["/O2"])
 else:
