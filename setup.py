@@ -73,7 +73,10 @@ EXT_MODULES = [
     Extension(
         "cityhashcrc",
         ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
-        depends=["include/citycrc.h"],
+        depends=[
+            "include/city.h",
+            "include/citycrc.h",
+        ],
         language="c++",
         extra_compile_args=CXXFLAGS,
         include_dirs=['include'],
