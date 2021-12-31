@@ -81,7 +81,7 @@ env: env/bin/activate  ## set up a virtual environment
 env/bin/activate: setup.py requirements.txt
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
-	$(PIP) install -U pip
+	$(PIP) install -U pip wheel
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PIP) install -r requirements.txt
 	$(PIP) install -e .
 	$(PIP) freeze > pip-freeze.txt

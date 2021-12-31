@@ -1302,7 +1302,7 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_CityHash32[] = "CityHash32";
 static const char __pyx_k_CityHash64[] = "CityHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_3_0_post1[] = "0.3.0.post1";
+static const char __pyx_k_0_3_0_post2[] = "0.3.0.post2";
 static const char __pyx_k_CityHash128[] = "CityHash128";
 static const char __pyx_k_Eugene_Scherba[] = "Eugene Scherba";
 static const char __pyx_k_src_cityhash_pyx[] = "src/cityhash.pyx";
@@ -1313,7 +1313,7 @@ static const char __pyx_k_CityHash64WithSeeds[] = "CityHash64WithSeeds";
 static const char __pyx_k_escherba_cityhash_gmail_com[] = "escherba+cityhash@gmail.com";
 static const char __pyx_k_Python_wrapper_for_CityHash_a_f[] = "\nPython wrapper for CityHash, a fast non-cryptographic hashing algorithm\n";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type: expected %s, got '%s' instead";
-static PyObject *__pyx_kp_s_0_3_0_post1;
+static PyObject *__pyx_kp_s_0_3_0_post2;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_n_s_CityHash128;
 static PyObject *__pyx_n_s_CityHash128WithSeed;
@@ -1464,14 +1464,14 @@ static PyObject *__pyx_f_8cityhash__type_error(PyObject *__pyx_v_argname, PyObje
 /* "cityhash.pyx":78
  * 
  * 
- * def CityHash32(data):             # <<<<<<<<<<<<<<
+ * def CityHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_1CityHash32(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_CityHash32[] = "CityHash32(data)\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n    ";
+static char __pyx_doc_8cityhash_CityHash32[] = "CityHash32(data) -> int\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_1CityHash32 = {"CityHash32", (PyCFunction)__pyx_pw_8cityhash_1CityHash32, METH_O, __pyx_doc_8cityhash_CityHash32};
 static PyObject *__pyx_pw_8cityhash_1CityHash32(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -1676,7 +1676,7 @@ static PyObject *__pyx_pf_8cityhash_CityHash32(CYTHON_UNUSED PyObject *__pyx_sel
   /* "cityhash.pyx":78
  * 
  * 
- * def CityHash32(data):             # <<<<<<<<<<<<<<
+ * def CityHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -1697,14 +1697,14 @@ static PyObject *__pyx_pf_8cityhash_CityHash32(CYTHON_UNUSED PyObject *__pyx_sel
 /* "cityhash.pyx":108
  * 
  * 
- * def CityHash64(data):             # <<<<<<<<<<<<<<
+ * def CityHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_3CityHash64(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_2CityHash64[] = "CityHash64(data)\nObtain a 64-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n    ";
+static char __pyx_doc_8cityhash_2CityHash64[] = "CityHash64(data) -> int\nObtain a 64-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_3CityHash64 = {"CityHash64", (PyCFunction)__pyx_pw_8cityhash_3CityHash64, METH_O, __pyx_doc_8cityhash_2CityHash64};
 static PyObject *__pyx_pw_8cityhash_3CityHash64(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -1909,7 +1909,7 @@ static PyObject *__pyx_pf_8cityhash_2CityHash64(CYTHON_UNUSED PyObject *__pyx_se
   /* "cityhash.pyx":108
  * 
  * 
- * def CityHash64(data):             # <<<<<<<<<<<<<<
+ * def CityHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -1930,14 +1930,14 @@ static PyObject *__pyx_pf_8cityhash_2CityHash64(CYTHON_UNUSED PyObject *__pyx_se
 /* "cityhash.pyx":138
  * 
  * 
- * def CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_4CityHash64WithSeed[] = "CityHash64WithSeed(data, uint64 seed=0)\nObtain a 64-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
+static char __pyx_doc_8cityhash_4CityHash64WithSeed[] = "CityHash64WithSeed(data, uint64 seed=0) -> int\nObtain a 64-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_5CityHash64WithSeed = {"CityHash64WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8cityhash_5CityHash64WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8cityhash_4CityHash64WithSeed};
 static PyObject *__pyx_pw_8cityhash_5CityHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -2200,7 +2200,7 @@ static PyObject *__pyx_pf_8cityhash_4CityHash64WithSeed(CYTHON_UNUSED PyObject *
   /* "cityhash.pyx":138
  * 
  * 
- * def CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -2221,14 +2221,14 @@ static PyObject *__pyx_pf_8cityhash_4CityHash64WithSeed(CYTHON_UNUSED PyObject *
 /* "cityhash.pyx":170
  * 
  * 
- * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_6CityHash64WithSeeds[] = "CityHash64WithSeeds(data, uint64 seed0=0, uint64 seed1=0)\nObtain a 64-bit hash from input data given two seeds.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed0 (int): seed for random number generator\n        seed1 (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
+static char __pyx_doc_8cityhash_6CityHash64WithSeeds[] = "CityHash64WithSeeds(data, uint64 seed0=0, uint64 seed1=0) -> int\nObtain a 64-bit hash from input data given two seeds.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed0 (int): seed for random number generator\n        seed1 (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_7CityHash64WithSeeds = {"CityHash64WithSeeds", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8cityhash_7CityHash64WithSeeds, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8cityhash_6CityHash64WithSeeds};
 static PyObject *__pyx_pw_8cityhash_7CityHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -2507,7 +2507,7 @@ static PyObject *__pyx_pf_8cityhash_6CityHash64WithSeeds(CYTHON_UNUSED PyObject 
   /* "cityhash.pyx":170
  * 
  * 
- * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -2528,14 +2528,14 @@ static PyObject *__pyx_pf_8cityhash_6CityHash64WithSeeds(CYTHON_UNUSED PyObject 
 /* "cityhash.pyx":203
  * 
  * 
- * def CityHash128(data):             # <<<<<<<<<<<<<<
+ * def CityHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_9CityHash128(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8cityhash_8CityHash128[] = "CityHash128(data)\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        ValueError, TypeError\n    Raises:\n        ValueError: if input buffer is not C-contiguous\n        TypeError: if input data is not a string or a buffer\n    ";
+static char __pyx_doc_8cityhash_8CityHash128[] = "CityHash128(data) -> int\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        ValueError, TypeError\n    Raises:\n        ValueError: if input buffer is not C-contiguous\n        TypeError: if input data is not a string or a buffer\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_9CityHash128 = {"CityHash128", (PyCFunction)__pyx_pw_8cityhash_9CityHash128, METH_O, __pyx_doc_8cityhash_8CityHash128};
 static PyObject *__pyx_pw_8cityhash_9CityHash128(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -2756,7 +2756,7 @@ static PyObject *__pyx_pf_8cityhash_8CityHash128(CYTHON_UNUSED PyObject *__pyx_s
   /* "cityhash.pyx":203
  * 
  * 
- * def CityHash128(data):             # <<<<<<<<<<<<<<
+ * def CityHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -2778,14 +2778,14 @@ static PyObject *__pyx_pf_8cityhash_8CityHash128(CYTHON_UNUSED PyObject *__pyx_s
 /* "cityhash.pyx":235
  * 
  * 
- * def CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def CityHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8cityhash_10CityHash128WithSeed[] = "CityHash128WithSeed(data, seed=0)\nObtain a 128-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        ValueError, TypeError, OverflowError\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
+static char __pyx_doc_8cityhash_10CityHash128WithSeed[] = "CityHash128WithSeed(data, seed=0) -> int\nObtain a 128-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        ValueError, TypeError, OverflowError\n    Raises:\n        TypeError: if input data is not a string or a buffer\n        ValueError: if input buffer is not C-contiguous\n        OverflowError: if seed cannot be converted to unsigned int64\n    ";
 static PyMethodDef __pyx_mdef_8cityhash_11CityHash128WithSeed = {"CityHash128WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8cityhash_11CityHash128WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8cityhash_10CityHash128WithSeed};
 static PyObject *__pyx_pw_8cityhash_11CityHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -3086,7 +3086,7 @@ static PyObject *__pyx_pf_8cityhash_10CityHash128WithSeed(CYTHON_UNUSED PyObject
   /* "cityhash.pyx":235
  * 
  * 
- * def CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def CityHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
@@ -3151,7 +3151,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_3_0_post1, __pyx_k_0_3_0_post1, sizeof(__pyx_k_0_3_0_post1), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_3_0_post2, __pyx_k_0_3_0_post2, sizeof(__pyx_k_0_3_0_post2), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_n_s_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 0, 1, 1},
   {&__pyx_n_s_CityHash128WithSeed, __pyx_k_CityHash128WithSeed, sizeof(__pyx_k_CityHash128WithSeed), 0, 0, 1, 1},
@@ -3198,7 +3198,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":78
  * 
  * 
- * def CityHash32(data):             # <<<<<<<<<<<<<<
+ * def CityHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -3210,7 +3210,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":108
  * 
  * 
- * def CityHash64(data):             # <<<<<<<<<<<<<<
+ * def CityHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -3222,7 +3222,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":138
  * 
  * 
- * def CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -3234,7 +3234,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":170
  * 
  * 
- * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -3246,7 +3246,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":203
  * 
  * 
- * def CityHash128(data):             # <<<<<<<<<<<<<<
+ * def CityHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -3258,7 +3258,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "cityhash.pyx":235
  * 
  * 
- * def CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def CityHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
@@ -3582,7 +3582,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"             # <<<<<<<<<<<<<<
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Eugene_Scherba) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
@@ -3590,7 +3590,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+cityhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  * __all__         = [
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_cityhash_gmail_com) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
@@ -3598,15 +3598,15 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":13
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.0.post1'             # <<<<<<<<<<<<<<
+ * __version__     = '0.3.0.post2'             # <<<<<<<<<<<<<<
  * __all__         = [
  *     "CityHash32",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_0_post1) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_0_post2) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "cityhash.pyx":14
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  * __all__         = [             # <<<<<<<<<<<<<<
  *     "CityHash32",
  *     "CityHash64",
@@ -3637,7 +3637,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":78
  * 
  * 
- * def CityHash32(data):             # <<<<<<<<<<<<<<
+ * def CityHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -3649,7 +3649,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":108
  * 
  * 
- * def CityHash64(data):             # <<<<<<<<<<<<<<
+ * def CityHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -3661,7 +3661,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":138
  * 
  * 
- * def CityHash64WithSeed(data, uint64 seed=0ULL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -3673,7 +3673,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":170
  * 
  * 
- * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL):             # <<<<<<<<<<<<<<
+ * def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -3685,7 +3685,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":203
  * 
  * 
- * def CityHash128(data):             # <<<<<<<<<<<<<<
+ * def CityHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -3697,7 +3697,7 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":235
  * 
  * 
- * def CityHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def CityHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */

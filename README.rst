@@ -43,8 +43,9 @@ Usage Examples
 Stateless hashing
 ~~~~~~~~~~~~~~~~~
 
-The package contains 64- and 128-bit implementations of the CityHash algorithm,
-named as follows:
+This package exposes Python APIs for CityHash and FarmHash under ``cityhash``
+and ``farmhash`` namespaces, respectively.  Each provides 32-, 64- and 128-bit
+implementations. Usage example for `cityhash`:
 
 .. code-block:: python
 
@@ -59,8 +60,8 @@ named as follows:
 Hardware-independent fingerprints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Fingerprints are seedless hashes which are guaranteed to be hardware- and platform-
-independent.
+Fingerprints are seedless hashes which are guaranteed to be hardware- and
+platform- independent.
 
 .. code-block:: python
 
@@ -71,10 +72,9 @@ independent.
 Incremental hashing
 ~~~~~~~~~~~~~~~~~~~
 
-This implementation of CityHash and FarmHash does not support incremental
-hashing. If you require this feature, use `MetroHash
-<https://github.com/escherba/python-metrohash>`__ instead, which does support
-it.
+The current API does not support incremental hashing. If you require this
+feature, use `MetroHash <https://github.com/escherba/python-metrohash>`__
+instead, which does support it.
 
 Fast hashing of NumPy arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

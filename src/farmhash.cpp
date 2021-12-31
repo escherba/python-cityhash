@@ -1305,7 +1305,7 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_FarmHash32[] = "FarmHash32";
 static const char __pyx_k_FarmHash64[] = "FarmHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_3_0_post1[] = "0.3.0.post1";
+static const char __pyx_k_0_3_0_post2[] = "0.3.0.post2";
 static const char __pyx_k_FarmHash128[] = "FarmHash128";
 static const char __pyx_k_Fingerprint32[] = "Fingerprint32";
 static const char __pyx_k_Fingerprint64[] = "Fingerprint64";
@@ -1320,7 +1320,7 @@ static const char __pyx_k_FarmHash64WithSeeds[] = "FarmHash64WithSeeds";
 static const char __pyx_k_escherba_farmhash_gmail_com[] = "escherba+farmhash@gmail.com";
 static const char __pyx_k_Python_wrapper_for_FarmHash_a_f[] = "\nPython wrapper for FarmHash, a fast non-cryptographic hashing algorithm\n";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type: expected %s, got '%s' instead";
-static PyObject *__pyx_kp_s_0_3_0_post1;
+static PyObject *__pyx_kp_s_0_3_0_post2;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_kp_s_Eugene_Scherba;
 static PyObject *__pyx_n_s_FarmHash128;
@@ -1487,14 +1487,14 @@ static PyObject *__pyx_f_8farmhash__type_error(PyObject *__pyx_v_argname, PyObje
 /* "farmhash.pyx":81
  * 
  * 
- * def FarmHash32(data):             # <<<<<<<<<<<<<<
+ * def FarmHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_1FarmHash32(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_FarmHash32[] = "FarmHash32(data)\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_FarmHash32[] = "FarmHash32(data) -> int\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_1FarmHash32 = {"FarmHash32", (PyCFunction)__pyx_pw_8farmhash_1FarmHash32, METH_O, __pyx_doc_8farmhash_FarmHash32};
 static PyObject *__pyx_pw_8farmhash_1FarmHash32(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -1699,7 +1699,7 @@ static PyObject *__pyx_pf_8farmhash_FarmHash32(CYTHON_UNUSED PyObject *__pyx_sel
   /* "farmhash.pyx":81
  * 
  * 
- * def FarmHash32(data):             # <<<<<<<<<<<<<<
+ * def FarmHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -1720,14 +1720,14 @@ static PyObject *__pyx_pf_8farmhash_FarmHash32(CYTHON_UNUSED PyObject *__pyx_sel
 /* "farmhash.pyx":110
  * 
  * 
- * def Fingerprint32(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_3Fingerprint32(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_2Fingerprint32[] = "Fingerprint32(data)\nObtain a 32-bit fingerprint (hardware-independent) from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_2Fingerprint32[] = "Fingerprint32(data) -> int\nObtain a 32-bit fingerprint (hardware-independent) from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_3Fingerprint32 = {"Fingerprint32", (PyCFunction)__pyx_pw_8farmhash_3Fingerprint32, METH_O, __pyx_doc_8farmhash_2Fingerprint32};
 static PyObject *__pyx_pw_8farmhash_3Fingerprint32(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -1932,7 +1932,7 @@ static PyObject *__pyx_pf_8farmhash_2Fingerprint32(CYTHON_UNUSED PyObject *__pyx
   /* "farmhash.pyx":110
  * 
  * 
- * def Fingerprint32(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -1953,14 +1953,14 @@ static PyObject *__pyx_pf_8farmhash_2Fingerprint32(CYTHON_UNUSED PyObject *__pyx
 /* "farmhash.pyx":139
  * 
  * 
- * def FarmHash32WithSeed(data, uint32_t seed=0U):             # <<<<<<<<<<<<<<
+ * def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_5FarmHash32WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8farmhash_4FarmHash32WithSeed[] = "FarmHash32WithSeed(data, uint32_t seed=0)\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_4FarmHash32WithSeed[] = "FarmHash32WithSeed(data, uint32_t seed=0) -> int\nObtain a 32-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 32-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_5FarmHash32WithSeed = {"FarmHash32WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8farmhash_5FarmHash32WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8farmhash_4FarmHash32WithSeed};
 static PyObject *__pyx_pw_8farmhash_5FarmHash32WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -2223,7 +2223,7 @@ static PyObject *__pyx_pf_8farmhash_4FarmHash32WithSeed(CYTHON_UNUSED PyObject *
   /* "farmhash.pyx":139
  * 
  * 
- * def FarmHash32WithSeed(data, uint32_t seed=0U):             # <<<<<<<<<<<<<<
+ * def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -2244,14 +2244,14 @@ static PyObject *__pyx_pf_8farmhash_4FarmHash32WithSeed(CYTHON_UNUSED PyObject *
 /* "farmhash.pyx":168
  * 
  * 
- * def FarmHash64(data):             # <<<<<<<<<<<<<<
+ * def FarmHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_7FarmHash64(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_6FarmHash64[] = "FarmHash64(data)\nObtain a 64-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_6FarmHash64[] = "FarmHash64(data) -> int\nObtain a 64-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_7FarmHash64 = {"FarmHash64", (PyCFunction)__pyx_pw_8farmhash_7FarmHash64, METH_O, __pyx_doc_8farmhash_6FarmHash64};
 static PyObject *__pyx_pw_8farmhash_7FarmHash64(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -2456,7 +2456,7 @@ static PyObject *__pyx_pf_8farmhash_6FarmHash64(CYTHON_UNUSED PyObject *__pyx_se
   /* "farmhash.pyx":168
  * 
  * 
- * def FarmHash64(data):             # <<<<<<<<<<<<<<
+ * def FarmHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -2477,14 +2477,14 @@ static PyObject *__pyx_pf_8farmhash_6FarmHash64(CYTHON_UNUSED PyObject *__pyx_se
 /* "farmhash.pyx":197
  * 
  * 
- * def Fingerprint64(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_9Fingerprint64(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_8Fingerprint64[] = "Fingerprint64(data)\nObtain a 64-bit fingerprint (hardware-independent) from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_8Fingerprint64[] = "Fingerprint64(data) -> int\nObtain a 64-bit fingerprint (hardware-independent) from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_9Fingerprint64 = {"Fingerprint64", (PyCFunction)__pyx_pw_8farmhash_9Fingerprint64, METH_O, __pyx_doc_8farmhash_8Fingerprint64};
 static PyObject *__pyx_pw_8farmhash_9Fingerprint64(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -2689,7 +2689,7 @@ static PyObject *__pyx_pf_8farmhash_8Fingerprint64(CYTHON_UNUSED PyObject *__pyx
   /* "farmhash.pyx":197
  * 
  * 
- * def Fingerprint64(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -2710,14 +2710,14 @@ static PyObject *__pyx_pf_8farmhash_8Fingerprint64(CYTHON_UNUSED PyObject *__pyx
 /* "farmhash.pyx":226
  * 
  * 
- * def FarmHash64WithSeed(data, uint64_t seed=0ULL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_11FarmHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8farmhash_10FarmHash64WithSeed[] = "FarmHash64WithSeed(data, uint64_t seed=0)\nObtain a 64-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
+static char __pyx_doc_8farmhash_10FarmHash64WithSeed[] = "FarmHash64WithSeed(data, uint64_t seed=0) -> int\nObtain a 64-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_11FarmHash64WithSeed = {"FarmHash64WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8farmhash_11FarmHash64WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8farmhash_10FarmHash64WithSeed};
 static PyObject *__pyx_pw_8farmhash_11FarmHash64WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -2980,7 +2980,7 @@ static PyObject *__pyx_pf_8farmhash_10FarmHash64WithSeed(CYTHON_UNUSED PyObject 
   /* "farmhash.pyx":226
  * 
  * 
- * def FarmHash64WithSeed(data, uint64_t seed=0ULL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -3001,14 +3001,14 @@ static PyObject *__pyx_pf_8farmhash_10FarmHash64WithSeed(CYTHON_UNUSED PyObject 
 /* "farmhash.pyx":256
  * 
  * 
- * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_13FarmHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8farmhash_12FarmHash64WithSeeds[] = "FarmHash64WithSeeds(data, uint64_t seed0=0, uint64_t seed1=0)\nObtain a 64-bit hash from input data given two seeds.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed0 (int): seed for random number generator\n        seed1 (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
+static char __pyx_doc_8farmhash_12FarmHash64WithSeeds[] = "FarmHash64WithSeeds(data, uint64_t seed0=0, uint64_t seed1=0) -> int\nObtain a 64-bit hash from input data given two seeds.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed0 (int): seed for random number generator\n        seed1 (int): seed for random number generator\n    Returns:\n        int: a 64-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_13FarmHash64WithSeeds = {"FarmHash64WithSeeds", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8farmhash_13FarmHash64WithSeeds, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8farmhash_12FarmHash64WithSeeds};
 static PyObject *__pyx_pw_8farmhash_13FarmHash64WithSeeds(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -3287,7 +3287,7 @@ static PyObject *__pyx_pf_8farmhash_12FarmHash64WithSeeds(CYTHON_UNUSED PyObject
   /* "farmhash.pyx":256
  * 
  * 
- * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -3308,14 +3308,14 @@ static PyObject *__pyx_pf_8farmhash_12FarmHash64WithSeeds(CYTHON_UNUSED PyObject
 /* "farmhash.pyx":287
  * 
  * 
- * def FarmHash128(data):             # <<<<<<<<<<<<<<
+ * def FarmHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_15FarmHash128(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_14FarmHash128[] = "FarmHash128(data)\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_14FarmHash128[] = "FarmHash128(data) -> int\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_15FarmHash128 = {"FarmHash128", (PyCFunction)__pyx_pw_8farmhash_15FarmHash128, METH_O, __pyx_doc_8farmhash_14FarmHash128};
 static PyObject *__pyx_pw_8farmhash_15FarmHash128(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -3536,7 +3536,7 @@ static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_
   /* "farmhash.pyx":287
  * 
  * 
- * def FarmHash128(data):             # <<<<<<<<<<<<<<
+ * def FarmHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -3558,14 +3558,14 @@ static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_
 /* "farmhash.pyx":316
  * 
  * 
- * def Fingerprint128(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_17Fingerprint128(PyObject *__pyx_self, PyObject *__pyx_v_data); /*proto*/
-static char __pyx_doc_8farmhash_16Fingerprint128[] = "Fingerprint128(data)\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
+static char __pyx_doc_8farmhash_16Fingerprint128[] = "Fingerprint128(data) -> int\nObtain a 128-bit hash from input data.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_17Fingerprint128 = {"Fingerprint128", (PyCFunction)__pyx_pw_8farmhash_17Fingerprint128, METH_O, __pyx_doc_8farmhash_16Fingerprint128};
 static PyObject *__pyx_pw_8farmhash_17Fingerprint128(PyObject *__pyx_self, PyObject *__pyx_v_data) {
   PyObject *__pyx_r = 0;
@@ -3786,7 +3786,7 @@ static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__p
   /* "farmhash.pyx":316
  * 
  * 
- * def Fingerprint128(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -3808,14 +3808,14 @@ static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__p
 /* "farmhash.pyx":345
  * 
  * 
- * def FarmHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def FarmHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_19FarmHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8farmhash_18FarmHash128WithSeed[] = "FarmHash128WithSeed(data, seed=0)\nObtain a 128-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
+static char __pyx_doc_8farmhash_18FarmHash128WithSeed[] = "FarmHash128WithSeed(data, seed=0) -> int\nObtain a 128-bit hash from input data given a seed.\n    Args:\n        data (str, buffer): input data (either string or buffer type)\n        seed (int): seed for random number generator\n    Returns:\n        int: a 128-bit hash of the input data\n    Raises:\n        TypeError, OverflowError\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_19FarmHash128WithSeed = {"FarmHash128WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8farmhash_19FarmHash128WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8farmhash_18FarmHash128WithSeed};
 static PyObject *__pyx_pw_8farmhash_19FarmHash128WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
@@ -4116,7 +4116,7 @@ static PyObject *__pyx_pf_8farmhash_18FarmHash128WithSeed(CYTHON_UNUSED PyObject
   /* "farmhash.pyx":345
  * 
  * 
- * def FarmHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def FarmHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
@@ -4181,7 +4181,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_3_0_post1, __pyx_k_0_3_0_post1, sizeof(__pyx_k_0_3_0_post1), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_3_0_post2, __pyx_k_0_3_0_post2, sizeof(__pyx_k_0_3_0_post2), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_kp_s_Eugene_Scherba, __pyx_k_Eugene_Scherba, sizeof(__pyx_k_Eugene_Scherba), 0, 0, 1, 0},
   {&__pyx_n_s_FarmHash128, __pyx_k_FarmHash128, sizeof(__pyx_k_FarmHash128), 0, 0, 1, 1},
@@ -4232,7 +4232,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":81
  * 
  * 
- * def FarmHash32(data):             # <<<<<<<<<<<<<<
+ * def FarmHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -4244,7 +4244,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":110
  * 
  * 
- * def Fingerprint32(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -4256,7 +4256,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":139
  * 
  * 
- * def FarmHash32WithSeed(data, uint32_t seed=0U):             # <<<<<<<<<<<<<<
+ * def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -4268,7 +4268,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":168
  * 
  * 
- * def FarmHash64(data):             # <<<<<<<<<<<<<<
+ * def FarmHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -4280,7 +4280,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":197
  * 
  * 
- * def Fingerprint64(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -4292,7 +4292,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":226
  * 
  * 
- * def FarmHash64WithSeed(data, uint64_t seed=0ULL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -4304,7 +4304,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":256
  * 
  * 
- * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -4316,7 +4316,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":287
  * 
  * 
- * def FarmHash128(data):             # <<<<<<<<<<<<<<
+ * def FarmHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -4328,7 +4328,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":316
  * 
  * 
- * def Fingerprint128(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -4340,7 +4340,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "farmhash.pyx":345
  * 
  * 
- * def FarmHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def FarmHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
@@ -4664,7 +4664,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"             # <<<<<<<<<<<<<<
  * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Eugene_Scherba) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
@@ -4672,7 +4672,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+farmhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  * __all__         = [
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_farmhash_gmail_com) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
@@ -4680,15 +4680,15 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":13
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.0.post1'             # <<<<<<<<<<<<<<
+ * __version__     = '0.3.0.post2'             # <<<<<<<<<<<<<<
  * __all__         = [
  *     "FarmHash32",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_0_post1) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_0_post2) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "farmhash.pyx":14
  * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.0.post1'
+ * __version__     = '0.3.0.post2'
  * __all__         = [             # <<<<<<<<<<<<<<
  *     "FarmHash32",
  *     "FarmHash32WithSeed",
@@ -4722,7 +4722,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":81
  * 
  * 
- * def FarmHash32(data):             # <<<<<<<<<<<<<<
+ * def FarmHash32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -4734,7 +4734,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":110
  * 
  * 
- * def Fingerprint32(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint32(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -4746,7 +4746,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":139
  * 
  * 
- * def FarmHash32WithSeed(data, uint32_t seed=0U):             # <<<<<<<<<<<<<<
+ * def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 32-bit hash from input data.
  *     Args:
  */
@@ -4758,7 +4758,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":168
  * 
  * 
- * def FarmHash64(data):             # <<<<<<<<<<<<<<
+ * def FarmHash64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data.
  *     Args:
  */
@@ -4770,7 +4770,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":197
  * 
  * 
- * def Fingerprint64(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint64(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit fingerprint (hardware-independent) from input data.
  *     Args:
  */
@@ -4782,7 +4782,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":226
  * 
  * 
- * def FarmHash64WithSeed(data, uint64_t seed=0ULL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given a seed.
  *     Args:
  */
@@ -4794,7 +4794,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":256
  * 
  * 
- * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL):             # <<<<<<<<<<<<<<
+ * def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 64-bit hash from input data given two seeds.
  *     Args:
  */
@@ -4806,7 +4806,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":287
  * 
  * 
- * def FarmHash128(data):             # <<<<<<<<<<<<<<
+ * def FarmHash128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -4818,7 +4818,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":316
  * 
  * 
- * def Fingerprint128(data):             # <<<<<<<<<<<<<<
+ * def Fingerprint128(data) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data.
  *     Args:
  */
@@ -4830,7 +4830,7 @@ if (!__Pyx_RefNanny) {
   /* "farmhash.pyx":345
  * 
  * 
- * def FarmHash128WithSeed(data, seed=0L):             # <<<<<<<<<<<<<<
+ * def FarmHash128WithSeed(data, seed=0L) -> int:             # <<<<<<<<<<<<<<
  *     """Obtain a 128-bit hash from input data given a seed.
  *     Args:
  */
