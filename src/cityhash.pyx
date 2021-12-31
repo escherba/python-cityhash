@@ -26,7 +26,7 @@ cdef extern from * nogil:
     ctypedef unsigned long long int uint64_t
 
 
-cdef extern from "<utility>" namespace "std":
+cdef extern from "<utility>" namespace "std" nogil:
     cdef cppclass pair[T, U]:
         T first
         U second

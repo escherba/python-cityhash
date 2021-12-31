@@ -23,7 +23,7 @@ cdef extern from * nogil:
     ctypedef unsigned long long int uint64_t
 
 
-cdef extern from "<utility>" namespace "std":
+cdef extern from "<utility>" namespace "std" nogil:
     cdef cppclass pair[T, U]:
         T first
         U second
@@ -38,9 +38,13 @@ cdef extern from "<utility>" namespace "std":
         bint operator >= (pair&, pair&)
 
 
-cdef extern from "citycrc.h" nogil:
+cdef extern from "city.h" nogil:
+    ctypedef uint32_t uint32
     ctypedef uint64_t uint64
     ctypedef pair[uint64, uint64] uint128
+
+
+cdef extern from "citycrc.h" nogil:
     cdef uint128 c_CityHashCrc128 "CityHashCrc128" (char *s, size_t length)
     cdef uint128 c_CityHashCrc128WithSeed "CityHashCrc128WithSeed" (char *s, size_t length, uint128 seed)
     cdef void c_CityHashCrc256 "CityHashCrc256" (char *s, size_t length, uint64* result)
