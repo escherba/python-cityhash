@@ -122,9 +122,9 @@ following:
 ..code-block:: python
 
     try:
-        from cityhashcrc import CityHash128
-    except:
-        from cituhash import CityHash128
+        from cityhashcrc import CityHashCrc128 as CityHash128
+    except ImportError:
+        from cityhash import CityHash128
 
 Development
 -----------
