@@ -31,11 +31,10 @@ class BinaryDistribution(Distribution):
 
 CXXFLAGS = []
 
+print(f"building for platform: {os.name}")
 if os.name == "nt":
-    print("building for Windows")
     CXXFLAGS.extend(["/O2"])
 else:
-    print(f"building for operating system: {os.name}")
     CXXFLAGS.extend([
         "-O3",
         "-Wno-unused-value",
