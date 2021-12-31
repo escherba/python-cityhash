@@ -5,7 +5,7 @@
 #distutils: language=c++
 
 """
-Python wrapper for FarmHash, a fast non-cryptographic hashing algorithm
+Python wrapper for FarmHash
 """
 
 __author__      = "Eugene Scherba"
@@ -43,7 +43,7 @@ cdef extern from "<utility>" namespace "std":
 
 
 cdef extern from "farm.h" nogil:
-    ctypedef pair uint128_t
+    ctypedef pair[uint64_t, uint64_t] uint128_t
     cdef uint32_t c_Hash32 "util::Hash32" (char *buff, size_t length)
     cdef uint32_t c_Fingerprint32 "util::Fingerprint32" (char *buff, size_t length)
     cdef uint32_t c_Hash32WithSeed "util::Hash32WithSeed" (char *buff, size_t length, uint32_t seed)
@@ -51,9 +51,9 @@ cdef extern from "farm.h" nogil:
     cdef uint64_t c_Fingerprint64 "util::Fingerprint64" (char *buff, size_t length)
     cdef uint64_t c_Hash64WithSeed "util::Hash64WithSeed" (char *buff, size_t length, uint64_t seed)
     cdef uint64_t c_Hash64WithSeeds "util::Hash64WithSeeds" (char *buff, size_t length, uint64_t seed0, uint64_t seed1)
-    cdef uint128_t[uint64_t,uint64_t] c_Hash128 "util::Hash128" (char *s, size_t length)
-    cdef uint128_t[uint64_t,uint64_t] c_Fingerprint128 "util::Fingerprint128" (char *s, size_t length)
-    cdef uint128_t[uint64_t,uint64_t] c_Hash128WithSeed "util::Hash128WithSeed" (char *s, size_t length, uint128_t[uint64_t,uint64_t] seed)
+    cdef uint128_t c_Hash128 "util::Hash128" (char *s, size_t length)
+    cdef uint128_t c_Fingerprint128 "util::Fingerprint128" (char *s, size_t length)
+    cdef uint128_t c_Hash128WithSeed "util::Hash128WithSeed" (char *s, size_t length, uint128_t seed)
 
 
 from cpython cimport long
@@ -140,6 +140,7 @@ def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
     """Obtain a 32-bit hash from input data.
     Args:
         data (str, buffer): input data (either string or buffer type)
+        seed (int, default=0): seed for random generator
     Returns:
         int: a 32-bit hash of the input data
     Raises:
@@ -227,7 +228,7 @@ def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:
     """Obtain a 64-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)
-        seed (int): seed for random number generator
+        seed (int, default=0): seed for random number generator
     Returns:
         int: a 64-bit hash of the input data
     Raises:
@@ -346,7 +347,7 @@ def FarmHash128WithSeed(data, seed=0L) -> int:
     """Obtain a 128-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)
-        seed (int): seed for random number generator
+        seed (int, default=0): seed for random number generator
     Returns:
         int: a 128-bit hash of the input data
     Raises:

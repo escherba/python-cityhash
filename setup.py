@@ -55,7 +55,6 @@ INCLUDE_DIRS = ['include']
 CITY_HEADERS = [
     "include/citycrc.h",
     "include/city.h",
-    "include/config.h",
 ]
 FARM_HEADERS = [
     "include/farm.h",
@@ -77,6 +76,14 @@ if USE_CYTHON:
             include_dirs=INCLUDE_DIRS,
         ),
         Extension(
+            "cityhashcrc",
+            ["src/city.cc", "src/cityhashcrc.pyx"],
+            depends=CITY_HEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS,
+        ),
+        Extension(
             "farmhash",
             ["src/farm.cc", "src/farmhash.pyx"],
             depends=FARM_HEADERS,
@@ -90,7 +97,15 @@ else:
     EXT_MODULES.extend([
         Extension(
             "cityhash",
-            ["src/city.cc", "src/cityhash.pyx"],
+            ["src/city.cc", "src/cityhash.cpp"],
+            depends=CITY_HEADERS,
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=INCLUDE_DIRS,
+        ),
+        Extension(
+            "cityhashcrc",
+            ["src/city.cc", "src/cityhashcrc.cpp"],
             depends=CITY_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,
@@ -98,7 +113,7 @@ else:
         ),
         Extension(
             "farmhash",
-            ["src/farm.cc", "src/farmhash.pyx"],
+            ["src/farm.cc", "src/farmhash.cpp"],
             depends=FARM_HEADERS,
             language="c++",
             extra_compile_args=CXXFLAGS,

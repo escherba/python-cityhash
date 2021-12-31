@@ -5,7 +5,7 @@
 #distutils: language=c++
 
 """
-Python wrapper for CityHash, a fast non-cryptographic hashing algorithm
+Python wrapper for CityHash
 """
 
 __author__      = "Eugene Scherba"
@@ -44,13 +44,13 @@ cdef extern from "<utility>" namespace "std":
 cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
     ctypedef uint64_t uint64
-    ctypedef pair uint128
+    ctypedef pair[uint64, uint64] uint128
     cdef uint32 c_CityHash32 "CityHash32" (char *buff, size_t length)
     cdef uint64 c_CityHash64 "CityHash64" (char *buff, size_t length)
     cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
     cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
-    cdef uint128[uint64,uint64] c_CityHash128 "CityHash128" (char *s, size_t length)
-    cdef uint128[uint64,uint64] c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128[uint64, uint64] seed)
+    cdef uint128 c_CityHash128 "CityHash128" (char *s, size_t length)
+    cdef uint128 c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128 seed)
 
 
 from cpython cimport long
@@ -139,7 +139,7 @@ def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:
     """Obtain a 64-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)
-        seed (int): seed for random number generator
+        seed (int, default=0): seed for random number generator
     Returns:
         int: a 64-bit hash of the input data
     Raises:
@@ -236,7 +236,7 @@ def CityHash128WithSeed(data, seed=0L) -> int:
     """Obtain a 128-bit hash from input data given a seed.
     Args:
         data (str, buffer): input data (either string or buffer type)
-        seed (int): seed for random number generator
+        seed (int, default=0): seed for random number generator
     Returns:
         int: a 128-bit hash of the input data
     Raises:
