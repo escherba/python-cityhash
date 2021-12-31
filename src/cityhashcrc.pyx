@@ -45,9 +45,9 @@ cdef extern from "city.h" nogil:
 
 
 cdef extern from "citycrc.h" nogil:
-    cdef uint128 c_CityHashCrc128 "CityHashCrc128" (char *s, size_t length)
-    cdef uint128 c_CityHashCrc128WithSeed "CityHashCrc128WithSeed" (char *s, size_t length, uint128 seed)
-    cdef void c_CityHashCrc256 "CityHashCrc256" (char *s, size_t length, uint64* result)
+    cdef uint128 c_CityHashCrc128 "CityHashCrc128" (const char *s, size_t length)
+    cdef uint128 c_CityHashCrc128WithSeed "CityHashCrc128WithSeed" (const char *s, size_t length, uint128 seed)
+    cdef void c_CityHashCrc256 "CityHashCrc256" (const char *s, size_t length, uint64 *result)
 
 
 from cpython cimport long
