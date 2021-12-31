@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import warnings
 from os.path import join, dirname
 from setuptools import setup
 from setuptools.extension import Extension
@@ -33,8 +32,10 @@ class BinaryDistribution(Distribution):
 CXXFLAGS = []
 
 if os.name == "nt":
-    CXXFLAGS.extend(["/O3"])
+    print("building for Windows")
+    CXXFLAGS.extend(["/O2"])
 else:
+    print(f"building for operating system: {os.name}")
     CXXFLAGS.extend([
         "-O3",
         "-Wno-unused-value",
@@ -45,10 +46,10 @@ else:
 # Note: Only -msse4.2 has significant effect on performance;
 # so not using other flags such as -maes and -mavx
 if 'sse4_2' in CPU_FLAGS:
-    warnings.warn("Compiling with SSE4.2 enabled")
+    print("Compiling with SSE4.2 enabled")
     CXXFLAGS.append('-msse4.2')
 else:
-    warnings.warn("compiling without SSE4.2 support")
+    print("compiling without SSE4.2 support")
 
 
 INCLUDE_DIRS = ['include']
@@ -65,6 +66,7 @@ CMDCLASS = {}
 EXT_MODULES = []
 
 if USE_CYTHON:
+    print("building extension using Cython")
     CMDCLASS['build_ext'] = build_ext
     EXT_MODULES.extend([
         Extension(
@@ -85,6 +87,7 @@ if USE_CYTHON:
         )
     ])
 else:
+    print("building extension w/o Cython")
     EXT_MODULES.extend([
         Extension(
             "cityhash",
@@ -105,7 +108,7 @@ else:
     ])
 
 
-VERSION = '0.3.0.post2'
+VERSION = '0.3.0.post3'
 URL = "https://github.com/escherba/python-cityhash"
 
 

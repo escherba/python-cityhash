@@ -22,15 +22,29 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
         architecture: x64
+
+    # block below based on:
+    # https://medium.com/ai2-blog/python-caching-in-github-actions-e9452698e98d
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('pip-freeze.txt') }}
+
     - name: Install dependencies
       run: |
-        pip install setuptools wheel
-        pip install -r requirements.txt
-        pip install .
+        pip install --upgrade --upgrade-strategy eager setuptools wheel
+        pip install --upgrade --upgrade-strategy eager -r requirements.txt
+        pip install --upgrade --upgrade-strategy eager -e .
+        pip freeze > pip-freeze.txt
+
     - name: Test with pytest
-      run: python -m pytest
+      run: |
+        python setup.py build_ext --inplace
+        pip install -e .
+        python -m pytest

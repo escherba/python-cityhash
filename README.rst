@@ -72,7 +72,7 @@ platform- independent.
 Incremental hashing
 ~~~~~~~~~~~~~~~~~~~
 
-The current API does not support incremental hashing. If you require this
+CityHash and FarmHash do not support incremental hashing. If you require this
 feature, use `MetroHash <https://github.com/escherba/python-metrohash>`__
 instead, which does support it.
 
