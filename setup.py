@@ -71,17 +71,6 @@ EXT_MODULES = [
         include_dirs=['include'],
     ),
     Extension(
-        "cityhashcrc",
-        ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
-        depends=[
-            "include/city.h",
-            "include/citycrc.h",
-        ],
-        language="c++",
-        extra_compile_args=CXXFLAGS,
-        include_dirs=['include'],
-    ),
-    Extension(
         "farmhash",
         ["src/farm.cc", "src/farmhash" + SRC_EXT],
         depends=["include/farm.h"],
@@ -90,6 +79,21 @@ EXT_MODULES = [
         include_dirs=['include'],
     )
 ]
+
+if 'sse4_2' in CPU_FLAGS:
+    EXT_MODULES.append(
+        Extension(
+            "cityhashcrc",
+            ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
+            depends=[
+                "include/city.h",
+                "include/citycrc.h",
+            ],
+            language="c++",
+            extra_compile_args=CXXFLAGS,
+            include_dirs=['include'],
+        )
+    )
 
 
 VERSION = '0.3.0.post3'

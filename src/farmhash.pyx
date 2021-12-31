@@ -44,16 +44,16 @@ cdef extern from "<utility>" namespace "std" nogil:
 
 cdef extern from "farm.h" nogil:
     ctypedef pair[uint64_t, uint64_t] uint128_t
-    cdef uint32_t c_Hash32 "util::Hash32" (char *buff, size_t length)
-    cdef uint32_t c_Fingerprint32 "util::Fingerprint32" (char *buff, size_t length)
-    cdef uint32_t c_Hash32WithSeed "util::Hash32WithSeed" (char *buff, size_t length, uint32_t seed)
-    cdef uint64_t c_Hash64 "util::Hash64" (char *buff, size_t length)
-    cdef uint64_t c_Fingerprint64 "util::Fingerprint64" (char *buff, size_t length)
-    cdef uint64_t c_Hash64WithSeed "util::Hash64WithSeed" (char *buff, size_t length, uint64_t seed)
-    cdef uint64_t c_Hash64WithSeeds "util::Hash64WithSeeds" (char *buff, size_t length, uint64_t seed0, uint64_t seed1)
-    cdef uint128_t c_Hash128 "util::Hash128" (char *s, size_t length)
-    cdef uint128_t c_Fingerprint128 "util::Fingerprint128" (char *s, size_t length)
-    cdef uint128_t c_Hash128WithSeed "util::Hash128WithSeed" (char *s, size_t length, uint128_t seed)
+    cdef uint32_t c_Hash32 "util::Hash32" (const char *buff, size_t length)
+    cdef uint32_t c_Fingerprint32 "util::Fingerprint32" (const char *buff, size_t length)
+    cdef uint32_t c_Hash32WithSeed "util::Hash32WithSeed" (const char *buff, size_t length, uint32_t seed)
+    cdef uint64_t c_Hash64 "util::Hash64" (const char *buff, size_t length)
+    cdef uint64_t c_Fingerprint64 "util::Fingerprint64" (const char *buff, size_t length)
+    cdef uint64_t c_Hash64WithSeed "util::Hash64WithSeed" (const char *buff, size_t length, uint64_t seed)
+    cdef uint64_t c_Hash64WithSeeds "util::Hash64WithSeeds" (const char *buff, size_t length, uint64_t seed0, uint64_t seed1)
+    cdef uint128_t c_Hash128 "util::Hash128" (const char *s, size_t length)
+    cdef uint128_t c_Fingerprint128 "util::Fingerprint128" (const char *s, size_t length)
+    cdef uint128_t c_Hash128WithSeed "util::Hash128WithSeed" (const char *s, size_t length, uint128_t seed)
 
 
 from cpython cimport long

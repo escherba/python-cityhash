@@ -123,7 +123,7 @@ following:
 
     try:
         from cityhashcrc import CityHashCrc128 as CityHash128
-    except ImportError:
+    except Exception:
         from cityhash import CityHash128
 
 Development

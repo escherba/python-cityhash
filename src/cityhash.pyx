@@ -45,12 +45,12 @@ cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
     ctypedef uint64_t uint64
     ctypedef pair[uint64, uint64] uint128
-    cdef uint32 c_CityHash32 "CityHash32" (char *buff, size_t length)
-    cdef uint64 c_CityHash64 "CityHash64" (char *buff, size_t length)
-    cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (char *buff, size_t length, uint64 seed)
-    cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (char *buff, size_t length, uint64 seed0, uint64 seed1)
-    cdef uint128 c_CityHash128 "CityHash128" (char *s, size_t length)
-    cdef uint128 c_CityHash128WithSeed "CityHash128WithSeed" (char *s, size_t length, uint128 seed)
+    cdef uint32 c_CityHash32 "CityHash32" (const char *buff, size_t length)
+    cdef uint64 c_CityHash64 "CityHash64" (const char *buff, size_t length)
+    cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (const char *buff, size_t length, uint64 seed)
+    cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (const char *buff, size_t length, uint64 seed0, uint64 seed1)
+    cdef uint128 c_CityHash128 "CityHash128" (const char *s, size_t length)
+    cdef uint128 c_CityHash128WithSeed "CityHash128WithSeed" (const char *s, size_t length, uint128 seed)
 
 
 from cpython cimport long
