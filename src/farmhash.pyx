@@ -10,7 +10,7 @@ Python wrapper for FarmHash, a fast non-cryptographic hashing algorithm
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+farmhash@gmail.com"
-__version__     = '0.3.0.post2'
+__version__     = '0.3.0.post3'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",
