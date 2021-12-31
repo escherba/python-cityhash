@@ -51,75 +51,42 @@ else:
     print("compiling without SSE4.2 support")
 
 
-INCLUDE_DIRS = ['include']
-CITY_HEADERS = [
-    "include/citycrc.h",
-    "include/city.h",
-]
-FARM_HEADERS = [
-    "include/farm.h",
-]
-
-CMDCLASS = {}
-EXT_MODULES = []
-
 if USE_CYTHON:
     print("building extension using Cython")
-    CMDCLASS['build_ext'] = build_ext
-    EXT_MODULES.extend([
-        Extension(
-            "cityhash",
-            ["src/city.cc", "src/cityhash.pyx"],
-            depends=CITY_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "cityhashcrc",
-            ["src/city.cc", "src/cityhashcrc.pyx"],
-            depends=CITY_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "farmhash",
-            ["src/farm.cc", "src/farmhash.pyx"],
-            depends=FARM_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        )
-    ])
+    CMDCLASS = {'build_ext': build_ext}
+    SRC_EXT = ".pyx"
 else:
     print("building extension w/o Cython")
-    EXT_MODULES.extend([
-        Extension(
-            "cityhash",
-            ["src/city.cc", "src/cityhash.cpp"],
-            depends=CITY_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "cityhashcrc",
-            ["src/city.cc", "src/cityhashcrc.cpp"],
-            depends=CITY_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "farmhash",
-            ["src/farm.cc", "src/farmhash.cpp"],
-            depends=FARM_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        )
-    ])
+    CMDCLASS = {}
+    SRC_EXT = ".cpp"
+
+
+EXT_MODULES = [
+    Extension(
+        "cityhash",
+        ["src/city.cc", "src/cityhash" + SRC_EXT],
+        depends=["include/city.h"],
+        language="c++",
+        extra_compile_args=CXXFLAGS,
+        include_dirs=['include'],
+    ),
+    Extension(
+        "cityhashcrc",
+        ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
+        depends=["include/citycrc.h"],
+        language="c++",
+        extra_compile_args=CXXFLAGS,
+        include_dirs=['include'],
+    ),
+    Extension(
+        "farmhash",
+        ["src/farm.cc", "src/farmhash" + SRC_EXT],
+        depends=["include/farm.h"],
+        language="c++",
+        extra_compile_args=CXXFLAGS,
+        include_dirs=['include'],
+    )
+]
 
 
 VERSION = '0.3.0.post3'
