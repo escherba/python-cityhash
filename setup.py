@@ -30,10 +30,13 @@ class BinaryDistribution(Distribution):
         return False
 
 
-CXXFLAGS = ["-O3"]
+CXXFLAGS = []
 
-if os.name != "nt":
+if os.name == "nt":
+    CXXFLAGS.extend(["/O3"])
+else:
     CXXFLAGS.extend([
+        "-O3",
         "-Wno-unused-value",
         "-Wno-unused-function",
     ])
