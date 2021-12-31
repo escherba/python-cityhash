@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import warnings
 from os.path import join, dirname
 from setuptools import setup
@@ -29,11 +30,14 @@ class BinaryDistribution(Distribution):
         return False
 
 
-CXXFLAGS = """
--O3
--Wno-unused-value
--Wno-unused-function
-""".split()
+CXXFLAGS = ["-O3"]
+
+if os.name != "nt":
+    CXXFLAGS.extend([
+        "-Wno-unused-value",
+        "-Wno-unused-function",
+    ])
+
 
 # Note: Only -msse4.2 has significant effect on performance;
 # so not using other flags such as -maes and -mavx
@@ -97,7 +101,8 @@ else:
         )
     ])
 
-VERSION = '0.3.0.post1'
+
+VERSION = '0.3.0.post2'
 URL = "https://github.com/escherba/python-cityhash"
 
 

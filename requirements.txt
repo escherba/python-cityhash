@@ -5,4 +5,3 @@ numpy
 pytest
 setuptools
 virtualenv
-wheel

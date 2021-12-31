@@ -1,6 +1,6 @@
 attrs==21.4.0
 backcall==0.2.0
--e git+ssh://git@github.com/escherba/python-cityhash.git@3a765ea6b24faeaf7ee25699ade07b7250d95a11#egg=cityhash
+-e git+ssh://git@github.com/escherba/python-cityhash.git@ace4e8957f96f26b3dda09e8d6bc9bb5a9da0496#egg=cityhash
 Cython==0.29.26
 decorator==5.1.0
 distlib==0.3.4
@@ -30,4 +30,4 @@ traitlets==5.1.1
 typing_extensions==4.0.1
 virtualenv==20.11.2
 wcwidth==0.2.5
-zipp==3.6.0
+zipp==3.7.0
