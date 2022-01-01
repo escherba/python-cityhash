@@ -81,12 +81,12 @@ Fast hashing of NumPy arrays
 
 The Python `Buffer Protocol <https://docs.python.org/3/c-api/buffer.html>`__
 allows Python objects to expose their data as raw byte arrays to other objects,
-for fast access without copying to a separate location in memory.  Notably,
-NumPy is a major framework that supports this protocol.
+for fast access without copying to a separate location in memory.  Among
+others, NumPy is a major framework that supports this protocol.
 
-The functions in these packages will read byt arrays from objects that expose
-them via buffer protocol. Here is an example showing hashing of a 4D NumPy
-array:
+All hashing functions in this packege will read byte arrays from objects that
+expose them via the buffer protocol. Here is an example showing hashing of a 4D
+NumPy array:
 
 .. code-block:: python
 
@@ -96,8 +96,8 @@ array:
     >>> FarmHash64(arr)
     1550282412043536862
 
-Note that arrays need to be contiguous for this to work. To convert a
-non-contiguous array, use NumPy's ``ascontiguousarray()`` function.
+The arrays need to be contiguous for this to work. To convert a non-contiguous
+array, use NumPy's ``ascontiguousarray()`` function.
 
 SSE4.2 support
 ~~~~~~~~~~~~~~
