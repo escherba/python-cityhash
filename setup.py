@@ -67,18 +67,18 @@ EXT_MODULES = [
     Extension(
         "cityhash",
         ["src/city.cc", "src/cityhash" + SRC_EXT],
-        depends=["include/city.h"],
+        depends=["src/city.h"],
         language="c++",
         extra_compile_args=CXXFLAGS,
-        include_dirs=['include'],
+        include_dirs=['src'],
     ),
     Extension(
         "farmhash",
         ["src/farm.cc", "src/farmhash" + SRC_EXT],
-        depends=["include/farm.h"],
+        depends=["src/farm.h"],
         language="c++",
         extra_compile_args=CXXFLAGS,
-        include_dirs=['include'],
+        include_dirs=['src'],
     )
 ]
 
@@ -88,12 +88,12 @@ if 'sse4_2' in CPU_FLAGS:
             "cityhashcrc",
             ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
             depends=[
-                "include/city.h",
-                "include/citycrc.h",
+                "src/city.h",
+                "src/citycrc.h",
             ],
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=['include'],
+            include_dirs=['src'],
         )
     )
 
