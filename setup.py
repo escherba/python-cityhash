@@ -148,6 +148,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Software Development :: Libraries',
+        'Topic :: System :: Distributed Computing',
         'Topic :: Utilities'
     ],
     long_description=get_long_description(),
