@@ -10,7 +10,7 @@ Python wrapper for CityHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.3.0.post5'
+__version__     = '0.3.0.post6'
 __all__         = [
     "CityHash32",
     "CityHash64",
