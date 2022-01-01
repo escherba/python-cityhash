@@ -134,6 +134,9 @@ following:
 Development
 -----------
 
+Local workflow
+~~~~~~~~~~~~~~
+
 For those who want to contribute, here is a quick start using some makefile
 commands:
 
@@ -144,6 +147,7 @@ commands:
     make env           # create a Python virtualenv
     make test          # run Python tests
     make cpp-test      # run C++ tests
+    make shell         # enter IPython shell
 
 The Makefiles provided have self-documenting targets. To find out which targets
 are available, type:
@@ -151,6 +155,13 @@ are available, type:
 .. code-block:: bash
 
     make help
+
+Distribution
+~~~~~~~~~~~~
+
+The wheels are built using `cibuildwheel
+<https://cibuildwheel.readthedocs.io/>`__ and are distributed to PyPI using
+GitHub actions using `this workflow <.github/workflows/wheels.yml>`__.
 
 See Also
 --------
