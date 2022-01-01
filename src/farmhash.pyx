@@ -10,15 +10,18 @@ Python wrapper for FarmHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+farmhash@gmail.com"
-__version__     = '0.3.1.post1'
+__version__     = '0.3.1.post3'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",
+    "Fingerprint32",
     "FarmHash64",
     "FarmHash64WithSeed",
     "FarmHash64WithSeeds",
+    "Fingerprint64",
     "FarmHash128",
     "FarmHash128WithSeed",
+    "Fingerprint128",
 ]
 
 

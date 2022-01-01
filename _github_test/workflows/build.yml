@@ -1,6 +1,6 @@
 # This is a partial workflow. Use wheels.yml for more
 # complete workflow.
-name: Build and Test
+name: build
 
 on:
   push:
