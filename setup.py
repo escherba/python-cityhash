@@ -31,7 +31,9 @@ class BinaryDistribution(Distribution):
 
 CXXFLAGS = []
 
-print(f"building for platform: {os.name}")
+print("building for platform: %s" % os.name)
+print("available CPU flags: %s" % CPU_FLAGS)
+
 if os.name == "nt":
     CXXFLAGS.extend(["/O2"])
 else:
@@ -51,63 +53,52 @@ else:
     print("compiling without SSE4.2 support")
 
 
-INCLUDE_DIRS = ['include']
-CITY_HEADERS = [
-    "include/citycrc.h",
-    "include/city.h",
-    "include/config.h",
-]
-FARM_HEADERS = [
-    "include/farm.h",
-]
-
-CMDCLASS = {}
-EXT_MODULES = []
-
 if USE_CYTHON:
     print("building extension using Cython")
-    CMDCLASS['build_ext'] = build_ext
-    EXT_MODULES.extend([
-        Extension(
-            "cityhash",
-            ["src/city.cc", "src/cityhash.pyx"],
-            depends=CITY_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "farmhash",
-            ["src/farm.cc", "src/farmhash.pyx"],
-            depends=FARM_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        )
-    ])
+    CMDCLASS = {'build_ext': build_ext}
+    SRC_EXT = ".pyx"
 else:
     print("building extension w/o Cython")
-    EXT_MODULES.extend([
+    CMDCLASS = {}
+    SRC_EXT = ".cpp"
+
+
+EXT_MODULES = [
+    Extension(
+        "cityhash",
+        ["src/city.cc", "src/cityhash" + SRC_EXT],
+        depends=["src/city.h"],
+        language="c++",
+        extra_compile_args=CXXFLAGS,
+        include_dirs=['src'],
+    ),
+    Extension(
+        "farmhash",
+        ["src/farm.cc", "src/farmhash" + SRC_EXT],
+        depends=["src/farm.h"],
+        language="c++",
+        extra_compile_args=CXXFLAGS,
+        include_dirs=['src'],
+    )
+]
+
+if 'sse4_2' in CPU_FLAGS:
+    EXT_MODULES.append(
         Extension(
-            "cityhash",
-            ["src/city.cc", "src/cityhash.pyx"],
-            depends=CITY_HEADERS,
+            "cityhashcrc",
+            ["src/city.cc", "src/cityhashcrc" + SRC_EXT],
+            depends=[
+                "src/city.h",
+                "src/citycrc.h",
+            ],
             language="c++",
             extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
-        ),
-        Extension(
-            "farmhash",
-            ["src/farm.cc", "src/farmhash.pyx"],
-            depends=FARM_HEADERS,
-            language="c++",
-            extra_compile_args=CXXFLAGS,
-            include_dirs=INCLUDE_DIRS,
+            include_dirs=['src'],
         )
-    ])
+    )
 
 
-VERSION = '0.3.0.post3'
+VERSION = '0.3.0.post4'
 URL = "https://github.com/escherba/python-cityhash"
 
 

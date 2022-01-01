@@ -79,10 +79,14 @@ instead, which does support it.
 Fast hashing of NumPy arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The methods in this module support Python `Buffer Protocol
-<https://docs.python.org/3/c-api/buffer.html>`__, which allows them to be used
-on any object that exports a buffer interface. Here is an example showing
-hashing of a 4D NumPy array:
+The Python `Buffer Protocol <https://docs.python.org/3/c-api/buffer.html>`__
+allows Python objects to expose their data as raw byte arrays to other objects,
+for fast access without copying to a separate location in memory.  Notably,
+NumPy is a major framework that supports this protocol.
+
+The functions in these packages will read byt arrays from objects that expose
+them via buffer protocol. Here is an example showing hashing of a 4D NumPy
+array:
 
 .. code-block:: python
 
@@ -93,29 +97,38 @@ hashing of a 4D NumPy array:
     1550282412043536862
 
 Note that arrays need to be contiguous for this to work. To convert a
-non-contiguous array, use ``np.ascontiguousarray()`` method.
+non-contiguous array, use NumPy's ``ascontiguousarray()`` function.
 
-SSE4.2 optimizations
-~~~~~~~~~~~~~~~~~~~~
+SSE4.2 support
+~~~~~~~~~~~~~~
 
-On CPUs that support SSE4.2 instruction set, optimized FarmHash has significant
-advantage over non-optimized version and over CityHash, as can be seen below.
+On CPUs that support SSE4.2 instruction set, FarmHash-64 has an advantage over
+its non-optimized version and over vanilla CityHash-64, as can be seen below.
 The numbers below were recoreded on a 2.4 GHz Intel Xeon CPU (E5-2620), and the
 task was to hash a 512x512x3 NumPy array.
 
-+--------------------+-------------------+-------------------+
-| Method             | Time (64-bit)     | Time (128-bit)    |
-+====================+===================+===================+
-| FarmHash / SSE4.2  | 373 µs ± 48.3 µs  | 494 µs ± 30.2 µs  |
-+--------------------+-------------------+-------------------+
-| FarmHash           | 494 µs ± 13.8 µs  | 490 µs ± 23.0 µs  |
-+--------------------+-------------------+-------------------+
-| CityHash           | 497 µs ± 15.0 µs  | 493 µs ± 21.4 µs  |
-+--------------------+-------------------+-------------------+
++----------------------+-------------------+-------------------+
+| Method               | Time (64-bit)     | Time (128-bit)    |
++======================+===================+===================+
+| FarmHash / SSE4.2    | 373 µs ± 48.3 µs  | 480 µs ± 15.3 µs  |
++----------------------+-------------------+-------------------+
+| FarmHash             | 464 µs ± 19.2 µs  | 490 µs ± 23.0 µs  |
++----------------------+-------------------+-------------------+
+| CityHashCrc / SSE4.2 |        N/A        | 377 µs ± 21.7 µs  |
++----------------------+-------------------+-------------------+
+| CityHash             | 492 µs ± 16.7 µs  | 487 µs ± 22.0 µs  |
++----------------------+-------------------+-------------------+
 
-Currently, the ``setup.py`` script automatically detects whether the CPU
-supports SSE4.2 instruction set and enables it during the compilation phase if
-it does.
+The SSE4 support in CityHash is available under ``cityhashcrc`` module.  To use
+SSE4.2-optimized CityHash in a platform-independent way, you can use the
+following:
+
+..code-block:: python
+
+    try:
+        from cityhashcrc import CityHashCrc128 as CityHash128
+    except Exception:
+        from cityhash import CityHash128
 
 Development
 -----------
