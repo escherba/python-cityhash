@@ -1,0 +1,13 @@
+[project]
+requires-python = ">=3.6"
+
+[build-system]
+requires = [
+    "Cython",
+    "py-cpuinfo",
+    "setuptools",
+    "wheel",
+    ]
+
+[tool.cibuildwheel]
+test-requires = "pytest"

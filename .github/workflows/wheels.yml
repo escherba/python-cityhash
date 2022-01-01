@@ -1,4 +1,4 @@
-name: Build and Upload Wheels
+name: publish
 
 on:
   workflow_dispatch:

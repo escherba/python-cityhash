@@ -140,6 +140,7 @@ setup(
     zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
+    package_dir={'': 'src'},
     keywords=["google", "hash", "hashing", "cityhash", "farmhash", "murmurhash"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
