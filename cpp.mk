@@ -2,7 +2,7 @@ CXX := g++
 CXXFLAGS := -std=c++11 -O3 -msse4.2
 LDFLAGS :=
 SRCEXT := cc
-INC := -I include
+INC := -I src
 LIB := -L lib
 
 INPUT := ./data/sample_100k.txt

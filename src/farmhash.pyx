@@ -10,7 +10,7 @@ Python wrapper for FarmHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+farmhash@gmail.com"
-__version__     = '0.3.0.post4'
+__version__     = '0.3.0.post5'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",

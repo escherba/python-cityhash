@@ -10,7 +10,7 @@ Python wrapper for CityHash-CRC
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.3.0.post4'
+__version__     = '0.3.0.post5'
 __all__         = [
     "CityHashCrc128",
     "CityHashCrc128WithSeed",
