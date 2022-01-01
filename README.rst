@@ -5,8 +5,8 @@ A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
 `CityHash <https://github.com/google/cityhash>`__, two fast non-cryptographic
 hashing functions.
 
-.. image:: https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml/badge.svg?branch=master
-    :target: https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml?query=branch%3Amaster
+.. image:: https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master
+    :target: https://github.com/escherba/python-cityhash/actions/workflows/build.yml?query=branch%3Amaster
     :alt: Build Status
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
