@@ -56,7 +56,8 @@ else:
 # so not using other flags such as -maes and -mavx
 if "sse4_2" in CPU_FLAGS:
     print("Compiling with SSE4.2 enabled")
-    CXXFLAGS.append("-msse4.2")
+    if os.name != "nt":
+        CXXFLAGS.append("-msse4.2")
 else:
     print("compiling without SSE4.2 support")
 
@@ -90,7 +91,8 @@ EXT_MODULES = [
     ),
 ]
 
-if "sse4_2" in CPU_FLAGS:
+# for some reason, MSVC++ compiler fails to build cityhashcrc.cc
+if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
@@ -106,7 +108,7 @@ if "sse4_2" in CPU_FLAGS:
     )
 
 
-VERSION = "0.3.1"
+VERSION = "0.3.1.post0"
 URL = "https://github.com/escherba/python-cityhash"
 
 
