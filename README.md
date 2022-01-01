@@ -9,7 +9,7 @@ non-cryptographic hashing functions.
 
 [![Downloads](https://img.shields.io/pypi/dm/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
 
-[![Build Status](https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml/badge.svg?branch=master)])(https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml)
+[![Build Status](https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml/badge.svg?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml)
 
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
 
