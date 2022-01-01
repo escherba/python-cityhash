@@ -1,7 +1,6 @@
 """
 Python-based tests for cityhash extension
 """
-import os
 import random
 import string
 import sys
@@ -41,12 +40,6 @@ def random_splits(s, n, nsplits=2):
 class TestUnicode(unittest.TestCase):
 
     """test unicode-related properties (deprecated in Python 3)"""
-
-    @classmethod
-    def setUpClass(cls):
-        print("\n")
-        print("CIBW_BUILD", os.environ.get('CIBW_BUILD'))
-        print("CIBW_ARCHS", os.environ.get('CIBW_ARCHS'))
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string"""
