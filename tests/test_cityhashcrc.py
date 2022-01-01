@@ -35,6 +35,11 @@ class TestProperties(unittest.TestCase):
 
     """test various properties"""
 
+    @classmethod
+    def setUpClass(cls):
+        if not HAVE_CRC_MODULE:
+            raise unittest.SkipTest("failed to import optional CRC module")
+
     def test_argument_types(self):
         """Should accept byte arrays and buffers"""
         funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
