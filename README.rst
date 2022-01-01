@@ -9,10 +9,6 @@ hashing functions.
     :target: https://github.com/escherba/python-cityhash/actions?query=workflow%3Abuild-test+branch%3Amaster
     :alt: Build Status
 
-.. image:: https://img.shields.io/pypi/l/cityhash.svg
-    :target: https://opensource.org/licenses/mit-license
-    :alt: License
-
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Latest Version
@@ -20,6 +16,10 @@ hashing functions.
 .. image:: https://img.shields.io/pypi/dm/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
+
+.. image:: https://img.shields.io/pypi/l/cityhash.svg
+    :target: https://opensource.org/licenses/mit-license
+    :alt: License
 
 .. image:: https://img.shields.io/pypi/pyversions/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
