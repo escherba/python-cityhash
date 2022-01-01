@@ -4,7 +4,8 @@ Python wrapper for [FarmHash](https://github.com/google/farmhash) and
 [CityHash](https://github.com/google/cityhash), a family of fast
 non-cryptographic hash functions.
 
-<https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master>
+[![Build
+Status](https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml?branch=master)
 
 [![Latest
 Version](https://img.shields.io/pypi/v/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
