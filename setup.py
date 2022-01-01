@@ -104,7 +104,7 @@ if "sse4_2" in CPU_FLAGS:
     )
 
 
-VERSION = "0.3.0.post9"
+VERSION = "0.3.0.post8"
 URL = "https://github.com/escherba/python-cityhash"
 
 
