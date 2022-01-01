@@ -158,6 +158,7 @@ setup(
     ],
     long_description=get_long_description(),
     long_description_content_type="text/x-rst",
+    setup_requires=["py-cpuinfo"],
     tests_require=["pytest"],
     distclass=BinaryDistribution,
 )
