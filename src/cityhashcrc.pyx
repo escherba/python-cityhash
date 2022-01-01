@@ -138,7 +138,6 @@ def CityHashCrc256(data) -> bytes:
     return PyBytes_FromStringAndSize(<char *>out, 32)
 
 
-
 def CityHashCrc128WithSeed(data, seed=0L) -> int:
     """Obtain a 128-bit hash from input data given a seed.
     Args:
