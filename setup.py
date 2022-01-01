@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 import os
 from os.path import join, dirname
+
 from setuptools import setup
-from setuptools.extension import Extension
 from setuptools.dist import Distribution
+from setuptools.extension import Extension
 
 try:
     from cpuinfo import get_cpu_info

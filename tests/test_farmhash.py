@@ -1,21 +1,23 @@
 """
 Python-based tests for farmhash extension
 """
-import unittest
 import random
 import string
 import sys
+import unittest
 
-from farmhash import FarmHash32
-from farmhash import FarmHash32WithSeed
-from farmhash import FarmHash64
-from farmhash import FarmHash64WithSeed
-from farmhash import FarmHash64WithSeeds
-from farmhash import FarmHash128
-from farmhash import FarmHash128WithSeed
-from farmhash import Fingerprint32
-from farmhash import Fingerprint64
-from farmhash import Fingerprint128
+from farmhash import (
+    FarmHash32,
+    FarmHash32WithSeed,
+    FarmHash64,
+    FarmHash64WithSeed,
+    FarmHash64WithSeeds,
+    FarmHash128,
+    FarmHash128WithSeed,
+    Fingerprint32,
+    Fingerprint64,
+    Fingerprint128,
+)
 
 
 EMPTY_STRING = ""
