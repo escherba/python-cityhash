@@ -98,7 +98,7 @@ if 'sse4_2' in CPU_FLAGS:
     )
 
 
-VERSION = '0.3.0.post6'
+VERSION = '0.3.0.post7'
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -148,6 +148,7 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Topic :: Scientific/Engineering :: Information Analysis',
         'Topic :: Software Development :: Libraries',
+        'Topic :: System :: Distributed Computing',
         'Topic :: Utilities'
     ],
     long_description=get_long_description(),

@@ -1,8 +1,9 @@
-CityHash
-========
+CityHash/FarmHash
+=================
 
 A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
-`CityHash <https://github.com/google/cityhash>`__
+`CityHash <https://github.com/google/cityhash>`__, two fast non-cryptographic
+hashing functions.
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
@@ -33,9 +34,9 @@ To use this package in your program, simply type
 
     pip install cityhash
 
-
-After that, you should be able to import the module and do things with it (see
-usage example below).
+This package exposes Python APIs for CityHash and FarmHash under ``cityhash``
+and ``farmhash`` namespaces, respectively.  Each provides 32-, 64- and 128-bit
+implementations.
 
 Usage Examples
 --------------
@@ -43,38 +44,38 @@ Usage Examples
 Stateless hashing
 ~~~~~~~~~~~~~~~~~
 
-This package exposes Python APIs for CityHash and FarmHash under ``cityhash``
-and ``farmhash`` namespaces, respectively.  Each provides 32-, 64- and 128-bit
-implementations. Usage example for `cityhash`:
+Usage example for `farmhash`:
 
 .. code-block:: python
 
-    >>> from cityhash import CityHash32, CityHash64, CityHash128
-    >>> print(CityHash32("abc"))
-    795041479
-    >>> print(CityHash64("abc"))
+    >>> from farmhash import FarmHash32, FarmHash64, FarmHash128
+    >>> FarmHash32("abc")
+    1961358185
+    >>> FarmHash64("abc")
     2640714258260161385
-    >>> print(CityHash128("abc"))
+    >>> FarmHash128("abc")
     76434233956484675513733017140465933893
 
 Hardware-independent fingerprints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Fingerprints are seedless hashes which are guaranteed to be hardware- and
-platform- independent.
+platform-independent. This can be useful for networking applications which
+require persisting hashed values.
 
 .. code-block:: python
 
     >>> from farmhash import Fingerprint128
-    >>> print(Fingerprint128("abc"))
+    >>> Fingerprint128("abc")
     76434233956484675513733017140465933893
 
 Incremental hashing
 ~~~~~~~~~~~~~~~~~~~
 
-CityHash and FarmHash do not support incremental hashing. If you require this
-feature, use `MetroHash <https://github.com/escherba/python-metrohash>`__
-instead, which does support it.
+CityHash and FarmHash do not support incremental hashing and thus are not ideal
+for hashing of streams. If you require incremental hashing feature, use
+`MetroHash <https://github.com/escherba/python-metrohash>`__ or `xxHash
+<https://github.com/ifduyue/python-xxhash>`__ instead, which do support it.
 
 Fast hashing of NumPy arrays
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -153,9 +154,10 @@ are available, type:
 
 See Also
 --------
-For other fast non-cryptographic hashing implementations available as Python
-extensions, see `MetroHash <https://github.com/escherba/python-metrohash>`__
-and `MurmurHash <https://github.com/hajimes/mmh3>`__.
+For other fast non-cryptographic hash functions available as Python extensions,
+see `MetroHash <https://github.com/escherba/python-metrohash>`__, `MurmurHash
+<https://github.com/hajimes/mmh3>`__, and `xxHash
+<https://github.com/ifduyue/python-xxhash>`__.
 
 Authors
 -------
