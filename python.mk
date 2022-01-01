@@ -52,7 +52,7 @@ $(EXTENSION): env $(EXTENSION_DEPS)
 .PHONY: test
 test: build_ext  ## run Python unit tests
 	$(PYENV) pytest
-	$(PYENV) pytest README.rst
+	$(PYENV) pytest README.md
 
 .PHONY: nuke
 nuke: clean  ## clean and remove virtual environment
