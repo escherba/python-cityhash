@@ -1289,6 +1289,7 @@ static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_seed[] = "seed";
 static const char __pyx_k_test[] = "__test__";
+static const char __pyx_k_0_3_2[] = "0.3.2";
 static const char __pyx_k_email[] = "__email__";
 static const char __pyx_k_seed0[] = "seed0";
 static const char __pyx_k_seed1[] = "seed1";
@@ -1302,7 +1303,6 @@ static const char __pyx_k_TypeError[] = "TypeError";
 static const char __pyx_k_CityHash32[] = "CityHash32";
 static const char __pyx_k_CityHash64[] = "CityHash64";
 static const char __pyx_k_basestring[] = "basestring";
-static const char __pyx_k_0_3_1_post3[] = "0.3.1.post3";
 static const char __pyx_k_CityHash128[] = "CityHash128";
 static const char __pyx_k_Eugene_Scherba[] = "Eugene Scherba";
 static const char __pyx_k_src_cityhash_pyx[] = "src/cityhash.pyx";
@@ -1313,7 +1313,7 @@ static const char __pyx_k_CityHash64WithSeeds[] = "CityHash64WithSeeds";
 static const char __pyx_k_Python_wrapper_for_CityHash[] = "\nPython wrapper for CityHash\n";
 static const char __pyx_k_escherba_cityhash_gmail_com[] = "escherba+cityhash@gmail.com";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type: expected %s, got '%s' instead";
-static PyObject *__pyx_kp_s_0_3_1_post3;
+static PyObject *__pyx_kp_s_0_3_2;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_n_s_CityHash128;
 static PyObject *__pyx_n_s_CityHash128WithSeed;
@@ -3151,7 +3151,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_3_1_post3, __pyx_k_0_3_1_post3, sizeof(__pyx_k_0_3_1_post3), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_3_2, __pyx_k_0_3_2, sizeof(__pyx_k_0_3_2), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_n_s_CityHash128, __pyx_k_CityHash128, sizeof(__pyx_k_CityHash128), 0, 0, 1, 1},
   {&__pyx_n_s_CityHash128WithSeed, __pyx_k_CityHash128WithSeed, sizeof(__pyx_k_CityHash128WithSeed), 0, 0, 1, 1},
@@ -3582,7 +3582,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"             # <<<<<<<<<<<<<<
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.1.post3'
+ * __version__     = '0.3.2'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Eugene_Scherba) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
@@ -3590,7 +3590,7 @@ if (!__Pyx_RefNanny) {
  * 
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+cityhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.3.1.post3'
+ * __version__     = '0.3.2'
  * __all__         = [
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_cityhash_gmail_com) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
@@ -3598,15 +3598,15 @@ if (!__Pyx_RefNanny) {
   /* "cityhash.pyx":13
  * __author__      = "Eugene Scherba"
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.1.post3'             # <<<<<<<<<<<<<<
+ * __version__     = '0.3.2'             # <<<<<<<<<<<<<<
  * __all__         = [
  *     "CityHash32",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_1_post3) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_2) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "cityhash.pyx":14
  * __email__       = "escherba+cityhash@gmail.com"
- * __version__     = '0.3.1.post3'
+ * __version__     = '0.3.2'
  * __all__         = [             # <<<<<<<<<<<<<<
  *     "CityHash32",
  *     "CityHash64",
