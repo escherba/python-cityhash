@@ -153,9 +153,10 @@ are available, type:
 
 See Also
 --------
-For other fast non-cryptographic hashing implementations available as Python
-extensions, see `MetroHash <https://github.com/escherba/python-metrohash>`__
-and `MurmurHash <https://github.com/hajimes/mmh3>`__.
+For other fast non-cryptographic hash functions available as Python extensions,
+see `MetroHash <https://github.com/escherba/python-metrohash>`__, `MurmurHash
+<https://github.com/hajimes/mmh3>`__, and `xxHash
+<https://github.com/ifduyue/python-xxhash>`__.
 
 Authors
 -------
