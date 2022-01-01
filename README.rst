@@ -13,16 +13,16 @@ hashing functions.
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
 
-.. image:: https://circleci.com/gh/escherba/python-cityhash.svg?style=shield
-    :target: https://circleci.com/gh/escherba/python-cityhash
-    :alt: Tests Status
+.. image:: https://github.com/escherba/python-cityhash/workflows/build/badge.svg?branch=master
+    :target: https://github.com/escherba/python-cityhash/actions?query=workflow%3Abuild+branch%3Amaster
+    :alt: Build Status
 
 .. image:: https://img.shields.io/pypi/pyversions/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Supported Python versions
 
 .. image:: https://img.shields.io/pypi/l/cityhash.svg
-    :target: https://pypi.python.org/pypi/cityhash
+    :target: https://opensource.org/licenses/mit-license
     :alt: License
 
 Getting Started

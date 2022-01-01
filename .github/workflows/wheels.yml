@@ -36,7 +36,7 @@ jobs:
           CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
           CIBW_ARCHS_LINUX: 'auto aarch64'
           CIBW_ARCHS_MACOS: 'auto arm64'
-          CIBW_TEST_REQUIRES: 'pytest numpy==1.19.5'
+          CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: 'pytest {project}'
           CIBW_TEST_SKIP: '*-macosx_arm64' # Until the day Apple silicon instances are available on GitHub Actions
       - uses: actions/upload-artifact@v2
@@ -53,7 +53,9 @@ jobs:
         with:
           python-version: '3.9'
       - name: Build sdist
-        run: python setup.py build sdist
+        run: |
+          pip install py-cpuinfo
+          python setup.py build sdist
       - uses: actions/upload-artifact@v2
         with:
           path: dist/*.tar.gz
@@ -80,4 +82,4 @@ jobs:
           TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
-          twine upload  --repository ${{ github.event.inputs.repository }} dist/*
+          twine upload --repository ${{ github.event.inputs.repository }} dist/*

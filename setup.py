@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import warnings
 from os.path import join, dirname
 
 from setuptools import setup
@@ -12,6 +13,7 @@ try:
 
     CPU_FLAGS = get_cpu_info()["flags"]
 except Exception as exc:
+    warnings.warn("exception loading cpuinfo: %s" % exc)
     CPU_FLAGS = {}
 
 try:
@@ -158,6 +160,7 @@ setup(
     ],
     long_description=get_long_description(),
     long_description_content_type="text/x-rst",
+    setup_requires=["py-cpuinfo"],
     tests_require=["pytest"],
     distclass=BinaryDistribution,
 )
