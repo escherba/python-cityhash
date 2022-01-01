@@ -2,7 +2,7 @@ CityHash/FarmHash
 =================
 
 A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
-`CityHash <https://github.com/google/cityhash>`__. two fast non-cryptographic
+`CityHash <https://github.com/google/cityhash>`__, two fast non-cryptographic
 hashing functions.
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
