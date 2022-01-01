@@ -111,22 +111,20 @@ if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
     )
 
 
-VERSION = "0.3.3"
+VERSION = "0.3.3.post1"
 URL = "https://github.com/escherba/python-cityhash"
 
 
-LONG_DESCRIPTION = """
+def get_long_description(relpath, encoding="utf-8"):
+    _long_desc = """
 
-"""
-
-
-def get_long_description():
-    fname = join(dirname(__file__), "README.rst")
+    """
+    fname = join(dirname(__file__), relpath)
     try:
         with open(fname, "rb") as fh:
-            return fh.read().decode("utf-8")
+            return fh.read().decode(encoding)
     except Exception:
-        return LONG_DESCRIPTION
+        return _long_desc
 
 
 setup(
@@ -161,8 +159,10 @@ setup(
         "Topic :: Software Development :: Libraries",
         "Topic :: System :: Distributed Computing",
     ],
-    long_description=get_long_description(),
-    long_description_content_type="text/x-rst",
+    # long_description=get_long_description("README.rst"),
+    # long_description_content_type="text/x-rst",
+    long_description=get_long_description("README.md"),
+    long_description_content_type="text/markdown",
     setup_requires=["py-cpuinfo"],
     tests_require=["pytest"],
     distclass=BinaryDistribution,
