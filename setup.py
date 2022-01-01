@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import warnings
 from os.path import join, dirname
 
 from setuptools import setup
@@ -13,7 +12,7 @@ try:
 
     CPU_FLAGS = get_cpu_info()["flags"]
 except Exception as exc:
-    warnings.warn("exception loading cpuinfo: %s" % exc)
+    print("exception loading cpuinfo", exc)
     CPU_FLAGS = {}
 
 try:
@@ -37,8 +36,9 @@ class BinaryDistribution(Distribution):
 
 CXXFLAGS = []
 
-print("building on platform: %s" % os.name)
-print("available CPU flags: %s" % CPU_FLAGS)
+print("building on platform:", os.name)
+print("available CPU flags:", CPU_FLAGS)
+print("environment:", ", ".join(["%s=%s" % (k, v) for k, v in os.environ.items()]))
 
 if os.name == "nt":
     CXXFLAGS.extend(["/O2"])
@@ -51,15 +51,18 @@ else:
         ]
     )
 
+# The "cibuildwheel" tool sets the variable below to
+# something like x86_64, aarch64, i686, and so on.
+ARCH = os.environ.get('AUDITWHEEL_ARCH')
 
 # Note: Only -msse4.2 has significant effect on performance;
 # so not using other flags such as -maes and -mavx
 if "sse4_2" in CPU_FLAGS:
-    print("Compiling with SSE4.2 enabled")
-    if os.name != "nt":
+    if (ARCH in [None, "x86_64"]) and (os.name != "nt"):
+        print("enabling SSE4.2 on compile")
         CXXFLAGS.append("-msse4.2")
 else:
-    print("compiling without SSE4.2 support")
+    print("the CPU does not appear to support SSE4.2")
 
 
 if USE_CYTHON:
@@ -108,7 +111,7 @@ if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
     )
 
 
-VERSION = "0.3.1.post2"
+VERSION = "0.3.1.post3"
 URL = "https://github.com/escherba/python-cityhash"
 
 
