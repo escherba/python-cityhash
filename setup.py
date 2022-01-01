@@ -106,7 +106,7 @@ if "sse4_2" in CPU_FLAGS:
     )
 
 
-VERSION = "0.3.0.post8"
+VERSION = "0.3.1"
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -147,9 +147,6 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: C++",
         "Programming Language :: Cython",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
