@@ -123,7 +123,7 @@ The SSE4 support in CityHash is available under ``cityhashcrc`` module.  To use
 SSE4.2-optimized CityHash in a platform-independent way, you can use the
 following:
 
-..code-block:: python
+.. code-block:: python
 
     try:
         from cityhashcrc import CityHashCrc128 as CityHash128
