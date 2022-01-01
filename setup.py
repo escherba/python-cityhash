@@ -57,7 +57,8 @@ else:
 if "sse4_2" in CPU_FLAGS:
     print("Compiling with SSE4.2 enabled")
     if os.name == "nt":
-        CXXFLAGS.append("/arch:SSE2")
+        if "avx" in CPU_FLAGS:
+            CXXFLAGS.append("/arch:AVX")
     else:
         CXXFLAGS.append("-msse4.2")
 else:
