@@ -1,12 +1,12 @@
 CityHash/FarmHash
 =================
 
-A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
-`CityHash <https://github.com/google/cityhash>`__, two fast non-cryptographic
-hashing functions.
+Python wrapper for `FarmHash <https://github.com/google/farmhash>`__ and
+`CityHash <https://github.com/google/cityhash>`__, a family of fast non-cryptographic
+hash functions.
 
 .. image:: https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master
-    :target: https://github.com/escherba/python-cityhash/actions/workflows/build.yml?query=branch%3Amaster
+    :target: https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master
     :alt: Build Status
 
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
@@ -30,7 +30,7 @@ Getting Started
 
 To use this package in your program, simply type
 
-.. code-block:: bash
+.. code:: bash
 
     pip install cityhash
 
@@ -44,9 +44,9 @@ Usage Examples
 Stateless hashing
 ~~~~~~~~~~~~~~~~~
 
-Usage example for `farmhash`:
+Usage example for FarmHash:
 
-.. code-block:: python
+.. code:: python
 
     >>> from farmhash import FarmHash32, FarmHash64, FarmHash128
     >>> FarmHash32("abc")
@@ -63,7 +63,7 @@ Fingerprints are seedless hashes which are guaranteed to be hardware- and
 platform-independent. This can be useful for networking applications which
 require persisting hashed values.
 
-.. code-block:: python
+.. code:: python
 
     >>> from farmhash import Fingerprint128
     >>> Fingerprint128("abc")
@@ -89,7 +89,7 @@ All hashing functions in this packege will read byte arrays from objects that
 expose them via the buffer protocol. Here is an example showing hashing of a 4D
 NumPy array:
 
-.. code-block:: python
+.. code:: python
 
     >>> import numpy as np
     >>> from farmhash import FarmHash64
@@ -124,7 +124,7 @@ The SSE4 support in CityHash is available under ``cityhashcrc`` module.  To use
 SSE4.2-optimized CityHash in a platform-independent way, you can use the
 following:
 
-.. code-block:: python
+.. code:: python
 
     try:
         from cityhashcrc import CityHashCrc128 as CityHash128
@@ -140,7 +140,7 @@ Local workflow
 For those who want to contribute, here is a quick start using some makefile
 commands:
 
-.. code-block:: bash
+.. code:: bash
 
     git clone https://github.com/escherba/python-cityhash.git
     cd python-cityhash
@@ -152,7 +152,7 @@ commands:
 The Makefiles provided have self-documenting targets. To find out which targets
 are available, type:
 
-.. code-block:: bash
+.. code:: bash
 
     make help
 
