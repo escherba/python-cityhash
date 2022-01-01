@@ -95,44 +95,12 @@ as can be seen below. The numbers below were recoreded on a 2.4 GHz
 Intel Xeon CPU (E5-2620), and the task was to hash a 512x512x3 NumPy
 array.
 
-<table style="width:88%;">
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 27%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Method</th>
-<th>Time (64-bit)</th>
-<th>Time (128-bit)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>FarmHash / SSE4.2</td>
-<td>373 µs ± 48.3 µs</td>
-<td>480 µs ± 15.3 µs</td>
-</tr>
-<tr class="even">
-<td>FarmHash</td>
-<td>464 µs ± 19.2 µs</td>
-<td>490 µs ± 23.0 µs</td>
-</tr>
-<tr class="odd">
-<td>CityHashCrc / SSE4.2</td>
-<td>
-<p>N/A</p>
-</td>
-<td>377 µs ± 21.7 µs</td>
-</tr>
-<tr class="even">
-<td>CityHash</td>
-<td>492 µs ± 16.7 µs</td>
-<td>487 µs ± 22.0 µs</td>
-</tr>
-</tbody>
-</table>
+| Method               | Time (64-bit)    | Time (128-bit)   |
+|----------------------|------------------|------------------|
+| FarmHash / SSE4.2    | 373 µs ± 48.3 µs | 480 µs ± 15.3 µs |
+| FarmHash             | 464 µs ± 19.2 µs | 490 µs ± 23.0 µs |
+| CityHashCrc / SSE4.2 | n/a              | 377 µs ± 21.7 µs |
+| CityHash             | 492 µs ± 16.7 µs | 487 µs ± 22.0 µs |
 
 The SSE4 support in CityHash is available under `cityhashcrc` module. To
 use SSE4.2-optimized CityHash in a platform-independent way, you can use
