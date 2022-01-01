@@ -5,6 +5,14 @@ A Python wrapper around `FarmHash <https://github.com/google/farmhash>`__ and
 `CityHash <https://github.com/google/cityhash>`__, two fast non-cryptographic
 hashing functions.
 
+.. image:: https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml/badge.svg?branch=master
+    :target: https://github.com/escherba/python-cityhash/actions?query=workflow%3Abuild-test+branch%3Amaster
+    :alt: Build Status
+
+.. image:: https://img.shields.io/pypi/l/cityhash.svg
+    :target: https://opensource.org/licenses/mit-license
+    :alt: License
+
 .. image:: https://img.shields.io/pypi/v/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Latest Version
@@ -13,17 +21,9 @@ hashing functions.
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
 
-.. image:: https://github.com/escherba/python-cityhash/actions/workflows/build-test.yml/badge.svg?branch=master
-    :target: https://github.com/escherba/python-cityhash/actions?query=workflow%3Abuild-test+branch%3Amaster
-    :alt: Build Status
-
 .. image:: https://img.shields.io/pypi/pyversions/cityhash.svg
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Supported Python versions
-
-.. image:: https://img.shields.io/pypi/l/cityhash.svg
-    :target: https://opensource.org/licenses/mit-license
-    :alt: License
 
 Getting Started
 ---------------
