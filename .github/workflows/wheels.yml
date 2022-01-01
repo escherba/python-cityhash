@@ -52,7 +52,9 @@ jobs:
         with:
           python-version: '3.9'
       - name: Build sdist
-        run: python setup.py build sdist
+        run: |
+          pip install py-cpuinfo
+          python setup.py build sdist
       - uses: actions/upload-artifact@v2
         with:
           path: dist/*.tar.gz
