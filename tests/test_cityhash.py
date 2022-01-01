@@ -15,6 +15,7 @@ from cityhash import (
     CityHash128WithSeed,
 )
 
+
 EMPTY_STRING = ""
 EMPTY_UNICODE = u""  # pylint: disable=redundant-u-string-prefix
 
@@ -36,9 +37,9 @@ def random_splits(s, n, nsplits=2):
         yield s[begin:end]
 
 
-class TestStateless(unittest.TestCase):
+class TestUnicode(unittest.TestCase):
 
-    """test stateless hashing"""
+    """test unicode-related properties (deprecated in Python 3)"""
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string"""
@@ -111,8 +112,13 @@ class TestStateless(unittest.TestCase):
         result = CityHash128WithSeed(test_case, seed=CityHash128WithSeed(test_case))
         self.assertTrue(isinstance(result, long))
 
+
+class TestProperties(unittest.TestCase):
+
+    """test various properties"""
+
     def test_argument_types(self):
-        """Accepts different kinds of buffer-compatible objects"""
+        """Should accept byte arrays and buffers"""
         funcs = [
             CityHash32,
             CityHash64,
@@ -127,7 +133,7 @@ class TestStateless(unittest.TestCase):
             self.assertEqual(len(values), 1, values)
 
     def test_refcounts(self):
-        """Doesn't leak references to its argument"""
+        """Argument reference count should not change"""
         funcs = [
             CityHash32,
             CityHash64,
@@ -144,7 +150,7 @@ class TestStateless(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
-        """Ensure we get different results with different seeds"""
+        """Different seeds should produce different results"""
 
         test_string = "just a string"
 
@@ -155,13 +161,10 @@ class TestStateless(unittest.TestCase):
         ]
 
         for func in funcs:
-            self.assertNotEqual(
-                func(test_string, 0),
-                func(test_string, 1)
-            )
+            self.assertNotEqual(func(test_string, 0), func(test_string, 1))
 
     def test_func_raises_type_error(self):
-        """Check that functions raise type error"""
+        """Raises type error on bad argument type"""
         funcs = [
             CityHash32,
             CityHash64,

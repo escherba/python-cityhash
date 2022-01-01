@@ -31,34 +31,21 @@ def random_splits(s, n, nsplits=2):
         yield s[begin:end]
 
 
-class TestStateless(unittest.TestCase):
+class TestProperties(unittest.TestCase):
 
-    """test stateless hashing"""
-
-    @classmethod
-    def setUpClass(cls):
-        if not HAVE_CRC_MODULE:
-            raise unittest.SkipTest("no CRC module")
+    """test various properties"""
 
     def test_argument_types(self):
-        """Accepts different kinds of buffer-compatible objects"""
-        funcs = [
-            CityHashCrc128,
-            CityHashCrc128WithSeed,
-            CityHashCrc256
-        ]
+        """Should accept byte arrays and buffers"""
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
         args = [b"ab\x00c", bytearray(b"ab\x00c"), memoryview(b"ab\x00c")]
         for func in funcs:
             values = set(func(arg) for arg in args)
             self.assertEqual(len(values), 1, values)
 
     def test_refcounts(self):
-        """Doesn't leak references to its argument"""
-        funcs = [
-            CityHashCrc128,
-            CityHashCrc128WithSeed,
-            CityHashCrc256
-        ]
+        """Argument reference count should not change"""
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
         args = ["abc", b"abc", bytearray(b"def"), memoryview(b"ghi")]
         for func in funcs:
             for arg in args:
@@ -67,7 +54,7 @@ class TestStateless(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
-        """Ensure we get different results with different seeds"""
+        """Different seeds should produce different results"""
 
         test_string = "just a string"
 
@@ -76,18 +63,11 @@ class TestStateless(unittest.TestCase):
         ]
 
         for func in funcs:
-            self.assertNotEqual(
-                func(test_string, 0),
-                func(test_string, 1)
-            )
+            self.assertNotEqual(func(test_string, 0), func(test_string, 1))
 
     def test_func_raises_type_error(self):
-        """Check that functions raise type error"""
-        funcs = [
-            CityHashCrc128,
-            CityHashCrc128WithSeed,
-            CityHashCrc256
-        ]
+        """Raises type error on bad argument type"""
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
         for func in funcs:
             with self.assertRaises(TypeError):
                 func([])

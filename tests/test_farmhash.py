@@ -41,9 +41,9 @@ def random_splits(s, n, nsplits=2):
         yield s[begin:end]
 
 
-class TestStateless(unittest.TestCase):
+class TestUnicode(unittest.TestCase):
 
-    """test stateless hashing"""
+    """test unicode-related properties (deprecated in Python 3)"""
 
     def test_string_unicode_32(self):
         """Empty Python string has same hash value as empty Unicode string"""
@@ -116,8 +116,35 @@ class TestStateless(unittest.TestCase):
         result = FarmHash128WithSeed(test_case, seed=FarmHash128WithSeed(test_case))
         self.assertTrue(isinstance(result, long))
 
+
+class TestFingerprints(unittest.TestCase):
+
+    """Fingerprints should be the same across platforms"""
+
+    def test_fingerprint32(self):
+        """test 32-bit fingerprint"""
+        test_string = "abc"
+        self.assertEqual(Fingerprint32(test_string), 795041479)
+
+    def test_fingerprint64(self):
+        """test 64-bit fingerprint"""
+        test_string = "abc"
+        self.assertEqual(Fingerprint64(test_string), 2640714258260161385)
+
+    def test_fingerprint128(self):
+        """test 128-bit fingerprint"""
+        test_string = "abc"
+        self.assertEqual(
+            Fingerprint128(test_string), 76434233956484675513733017140465933893
+        )
+
+
+class TestProperties(unittest.TestCase):
+
+    """test various properties"""
+
     def test_argument_types(self):
-        """Accepts different kinds of buffer-compatible objects"""
+        """Should accept byte arrays and buffers"""
         funcs = [
             FarmHash32,
             FarmHash64,
@@ -136,7 +163,7 @@ class TestStateless(unittest.TestCase):
             self.assertEqual(len(values), 1, values)
 
     def test_refcounts(self):
-        """Doesn't leak references to its argument"""
+        """Argument reference count should not change"""
         funcs = [
             FarmHash32,
             FarmHash64,
@@ -157,7 +184,7 @@ class TestStateless(unittest.TestCase):
                 self.assertEqual(sys.getrefcount(arg), old_refcount)
 
     def test_different_seeds(self):
-        """Ensure we get different results with different seeds"""
+        """Different seeds should produce different results"""
 
         test_string = "just a string"
 
@@ -169,13 +196,10 @@ class TestStateless(unittest.TestCase):
         ]
 
         for func in funcs:
-            self.assertNotEqual(
-                func(test_string, 0),
-                func(test_string, 1)
-            )
+            self.assertNotEqual(func(test_string, 0), func(test_string, 1))
 
     def test_func_raises_type_error(self):
-        """Check that functions raise type error"""
+        """Raises type error on bad argument type"""
         funcs = [
             FarmHash32,
             FarmHash32WithSeed,
