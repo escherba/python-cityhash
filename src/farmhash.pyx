@@ -14,11 +14,14 @@ __version__     = '0.3.1.post2'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",
+    "Fingerprint32",
     "FarmHash64",
     "FarmHash64WithSeed",
     "FarmHash64WithSeeds",
+    "Fingerprint64",
     "FarmHash128",
     "FarmHash128WithSeed",
+    "Fingerprint128",
 ]
 
 

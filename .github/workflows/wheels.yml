@@ -37,7 +37,7 @@ jobs:
           CIBW_ARCHS_LINUX: 'auto aarch64'
           CIBW_ARCHS_MACOS: 'auto arm64'
           CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: 'pytest {project}/tests'
+          CIBW_TEST_COMMAND: 'pytest -s {project}/tests'
           CIBW_TEST_SKIP: '*-macosx_arm64' # Until the day Apple silicon instances are available on GitHub Actions
       - uses: actions/upload-artifact@v2
         with:
