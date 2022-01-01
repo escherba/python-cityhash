@@ -5,7 +5,7 @@ Python wrapper for [FarmHash](https://github.com/google/farmhash) and
 non-cryptographic hash functions.
 
 [![Build
-Status](https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml?branch=master)
+Status](https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml)
 
 [![Latest
 Version](https://img.shields.io/pypi/v/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
