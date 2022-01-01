@@ -6,14 +6,10 @@ non-cryptographic hash functions.
 
 [![Build
 Status](https://github.com/escherba/python-cityhash/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml)
-
 [![Latest
 Version](https://img.shields.io/pypi/v/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
-
 [![Downloads](https://img.shields.io/pypi/dm/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
-
 [![License](https://img.shields.io/pypi/l/cityhash.svg)](https://opensource.org/licenses/mit-license)
-
 [![Supported Python
 versions](https://img.shields.io/pypi/pyversions/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
 
