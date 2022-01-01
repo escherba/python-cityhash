@@ -161,7 +161,7 @@ Distribution
 
 The wheels are built using `cibuildwheel
 <https://cibuildwheel.readthedocs.io/>`__ and are distributed to PyPI using
-GitHub actions using `this workflow <.github/workflows/wheels.yml>`__. The
+GitHub actions using `this workflow <.github/workflows/publish.yml>`__. The
 wheels contain compiled binaries and are available for the following platforms:
 windows-amd64, ubuntu-x86, linux-x86_64, linux-aarch64, and macosx-x86_64.
 
