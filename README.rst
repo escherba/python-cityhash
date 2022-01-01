@@ -13,7 +13,7 @@ hashing functions.
     :target: https://pypi.python.org/pypi/cityhash
     :alt: Downloads
 
-.. image:: https://github.com/escherba/python-cityhash/workflows/build-test/badge.svg?branch=master
+.. image:: https://github.com/escherba/python-cityhash/workflows/build-test.yml/badge.svg?branch=master
     :target: https://github.com/escherba/python-cityhash/actions?query=workflow%3Abuild-test+branch%3Amaster
     :alt: Build Status
 
