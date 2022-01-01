@@ -66,7 +66,7 @@ require persisting hashed values.
 .. code-block:: python
 
     >>> from farmhash import Fingerprint128
-    >>> print(Fingerprint128("abc"))
+    >>> Fingerprint128("abc")
     76434233956484675513733017140465933893
 
 Incremental hashing
