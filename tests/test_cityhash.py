@@ -1,18 +1,19 @@
 """
 Python-based tests for cityhash extension
 """
-import unittest
 import random
 import string
 import sys
+import unittest
 
-from cityhash import CityHash32
-from cityhash import CityHash64
-from cityhash import CityHash64WithSeed
-from cityhash import CityHash64WithSeeds
-from cityhash import CityHash128
-from cityhash import CityHash128WithSeed
-
+from cityhash import (
+    CityHash32,
+    CityHash64,
+    CityHash64WithSeed,
+    CityHash64WithSeeds,
+    CityHash128,
+    CityHash128WithSeed,
+)
 
 EMPTY_STRING = ""
 EMPTY_UNICODE = u""  # pylint: disable=redundant-u-string-prefix
