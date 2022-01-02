@@ -91,11 +91,11 @@ array, use NumPy's `ascontiguousarray()` function.
 The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
 resulting in arguably the fastest non-cryptographic funtions in the 32-bit
 category. The 64-bit FarmHash version also benefits from SSE4.2 being enabled,
-but not as much as the 32-bit version. It is still among the fastest 64-bit
-hash functions.
+but not as much as the 32-bit version does. It is still among the fastest
+64-bit hash functions.
 
 The vanilla CityHash fucntions (under `cityhash` module) do not take advantage
-of SSE4.2, Instead, the `cityhashcrc` module (provided with this package for
+of SSE4.2. Instead, the `cityhashcrc` module (provided with this package for
 x86-64 Mac and Linux platforms) exposes 128- and 256-bit CRC functions that
 were specifically built take advantage from microprocessor-specific
 instructions and which do harness SSE4.2, These functions are very fast, and in
