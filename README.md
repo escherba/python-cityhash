@@ -93,12 +93,13 @@ its non-optimized version and over vanilla CityHash-64, as can be seen below.
 The numbers below were recoreded on a 2.4 GHz Intel Xeon CPU (E5-2620), and the
 task was to hash a 512x512x3 NumPy array.
 
-| Method               | Time (64-bit)    | Time (128-bit)   |
-|----------------------|------------------|------------------|
-| FarmHash / SSE4.2    | 373 µs ± 48.3 µs | 480 µs ± 15.3 µs |
-| FarmHash             | 464 µs ± 19.2 µs | 490 µs ± 23.0 µs |
-| CityHashCrc / SSE4.2 | n/a              | 377 µs ± 21.7 µs |
-| CityHash             | 492 µs ± 16.7 µs | 487 µs ± 22.0 µs |
+| Method              | Time (32-bit)      | Time (64-bit)      | Time (128-bit)     |
+|---------------------|--------------------|--------------------|--------------------|
+| FarmHash / SSE4.2   | *334 µs ± 28.4 µs* | *373 µs ± 48.3 µs* | 467 µs ± 20.5 µs   |
+| FarmHash            | 1.26 ms ± 13.8 µs  | 444 µs ± 17.5 µs   | 457 µs ± 12.5 µs   |
+| CityHashCrc / SSE4.2| n/a                | n/a                | *363 µs ± 29.2 µs* |
+| CityHash            | 1.12 ms ± 14.7 µs  | 469 µs ± 7.44 µs   | 475 µs ± 25.1 µs   |
+| xxHash              | 1.00 ms ± 11.4 µs  | 508 µs ± 12.5 µs   | 382 µs ± 22.1 µs   |
 
 The SSE4 support in CityHash is available under `cityhashcrc` module. To use
 SSE4.2-optimized CityHash in a platform-independent way, you can use the
