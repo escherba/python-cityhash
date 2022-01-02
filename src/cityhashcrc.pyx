@@ -82,8 +82,6 @@ Args:
 Returns:
     int: a 128-bit hash of the input data
 Raises:
-    ValueError, TypeError
-Raises:
     ValueError: if input buffer is not C-contiguous
     TypeError: if input data is not a string or a buffer
     """
@@ -115,8 +113,6 @@ Args:
     data (str, buffer): input data (either string or buffer type)
 Returns:
     bytes: hashed value
-Raises:
-    ValueError, TypeError
 Raises:
     ValueError: if input buffer is not C-contiguous
     TypeError: if input data is not a string or a buffer
@@ -151,8 +147,6 @@ Args:
     seed (int, default=0): seed for random number generator
 Returns:
     int: a 128-bit hash of the input data
-Raises:
-    ValueError, TypeError, OverflowError
 Raises:
     TypeError: if input data is not a string or a buffer
     ValueError: if input buffer is not C-contiguous
