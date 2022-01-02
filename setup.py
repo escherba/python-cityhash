@@ -53,7 +53,7 @@ else:
 
 # The "cibuildwheel" tool sets the variable below to
 # something like x86_64, aarch64, i686, and so on.
-ARCH = os.environ.get('AUDITWHEEL_ARCH')
+ARCH = os.environ.get("AUDITWHEEL_ARCH")
 
 # Note: Only -msse4.2 has significant effect on performance;
 # so not using other flags such as -maes and -mavx
@@ -111,7 +111,7 @@ if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
     )
 
 
-VERSION = "0.3.3.post2"
+VERSION = "0.3.4"
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -141,7 +141,7 @@ setup(
     zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
-    package_dir={'': 'src'},
+    package_dir={"": "src"},
     keywords=["google", "hash", "hashing", "cityhash", "farmhash", "murmurhash"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -159,11 +159,8 @@ setup(
         "Topic :: Software Development :: Libraries",
         "Topic :: System :: Distributed Computing",
     ],
-    # long_description=get_long_description("README.rst"),
-    # long_description_content_type="text/x-rst",
     long_description=get_long_description("README.md"),
     long_description_content_type="text/markdown",
-    setup_requires=["py-cpuinfo"],
     tests_require=["pytest"],
     distclass=BinaryDistribution,
 )

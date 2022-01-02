@@ -39,6 +39,7 @@ Usage example for FarmHash:
 2640714258260161385
 >>> FarmHash128("abc")
 76434233956484675513733017140465933893
+
 ```
 
 ### Hardware-independent fingerprints
@@ -51,6 +52,7 @@ which require persisting hashed values.
 >>> from farmhash import Fingerprint128
 >>> Fingerprint128("abc")
 76434233956484675513733017140465933893
+
 ```
 
 ### Incremental hashing
@@ -79,6 +81,7 @@ hashing of a 4D NumPy array:
 >>> arr = np.zeros((256, 256, 4))
 >>> FarmHash64(arr)
 1550282412043536862
+
 ```
 
 The arrays need to be contiguous for this to work. To convert a
