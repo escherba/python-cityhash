@@ -88,28 +88,23 @@ array, use NumPy's `ascontiguousarray()` function.
 
 ### SSE4.2 support
 
-On CPUs that support SSE4.2 instruction set, FarmHash-64 has an advantage over
-its non-optimized version and over vanilla CityHash-64, as can be seen below.
-The numbers below were recoreded on a 2.4 GHz Intel Xeon CPU (E5-2620), and the
-task was to hash a 512x512x3 NumPy array.
+The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
+resulting in arguably the fastest non-cryptographic funtions in the 32-bit
+category. The 64-bit FarmHash version also benefits from SSE4.2 being enabled,
+but not as much as the 32-bit version does. It is still among the fastest
+64-bit hash functions.
 
-| Method               | Time (64-bit)    | Time (128-bit)   |
-|----------------------|------------------|------------------|
-| FarmHash / SSE4.2    | 373 µs ± 48.3 µs | 480 µs ± 15.3 µs |
-| FarmHash             | 464 µs ± 19.2 µs | 490 µs ± 23.0 µs |
-| CityHashCrc / SSE4.2 | n/a              | 377 µs ± 21.7 µs |
-| CityHash             | 492 µs ± 16.7 µs | 487 µs ± 22.0 µs |
+The vanilla CityHash fucntions (under `cityhash` module) do not take advantage
+of SSE4.2. Instead, the `cityhashcrc` module (provided with this package for
+x86-64 Mac and Linux platforms) exposes 128- and 256-bit CRC functions that
+were specifically built take advantage from microprocessor-specific
+instructions and which do harness SSE4.2, These functions are very fast, and in
+fact beat FarmHash128 on speed (though please verify for yourself whether they
+provide sufficient randomness).
 
-The SSE4 support in CityHash is available under `cityhashcrc` module. To use
-SSE4.2-optimized CityHash in a platform-independent way, you can use the
-following:
-
-``` python
-try:
-    from cityhashcrc import CityHashCrc128 as CityHash128
-except Exception:
-    from cityhash import CityHash128
-```
+For most use cases, I would recommend FarmHash over CityHash as it handles
+SSE4.2 optimizations more transparently and includes a bunch of other
+improvements.
 
 ## Development
 
