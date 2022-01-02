@@ -91,27 +91,20 @@ array, use NumPy's `ascontiguousarray()` function.
 The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
 resulting in arguably the fastest non-cryptographic funtions in the 32-bit
 category. The 64-bit FarmHash version also benefits from SSE4.2 being enabled,
-but not as much as the 32-bit. It is still among the fastest 64-bit hash
-functions.
+but not as much as the 32-bit version. It is still among the fastest 64-bit
+hash functions.
 
-The vanilla CityHash functions (those found in `cityhash` module) have no
-benefit from SSE4.2.  The functions from the `cityhashcrc` module (bundled with
-this package for Mac and Linux on x86-64) do benefit, however. More
-specifically, the `CityHashCrc128` function from `cityhashcrc`  is one of the
-fastest functions in the 128-bit category.
+The vanilla CityHash fucntions (under `cityhash` module) do not take advantage
+of SSE4.2, Instead, the `cityhashcrc` module (provided with this package for
+x86-64 Mac and Linux platforms) exposes 128- and 256-bit CRC functions that
+were specifically built take advantage from microprocessor-specific
+instructions and which do harness SSE4.2, These functions are very fast, and in
+fact beat FarmHash128 on speed (though please verify for yourself whether they
+provide sufficient randomness).
 
-If you want to use `CityHashCrc128`, your machine needs to support SSE4.2. The
-`cityhashcrc` module where this function resides is currently only available
-with wheels compiled for Mac and Linux x86-64 architectures.  If you require
-code-level portability, you can employ something like this when importing this
-function:
-
-``` python
-try:
-    from cityhashcrc import CityHashCrc128 as CityHash128
-except Exception:
-    from cityhash import CityHash128
-```
+For most use cases, I would recommend FarmHash over CityHash as it handles
+SSE4.2 optimizations more transparently and includes a bunch of other
+improvements.
 
 ## Development
 
