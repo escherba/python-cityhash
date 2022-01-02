@@ -111,7 +111,7 @@ if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
     )
 
 
-VERSION = "0.3.4"
+VERSION = "0.3.5"
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -130,10 +130,8 @@ def get_long_description(relpath, encoding="utf-8"):
 setup(
     version=VERSION,
     description="Python bindings for CityHash and FarmHash",
-    author="Alexander [Amper] Marshalov",
-    author_email="alone.amper+cityhash@gmail.com",
-    maintainer="Eugene Scherba",
-    maintainer_email="escherba+cityhash@gmail.com",
+    author="Eugene Scherba",
+    author_email="escherba+cityhash@gmail.com",
     url=URL,
     download_url=URL + "/tarball/master/" + VERSION,
     name="cityhash",
@@ -142,7 +140,7 @@ setup(
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
     package_dir={"": "src"},
-    keywords=["google", "hash", "hashing", "cityhash", "farmhash", "murmurhash"],
+    keywords=["google", "hash", "hashing", "cityhash", "farmhash", "murmurhash", "cython"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
