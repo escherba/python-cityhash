@@ -2,6 +2,7 @@
 requires-python = ">=3.6"
 
 [build-system]
+build-backend = "setuptools.build_meta"
 requires = [
     "Cython",
     "py-cpuinfo",
