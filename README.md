@@ -88,23 +88,23 @@ array, use NumPy's `ascontiguousarray()` function.
 
 ## SSE4.2 support
 
-The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
-resulting in arguably the fastest non-cryptographic funtions in the 32-bit
-category. The 64-bit FarmHash version also benefits from SSE4.2 being enabled,
-but not as much as the 32-bit version does. It is still among the fastest
-64-bit hash functions.
+For Mac and Linux x86-64 platforms, the PyPi repository for this package
+includes wheels compiled with SSE4.2 support. Although it also includes wheels
+that work on Windows, the Windows wheels were not compiled with SSE4.2
+support---pull requests that address this are welcome!
+
+The 32- and 64-bit FarmHash variants both significantly benefit from SSE4.2
+instructions. The 128-bit version, unfortunately, does not exhibit speed up
+after compiling with SSE4.2 support.
 
 The vanilla CityHash fucntions (under `cityhash` module) do not take advantage
-of SSE4.2. Instead, the `cityhashcrc` module (provided with this package for
-x86-64 Mac and Linux platforms) exposes 128- and 256-bit CRC functions that
-were specifically built take advantage from microprocessor-specific
-instructions and which do harness SSE4.2, These functions are very fast, and in
-fact beat FarmHash128 on speed (though please verify for yourself whether they
-provide sufficient randomness).
-
-For most use cases, I would recommend FarmHash over CityHash as it handles
-SSE4.2 optimizations more transparently and includes a bunch of other
-improvements.
+of SSE4.2. Instead, the `cityhashcrc` module provided with this package (Mac
+and Linux platforms only) exposes 128- and 256-bit CRC functions which do
+harness SSE4.2. These functions are very fast, and beat `FarmHash128` on speed
+(FarmHash does not include a 256-bit function). Since FarmHash is the intended
+successor of CityHash, I would be careful before using the CityHash-CRC
+functions, however, and would verify whether they provide sufficient randomness
+for your intended application.
 
 ## Development
 
@@ -122,8 +122,7 @@ make cpp-test      # run C++ tests
 make shell         # enter IPython shell
 ```
 
-The Makefiles provided have self-documenting targets. To find out which targets
-are available, type:
+To find out which Make targets are available, type:
 
 ``` bash
 make help
@@ -132,10 +131,9 @@ make help
 ### Distribution
 
 The wheels are built using [cibuildwheel](https://cibuildwheel.readthedocs.io/)
-and are distributed to PyPI using GitHub actions using [this
-workflow](.github/workflows/publish.yml). The wheels contain compiled binaries
-and are available for the following platforms: windows-amd64, ubuntu-x86,
-linux-x86\_64, linux-aarch64, and macosx-x86\_64.
+and are distributed to PyPI using GitHub actions. The wheels contain compiled
+binaries and are available for the following platforms: windows-amd64,
+ubuntu-x86, linux-x86\_64, linux-aarch64, and macosx-x86\_64.
 
 ## See Also
 
