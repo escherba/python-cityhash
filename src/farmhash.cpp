@@ -1365,7 +1365,6 @@ static PyObject *__pyx_pf_8farmhash_12FarmHash64WithSeeds(CYTHON_UNUSED PyObject
 static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_data); /* proto */
 static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_data); /* proto */
 static PyObject *__pyx_pf_8farmhash_18FarmHash128WithSeed(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_data, PyObject *__pyx_v_seed); /* proto */
-static PyObject *__pyx_int_64;
 static PyObject *__pyx_int_0L;
 static PyObject *__pyx_int_64L;
 static PyObject *__pyx_int_18446744073709551615L;
@@ -3483,7 +3482,7 @@ static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
- *     return (long(result.first) << 64) + long(result.second)
+ *     return (long(result.first) << 64ULL) + long(result.second)
  * 
  */
   /*else*/ {
@@ -3507,7 +3506,7 @@ static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_
   /* "farmhash.pyx":333
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
- *     return (long(result.first) << 64) + long(result.second)             # <<<<<<<<<<<<<<
+ *     return (long(result.first) << 64ULL) + long(result.second)             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -3517,7 +3516,7 @@ static PyObject *__pyx_pf_8farmhash_14FarmHash128(CYTHON_UNUSED PyObject *__pyx_
   __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Lshift(__pyx_t_2, __pyx_int_64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Lshift(__pyx_t_2, __pyx_int_64L); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 333, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 333, __pyx_L1_error)
@@ -3733,7 +3732,7 @@ static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__p
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
- *     return (long(result.first) << 64) + long(result.second)
+ *     return (long(result.first) << 64ULL) + long(result.second)
  * 
  */
   /*else*/ {
@@ -3757,7 +3756,7 @@ static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__p
   /* "farmhash.pyx":364
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
- *     return (long(result.first) << 64) + long(result.second)             # <<<<<<<<<<<<<<
+ *     return (long(result.first) << 64ULL) + long(result.second)             # <<<<<<<<<<<<<<
  * 
  * 
  */
@@ -3767,7 +3766,7 @@ static PyObject *__pyx_pf_8farmhash_16Fingerprint128(CYTHON_UNUSED PyObject *__p
   __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_Lshift(__pyx_t_2, __pyx_int_64); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Lshift(__pyx_t_2, __pyx_int_64L); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 364, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 364, __pyx_L1_error)
@@ -4066,7 +4065,7 @@ static PyObject *__pyx_pf_8farmhash_18FarmHash128WithSeed(CYTHON_UNUSED PyObject
  *         PyBuffer_Release(&buf)
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)             # <<<<<<<<<<<<<<
- *     return (long(result.first) << 64) + long(result.second)
+ *     return (long(result.first) << 64ULL) + long(result.second)
  */
   /*else*/ {
     __pyx_t_1 = PyList_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 400, __pyx_L1_error)
@@ -4089,7 +4088,7 @@ static PyObject *__pyx_pf_8farmhash_18FarmHash128WithSeed(CYTHON_UNUSED PyObject
   /* "farmhash.pyx":401
  *     else:
  *         raise _type_error("data", ["basestring", "buffer"], data)
- *     return (long(result.first) << 64) + long(result.second)             # <<<<<<<<<<<<<<
+ *     return (long(result.first) << 64ULL) + long(result.second)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.first); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 401, __pyx_L1_error)
@@ -4097,7 +4096,7 @@ static PyObject *__pyx_pf_8farmhash_18FarmHash128WithSeed(CYTHON_UNUSED PyObject
   __pyx_t_1 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyLong_Type)), __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Lshift(__pyx_t_1, __pyx_int_64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 401, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Lshift(__pyx_t_1, __pyx_int_64L); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 401, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = __Pyx_PyInt_From_uint64_t(__pyx_v_result.second); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 401, __pyx_L1_error)
@@ -4357,7 +4356,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
-  __pyx_int_64 = PyInt_FromLong(64); if (unlikely(!__pyx_int_64)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_0L = PyLong_FromString((char *)"0", 0, 0); if (unlikely(!__pyx_int_0L)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_64L = PyLong_FromString((char *)"64", 0, 0); if (unlikely(!__pyx_int_64L)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_18446744073709551615L = PyLong_FromString((char *)"18446744073709551615", 0, 0); if (unlikely(!__pyx_int_18446744073709551615L)) __PYX_ERR(0, 1, __pyx_L1_error)
