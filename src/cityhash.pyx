@@ -237,7 +237,7 @@ Raises:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return 0x10000000000000000L * long(result.first) + long(result.second)
+    return (long(result.first) << 64ULL) + long(result.second)
 
 
 def CityHash128WithSeed(data, seed: int = 0L) -> int:
@@ -276,4 +276,4 @@ Raises:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return 0x10000000000000000L * long(result.first) + long(result.second)
+    return (long(result.first) << 64ULL) + long(result.second)
