@@ -1,7 +1,6 @@
 include LICENSE
 include README.md
-include src/*.h
-include src/*.cc
-include src/*.cpp
-include src/*.pyx
-include *requirements.txt
+recursive-include src *.h
+recursive-include src *.cc
+recursive-include src *.cpp
+recursive-include src *.pyx
