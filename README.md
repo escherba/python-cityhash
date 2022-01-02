@@ -86,7 +86,7 @@ NumPy array:
 The arrays need to be contiguous for this to work. To convert a non-contiguous
 array, use NumPy's `ascontiguousarray()` function.
 
-### SSE4.2 support
+## SSE4.2 support
 
 The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
 resulting in arguably the fastest non-cryptographic funtions in the 32-bit
