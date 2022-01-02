@@ -88,24 +88,17 @@ array, use NumPy's `ascontiguousarray()` function.
 
 ### SSE4.2 support
 
-I ran a quick comparison using a 512x512x3 float64 NumPy array on a 2.4 GHz
-Intel Xeon CPU (E5-2620) both with SSE4.2 enabled and with SSE4.2 disabled. I
-threw in xxHash for comparison (presumably compiled with SSE4.2 enabled). The
-results are below:
+The 32-bit FarmHash variants benefit tremendously from SSE4.2 optimization,
+resulting in arguably the fastest non-cryptographic funtions in the 32-bit
+category. The 64-bit FarmHash version also benefits from SSE4.2 being enabled,
+but not as much as the 32-bit. It is still among the fastest 64-bit hash
+functions.
 
-| Method              | Time (32-bit)      | Time (64-bit)      | Time (128-bit)     |
-|---------------------|--------------------|--------------------|--------------------|
-| FarmHash / SSE4.2   | *334 µs ± 28.4 µs* | *373 µs ± 48.3 µs* | 467 µs ± 20.5 µs   |
-| FarmHash            | 1.26 ms ± 13.8 µs  | 444 µs ± 17.5 µs   | 457 µs ± 12.5 µs   |
-| CityHashCrc / SSE4.2| n/a                | n/a                | *363 µs ± 29.2 µs* |
-| CityHash            | 1.12 ms ± 14.7 µs  | 469 µs ± 7.44 µs   | 475 µs ± 25.1 µs   |
-| xxHash              | 1.00 ms ± 11.4 µs  | 508 µs ± 12.5 µs   | *382 µs ± 22.1 µs* |
-| xxh3                | n/a                | *386 µs ± 32.6 µs* | *381 µs ± 20.1 µs* |
-
-On this data, SSE4.2 version of FarmHash is the fastest hash function if 32- or
-64-bit output is desired. For 128-bit output, `CityHashCrc128` is the fastest,
-closely followed by xxHash. Also, XXH3 delivers impressive results although it
-is edged out by the fastest hash functions from the CiyHash family.
+The vanilla CityHash functions (those found in `cityhash` module) have no
+benefit from SSE4.2.  The functions from the `cityhashcrc` module (bundled with
+this package for Mac and Linux on x86-64) do benefit, however. More
+specifically, the `CityHashCrc128` function from `cityhashcrc`  is one of the
+fastest functions in the 128-bit category.
 
 If you want to use `CityHashCrc128`, your machine needs to support SSE4.2. The
 `cityhashcrc` module where this function resides is currently only available
