@@ -82,13 +82,15 @@ cdef object _type_error(argname: str, expected: object, value: object):
 
 
 def FarmHash32(data) -> int:
-    """Obtain a 32-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 32-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 32-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 32-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -111,13 +113,15 @@ def FarmHash32(data) -> int:
 
 
 def Fingerprint32(data) -> int:
-    """Obtain a 32-bit fingerprint (hardware-independent) from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 32-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 32-bit fingerprint (hardware-independent) from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 32-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -140,14 +144,16 @@ def Fingerprint32(data) -> int:
 
 
 def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
-    """Obtain a 32-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random generator
-    Returns:
-        int: a 32-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 32-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random generator
+Returns:
+    int: a 32-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -170,13 +176,15 @@ def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
 
 
 def FarmHash64(data) -> int:
-    """Obtain a 64-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 64-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -199,13 +207,15 @@ def FarmHash64(data) -> int:
 
 
 def Fingerprint64(data) -> int:
-    """Obtain a 64-bit fingerprint (hardware-independent) from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 64-bit fingerprint (hardware-independent) from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -228,14 +238,16 @@ def Fingerprint64(data) -> int:
 
 
 def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:
-    """Obtain a 64-bit hash from input data given a seed.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random number generator
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError, OverflowError
+    """
+Obtain a 64-bit hash from input data given a seed.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random number generator
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -258,15 +270,17 @@ def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:
 
 
 def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:
-    """Obtain a 64-bit hash from input data given two seeds.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed0 (int): seed for random number generator
-        seed1 (int): seed for random number generator
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError, OverflowError
+    """
+Obtain a 64-bit hash from input data given two seeds.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed0 (int): seed for random number generator
+    seed1 (int): seed for random number generator
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -289,13 +303,15 @@ def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:
 
 
 def FarmHash128(data) -> int:
-    """Obtain a 128-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 128-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -318,13 +334,15 @@ def FarmHash128(data) -> int:
 
 
 def Fingerprint128(data) -> int:
-    """Obtain a 128-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        TypeError
+    """
+Obtain a 128-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    TypeError
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -346,15 +364,17 @@ def Fingerprint128(data) -> int:
     return 0x10000000000000000L * long(result.first) + long(result.second)
 
 
-def FarmHash128WithSeed(data, seed=0L) -> int:
-    """Obtain a 128-bit hash from input data given a seed.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random number generator
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        TypeError, OverflowError
+def FarmHash128WithSeed(data, seed: int = 0L) -> int:
+    """
+Obtain a 128-bit hash from input data given a seed.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random number generator
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    TypeError, OverflowError
     """
     cdef Py_buffer buf
     cdef bytes obj

@@ -76,14 +76,16 @@ cdef object _type_error(argname: str, expected: object, value: object):
 
 
 def CityHash32(data) -> int:
-    """Obtain a 32-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 32-bit hash of the input data
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
+    """
+Obtain a 32-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 32-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -106,14 +108,16 @@ def CityHash32(data) -> int:
 
 
 def CityHash64(data) -> int:
-    """Obtain a 64-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
+    """
+Obtain a 64-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -136,16 +140,18 @@ def CityHash64(data) -> int:
 
 
 def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:
-    """Obtain a 64-bit hash from input data given a seed.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random number generator
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
-        OverflowError: if seed cannot be converted to unsigned int64
+    """
+Obtain a 64-bit hash from input data given a seed.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random number generator
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
+    OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -168,17 +174,19 @@ def CityHash64WithSeed(data, uint64 seed=0ULL) -> int:
 
 
 def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:
-    """Obtain a 64-bit hash from input data given two seeds.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed0 (int): seed for random number generator
-        seed1 (int): seed for random number generator
-    Returns:
-        int: a 64-bit hash of the input data
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
-        OverflowError: if seed cannot be converted to unsigned int64
+    """
+Obtain a 64-bit hash from input data given two seeds.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed0 (int): seed for random number generator
+    seed1 (int): seed for random number generator
+Returns:
+    int: a 64-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
+    OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -201,16 +209,16 @@ def CityHash64WithSeeds(data, uint64 seed0=0LL, uint64 seed1=0LL) -> int:
 
 
 def CityHash128(data) -> int:
-    """Obtain a 128-bit hash from input data.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        ValueError, TypeError
-    Raises:
-        ValueError: if input buffer is not C-contiguous
-        TypeError: if input data is not a string or a buffer
+    """
+Obtain a 128-bit hash from input data.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    ValueError: if input buffer is not C-contiguous
+    TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -232,19 +240,19 @@ def CityHash128(data) -> int:
     return 0x10000000000000000L * long(result.first) + long(result.second)
 
 
-def CityHash128WithSeed(data, seed=0L) -> int:
-    """Obtain a 128-bit hash from input data given a seed.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random number generator
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        ValueError, TypeError, OverflowError
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
-        OverflowError: if seed cannot be converted to unsigned int64
+def CityHash128WithSeed(data, seed: int = 0L) -> int:
+    """
+Obtain a 128-bit hash from input data given a seed.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random number generator
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
+    OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj

@@ -74,16 +74,16 @@ cdef object _type_error(argname: str, expected: object, value: object):
 
 
 def CityHashCrc128(data) -> int:
-    """Obtain a 128-bit hash from input data using CityHashCRC
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        ValueError, TypeError
-    Raises:
-        ValueError: if input buffer is not C-contiguous
-        TypeError: if input data is not a string or a buffer
+    """
+Obtain a 128-bit hash from input data using CityHashi-CRC.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    ValueError: if input buffer is not C-contiguous
+    TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -106,16 +106,16 @@ def CityHashCrc128(data) -> int:
 
 
 def CityHashCrc256(data) -> bytes:
-    """Obtain a 256-bit hash from input data using CityHashCRC
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-    Returns:
-        bytes: hashed value
-    Raises:
-        ValueError, TypeError
-    Raises:
-        ValueError: if input buffer is not C-contiguous
-        TypeError: if input data is not a string or a buffer
+    """
+Obtain a 256-bit hash from input data using CityHash-CRC.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+Returns:
+    bytes: hashed value
+Raises:
+    ValueError: if input buffer is not C-contiguous
+    TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
     cdef bytes obj
@@ -138,19 +138,19 @@ def CityHashCrc256(data) -> bytes:
     return PyBytes_FromStringAndSize(<char *>out, 32)
 
 
-def CityHashCrc128WithSeed(data, seed=0L) -> int:
-    """Obtain a 128-bit hash from input data given a seed.
-    Args:
-        data (str, buffer): input data (either string or buffer type)
-        seed (int, default=0): seed for random number generator
-    Returns:
-        int: a 128-bit hash of the input data
-    Raises:
-        ValueError, TypeError, OverflowError
-    Raises:
-        TypeError: if input data is not a string or a buffer
-        ValueError: if input buffer is not C-contiguous
-        OverflowError: if seed cannot be converted to unsigned int64
+def CityHashCrc128WithSeed(data, seed: int = 0L) -> int:
+    """
+Obtain a 128-bit hash from input data given a seed using CirHash-CRC.
+
+Args:
+    data (str, buffer): input data (either string or buffer type)
+    seed (int, default=0): seed for random number generator
+Returns:
+    int: a 128-bit hash of the input data
+Raises:
+    TypeError: if input data is not a string or a buffer
+    ValueError: if input buffer is not C-contiguous
+    OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef bytes obj
