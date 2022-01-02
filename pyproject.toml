@@ -9,5 +9,12 @@ requires = [
     "wheel",
     ]
 
+[tool.pytest.ini_options]
+addopts = "-s --doctest-modules"
+testpaths = [
+    "src",
+    "tests",
+    ]
+
 [tool.cibuildwheel]
 test-requires = "pytest"
