@@ -61,7 +61,7 @@ if "sse4_2" in CPU_FLAGS:
     if (ARCH in [None, "x86_64"]):
         print("enabling SSE4.2 on compile")
         if os.name == "nt":
-            CXXFLAGS.append("/arch:SSE2")
+            CXXFLAGS.append("/arch:SSE2 /D__SSE4_2__")
         else:
             CXXFLAGS.append("-msse4.2")
 else:
