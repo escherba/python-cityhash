@@ -58,9 +58,12 @@ ARCH = os.environ.get("AUDITWHEEL_ARCH")
 # Note: Only -msse4.2 has significant effect on performance;
 # so not using other flags such as -maes and -mavx
 if "sse4_2" in CPU_FLAGS:
-    if (ARCH in [None, "x86_64"]) and (os.name != "nt"):
+    if (ARCH in [None, "x86_64"]):
         print("enabling SSE4.2 on compile")
-        CXXFLAGS.append("-msse4.2")
+        if os.name == "nt":
+            CXXFLAGS.append("/arch:SSE2")
+        else:
+            CXXFLAGS.append("-msse4.2")
 else:
     print("the CPU does not appear to support SSE4.2")
 
