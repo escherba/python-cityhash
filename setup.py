@@ -40,14 +40,17 @@ def get_system_bits():
     return struct.calcsize("P") * 8
 
 
+SYSTEM = os.name
 BITS = get_system_bits()
+HAVE_SSE42 = "sse4_2" in CPU_FLAGS
+
 CXXFLAGS = []
 
-print("platform: %s-%d" % (os.name, BITS))
+print("system: %s-%d" % (SYSTEM, BITS))
 print("available CPU flags:", CPU_FLAGS)
 print("environment:", ", ".join(["%s=%s" % (k, v) for k, v in os.environ.items()]))
 
-if os.name == "nt":
+if SYSTEM == "nt":
     CXXFLAGS.extend(["/O2"])
 else:
     CXXFLAGS.extend(
@@ -62,11 +65,11 @@ else:
 # something like x86_64, aarch64, i686, and so on.
 TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH")
 
-if (TARGET_ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
+if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     # Note: Only -msse4.2 has significant effect on performance;
     # so not using other flags such as -maes and -mavx
     print("enabling SSE4.2 on compile")
-    if os.name == "nt":
+    if SYSTEM == "nt":
         CXXFLAGS.append("/D__SSE4_2__")
     else:
         CXXFLAGS.append("-msse4.2")
@@ -101,7 +104,7 @@ EXT_MODULES = [
     ),
 ]
 
-if (TARGET_ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
+if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
@@ -146,7 +149,15 @@ setup(
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
     package_dir={"": "src"},
-    keywords=["google", "hash", "hashing", "cityhash", "farmhash", "murmurhash", "cython"],
+    keywords=[
+        "google",
+        "hash",
+        "hashing",
+        "cityhash",
+        "farmhash",
+        "murmurhash",
+        "cython",
+    ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
