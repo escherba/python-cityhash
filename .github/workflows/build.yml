@@ -45,6 +45,6 @@ jobs:
 
     - name: Test with pytest
       run: |
-        python setup.py build_ext --inplace
+        python setup.py build_ext --force --inplace
         pip install -e .
         python -m pytest
