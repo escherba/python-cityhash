@@ -88,23 +88,18 @@ array, use NumPy's `ascontiguousarray()` function.
 
 ## SSE4.2 support
 
-For Mac and Linux x86-64 platforms, the PyPi repository for this package
-includes wheels compiled with SSE4.2 support. Although it also includes wheels
-that work on Windows, the Windows wheels were not compiled with SSE4.2
-support---pull requests that address this are welcome!
-
-The 32- and 64-bit FarmHash variants both significantly benefit from SSE4.2
-instructions. The 128-bit version, unfortunately, does not exhibit speed up
-after compiling with SSE4.2 support.
+For x86-64 platforms, the PyPi repository for this package includes wheels
+compiled with SSE4.2 support.  The 32- and 64-bit FarmHash variants
+significantly benefit from SSE4.2 instructions. The 128-bit version,
+unfortunately, does not exhibit speed up after compiling with SSE4.2 support.
 
 The vanilla CityHash fucntions (under `cityhash` module) do not take advantage
-of SSE4.2. Instead, the `cityhashcrc` module provided with this package (Mac
-and Linux platforms only) exposes 128- and 256-bit CRC functions which do
-harness SSE4.2. These functions are very fast, and beat `FarmHash128` on speed
-(FarmHash does not include a 256-bit function). Since FarmHash is the intended
-successor of CityHash, I would be careful before using the CityHash-CRC
-functions, however, and would verify whether they provide sufficient randomness
-for your intended application.
+of SSE4.2. Instead, the `cityhashcrc` module provided with this package exposes
+128- and 256-bit CRC functions which do harness SSE4.2. These functions are
+very fast, and beat `FarmHash128` on speed (FarmHash does not include a 256-bit
+function). Since FarmHash is the intended successor of CityHash, I would be
+careful before using the CityHash-CRC functions, however, and would verify
+whether they provide sufficient randomness for your intended application.
 
 ## Development
 
