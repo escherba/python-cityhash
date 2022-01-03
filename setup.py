@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
-import sys
 import struct
 from os.path import join, dirname
 
@@ -44,9 +43,7 @@ def get_system_bits():
 BITS = get_system_bits()
 CXXFLAGS = []
 
-print("os.name:", os.name)
-print("sys.platform:", sys.platform)
-print("system bits:", BITS)
+print("platform: %s-%d" % (os.name, BITS))
 print("available CPU flags:", CPU_FLAGS)
 print("environment:", ", ".join(["%s=%s" % (k, v) for k, v in os.environ.items()]))
 
