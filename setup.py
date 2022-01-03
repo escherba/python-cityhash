@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import os
+import sys
+import struct
 from os.path import join, dirname
 
 from setuptools import setup
@@ -34,9 +36,16 @@ class BinaryDistribution(Distribution):
         return False
 
 
+def get_system_bits():
+    """Return 32 for 32-bit systems and 64 for 64-bit"""
+    return struct.calcsize("P") * 8
+
+
 CXXFLAGS = []
 
-print("building on platform:", os.name)
+print("os.name:", os.name)
+print("sys.platform:", sys.platform)
+print("system bits:", get_system_bits())
 print("available CPU flags:", CPU_FLAGS)
 print("environment:", ", ".join(["%s=%s" % (k, v) for k, v in os.environ.items()]))
 
