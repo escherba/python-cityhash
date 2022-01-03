@@ -60,9 +60,9 @@ else:
 
 # The "cibuildwheel" tool sets the variable below to
 # something like x86_64, aarch64, i686, and so on.
-ARCH = os.environ.get("AUDITWHEEL_ARCH")
+TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH")
 
-if (ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
+if (TARGET_ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
     # Note: Only -msse4.2 has significant effect on performance;
     # so not using other flags such as -maes and -mavx
     print("enabling SSE4.2 on compile")
@@ -101,7 +101,7 @@ EXT_MODULES = [
     ),
 ]
 
-if (ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
+if (TARGET_ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS) and (BITS == 64):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
