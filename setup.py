@@ -55,17 +55,14 @@ else:
 # something like x86_64, aarch64, i686, and so on.
 ARCH = os.environ.get("AUDITWHEEL_ARCH")
 
-# Note: Only -msse4.2 has significant effect on performance;
-# so not using other flags such as -maes and -mavx
-if "sse4_2" in CPU_FLAGS:
-    if (ARCH in [None, "x86_64"]):
-        print("enabling SSE4.2 on compile")
-        if os.name == "nt":
-            CXXFLAGS.append("/D__SSE4_2__")
-        else:
-            CXXFLAGS.append("-msse4.2")
-else:
-    print("the CPU does not appear to support SSE4.2")
+if (ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS):
+    # Note: Only -msse4.2 has significant effect on performance;
+    # so not using other flags such as -maes and -mavx
+    print("enabling SSE4.2 on compile")
+    if os.name == "nt":
+        CXXFLAGS.append("/D__SSE4_2__")
+    else:
+        CXXFLAGS.append("-msse4.2")
 
 
 if USE_CYTHON:
@@ -97,8 +94,7 @@ EXT_MODULES = [
     ),
 ]
 
-# for some reason, MSVC++ compiler fails to build cityhashcrc.cc
-if ("sse4_2" in CPU_FLAGS):
+if (ARCH in [None, "x86_64"]) and ("sse4_2" in CPU_FLAGS):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
@@ -114,7 +110,7 @@ if ("sse4_2" in CPU_FLAGS):
     )
 
 
-VERSION = "0.3.5.post4"
+VERSION = "0.3.6"
 URL = "https://github.com/escherba/python-cityhash"
 
 
