@@ -98,7 +98,7 @@ EXT_MODULES = [
 ]
 
 # for some reason, MSVC++ compiler fails to build cityhashcrc.cc
-if ("sse4_2" in CPU_FLAGS) and (os.name != "nt"):
+if ("sse4_2" in CPU_FLAGS):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
