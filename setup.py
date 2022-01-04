@@ -43,6 +43,7 @@ def get_system_bits():
 SYSTEM = os.name
 BITS = get_system_bits()
 HAVE_SSE42 = "sse4_2" in CPU_FLAGS
+HAVE_AES = "aes" in CPU_FLAGS
 
 CXXFLAGS = []
 
@@ -66,13 +67,19 @@ else:
 TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH")
 
 if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
-    # Note: Only -msse4.2 has significant effect on performance;
-    # so not using other flags such as -maes and -mavx
     print("enabling SSE4.2 on compile")
     if SYSTEM == "nt":
         CXXFLAGS.append("/D__SSE4_2__")
     else:
         CXXFLAGS.append("-msse4.2")
+
+
+if HAVE_AES and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
+    print("enabling AES on compile")
+    if SYSTEM == "nt":
+        CXXFLAGS.append("/D__AES__")
+    else:
+        CXXFLAGS.append("-maes")
 
 
 if USE_CYTHON:
@@ -120,7 +127,7 @@ if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     )
 
 
-VERSION = "0.3.6"
+VERSION = "0.3.7"
 URL = "https://github.com/escherba/python-cityhash"
 
 
