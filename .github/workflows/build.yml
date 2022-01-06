@@ -1,5 +1,3 @@
-# This is a partial workflow. Use wheels.yml for more
-# complete workflow.
 name: build
 
 on:
@@ -40,6 +38,7 @@ jobs:
       run: |
         pip install --upgrade --upgrade-strategy eager setuptools wheel
         pip install --upgrade --upgrade-strategy eager -r requirements.txt
+        pip freeze > pip-freeze.txt
 
     - name: Test with pytest
       run: |

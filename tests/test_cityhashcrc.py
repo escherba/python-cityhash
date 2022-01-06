@@ -10,7 +10,7 @@ try:
     from cityhashcrc import (
         CityHashCrc128,
         CityHashCrc128WithSeed,
-        CityHashCrc256,
+        CityHashCrc256Bytes,
     )
 
     HAVE_CRC_MODULE = True
@@ -42,7 +42,7 @@ class TestProperties(unittest.TestCase):
 
     def test_argument_types(self):
         """Should accept byte arrays and buffers"""
-        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256Bytes]
         args = [b"ab\x00c", bytearray(b"ab\x00c"), memoryview(b"ab\x00c")]
         for func in funcs:
             values = set(func(arg) for arg in args)
@@ -50,7 +50,7 @@ class TestProperties(unittest.TestCase):
 
     def test_refcounts(self):
         """Argument reference count should not change"""
-        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256Bytes]
         args = ["abc", b"abc", bytearray(b"def"), memoryview(b"ghi")]
         for func in funcs:
             for arg in args:
@@ -72,7 +72,7 @@ class TestProperties(unittest.TestCase):
 
     def test_func_raises_type_error(self):
         """Raises type error on bad argument type"""
-        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256]
+        funcs = [CityHashCrc128, CityHashCrc128WithSeed, CityHashCrc256Bytes]
         for func in funcs:
             with self.assertRaises(TypeError):
                 func([])
