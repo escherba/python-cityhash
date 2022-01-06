@@ -15,7 +15,7 @@ versions](https://img.shields.io/pypi/pyversions/cityhash.svg)](https://pypi.pyt
 
 ## Getting Started
 
-To use this package in your program, simply type
+This simplest way to use this package is to install it from PyPI:
 
 ``` bash
 pip install cityhash
