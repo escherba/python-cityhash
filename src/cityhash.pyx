@@ -1,7 +1,7 @@
 #cython: infer_types=True
 #cython: embedsignature=True
 #cython: binding=False
-#cython: language_level=2
+#cython: language_level=3
 #distutils: language=c++
 
 """
@@ -41,16 +41,24 @@ cdef extern from "<utility>" namespace "std" nogil:
         bint operator >= (pair&, pair&)
 
 
+cdef extern from "Python.h":
+    # Note that following functions can potentially raise an exception,
+    # thus they cannot be declared 'nogil'. Also PyUnicode_AsUTF8AndSize() can
+    # potentially allocate memory inside in unlikely case of when underlying
+    # unicode object was stored as non-utf8 and utf8 wasn't requested before.
+    const char* PyUnicode_AsUTF8AndSize(object obj, Py_ssize_t* length) except NULL
+
+
 cdef extern from "city.h" nogil:
     ctypedef uint32_t uint32
     ctypedef uint64_t uint64
     ctypedef pair[uint64, uint64] uint128
-    cdef uint32 c_CityHash32 "CityHash32" (const char *buff, size_t length)
-    cdef uint64 c_CityHash64 "CityHash64" (const char *buff, size_t length)
-    cdef uint64 c_CityHash64WithSeed "CityHash64WithSeed" (const char *buff, size_t length, uint64 seed)
-    cdef uint64 c_CityHash64WithSeeds "CityHash64WithSeeds" (const char *buff, size_t length, uint64 seed0, uint64 seed1)
-    cdef uint128 c_CityHash128 "CityHash128" (const char *s, size_t length)
-    cdef uint128 c_CityHash128WithSeed "CityHash128WithSeed" (const char *s, size_t length, uint128 seed)
+    cdef uint32 c_Hash32 "CityHash32" (const char *buff, size_t length)
+    cdef uint64 c_Hash64 "CityHash64" (const char *buff, size_t length)
+    cdef uint64 c_Hash64WithSeed "CityHash64WithSeed" (const char *buff, size_t length, uint64 seed)
+    cdef uint64 c_Hash64WithSeeds "CityHash64WithSeeds" (const char *buff, size_t length, uint64 seed0, uint64 seed1)
+    cdef uint128 c_Hash128 "CityHash128" (const char *s, size_t length)
+    cdef uint128 c_Hash128WithSeed "CityHash128WithSeed" (const char *s, size_t length, uint128 seed)
 
 
 from cpython cimport long
@@ -61,7 +69,6 @@ from cpython.buffer cimport PyBuffer_Release
 from cpython.buffer cimport PyBUF_SIMPLE
 
 from cpython.unicode cimport PyUnicode_Check
-from cpython.unicode cimport PyUnicode_AsUTF8String
 
 from cpython.bytes cimport PyBytes_Check
 from cpython.bytes cimport PyBytes_GET_SIZE
@@ -88,19 +95,20 @@ Raises:
     ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef uint32 result
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
+
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash32(<const char*>buf.buf, buf.len)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash32(encoding, encoding_size)
     elif PyBytes_Check(data):
-        result = c_CityHash32(<const char*>PyBytes_AS_STRING(data),
-                              PyBytes_GET_SIZE(data))
+        result = c_Hash32(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash32(<const char*>buf.buf, buf.len)
+        result = c_Hash32(<const char*>buf.buf, buf.len)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
@@ -120,19 +128,20 @@ Raises:
     ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef uint64 result
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
+
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64(<const char*>buf.buf, buf.len)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash64(encoding, encoding_size)
     elif PyBytes_Check(data):
-        result = c_CityHash64(<const char*>PyBytes_AS_STRING(data),
-                              PyBytes_GET_SIZE(data))
+        result = c_Hash64(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64(<const char*>buf.buf, buf.len)
+        result = c_Hash64(<const char*>buf.buf, buf.len)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
@@ -154,19 +163,20 @@ Raises:
     OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef uint64 result
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
+
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash64WithSeed(encoding, encoding_size, seed)
     elif PyBytes_Check(data):
-        result = c_CityHash64WithSeed(<const char*>PyBytes_AS_STRING(data),
-                                      PyBytes_GET_SIZE(data), seed)
+        result = c_Hash64WithSeed(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data), seed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64WithSeed(<const char*>buf.buf, buf.len, seed)
+        result = c_Hash64WithSeed(<const char*>buf.buf, buf.len, seed)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
@@ -189,19 +199,20 @@ Raises:
     OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef uint64 result
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
+
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash64WithSeeds(encoding, encoding_size, seed0, seed1)
     elif PyBytes_Check(data):
-        result = c_CityHash64WithSeeds(<const char*>PyBytes_AS_STRING(data),
-                                       PyBytes_GET_SIZE(data), seed0, seed1)
+        result = c_Hash64WithSeeds(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data), seed0, seed1)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
+        result = c_Hash64WithSeeds(<const char*>buf.buf, buf.len, seed0, seed1)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
@@ -221,19 +232,20 @@ Raises:
     TypeError: if input data is not a string or a buffer
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef pair[uint64, uint64] result
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
+
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash128(<const char*>buf.buf, buf.len)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash128(encoding, encoding_size)
     elif PyBytes_Check(data):
-        result = c_CityHash128(<const char*>PyBytes_AS_STRING(data),
-                               PyBytes_GET_SIZE(data))
+        result = c_Hash128(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data))
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash128(<const char*>buf.buf, buf.len)
+        result = c_Hash128(<const char*>buf.buf, buf.len)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
@@ -255,24 +267,24 @@ Raises:
     OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
-    cdef bytes obj
     cdef pair[uint64, uint64] result
     cdef pair[uint64, uint64] tseed
+    cdef const char* encoding
+    cdef Py_ssize_t encoding_size = 0
 
     tseed.first = seed >> 64ULL
     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)
 
     if PyUnicode_Check(data):
-        obj = PyUnicode_AsUTF8String(data)
-        PyObject_GetBuffer(obj, &buf, PyBUF_SIMPLE)
-        result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
-        PyBuffer_Release(&buf)
+        encoding = PyUnicode_AsUTF8AndSize(data, &encoding_size)
+        result = c_Hash128WithSeed(encoding, encoding_size, tseed)
     elif PyBytes_Check(data):
-        result = c_CityHash128WithSeed(<const char*>PyBytes_AS_STRING(data),
-                                       PyBytes_GET_SIZE(data), tseed)
+        result = c_Hash128WithSeed(
+            <const char*>PyBytes_AS_STRING(data),
+            PyBytes_GET_SIZE(data), tseed)
     elif PyObject_CheckBuffer(data):
         PyObject_GetBuffer(data, &buf, PyBUF_SIMPLE)
-        result = c_CityHash128WithSeed(<const char*>buf.buf, buf.len, tseed)
+        result = c_Hash128WithSeed(<const char*>buf.buf, buf.len, tseed)
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
