@@ -1292,7 +1292,7 @@ static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_seed[] = "seed";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_0_3_7[] = "0.3.7";
+static const char __pyx_k_0_3_8[] = "0.3.8";
 static const char __pyx_k_email[] = "__email__";
 static const char __pyx_k_seed0[] = "seed0";
 static const char __pyx_k_seed1[] = "seed1";
@@ -1318,9 +1318,9 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_FarmHash128WithSeed[] = "FarmHash128WithSeed";
 static const char __pyx_k_FarmHash64WithSeeds[] = "FarmHash64WithSeeds";
 static const char __pyx_k_Python_wrapper_for_FarmHash[] = "\nPython wrapper for FarmHash\n";
-static const char __pyx_k_escherba_farmhash_gmail_com[] = "escherba+farmhash@gmail.com";
+static const char __pyx_k_escherba_cityhash_gmail_com[] = "escherba+cityhash@gmail.com";
 static const char __pyx_k_Argument_s_has_incorrect_type_ex[] = "Argument '%s' has incorrect type: expected %s, got '%s' instead";
-static PyObject *__pyx_kp_s_0_3_7;
+static PyObject *__pyx_kp_s_0_3_8;
 static PyObject *__pyx_kp_s_Argument_s_has_incorrect_type_ex;
 static PyObject *__pyx_kp_s_Eugene_Scherba;
 static PyObject *__pyx_n_s_FarmHash128;
@@ -1342,7 +1342,7 @@ static PyObject *__pyx_n_s_buffer;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_data;
 static PyObject *__pyx_n_s_email;
-static PyObject *__pyx_kp_s_escherba_farmhash_gmail_com;
+static PyObject *__pyx_kp_s_escherba_cityhash_gmail_com;
 static PyObject *__pyx_n_s_farmhash;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_name;
@@ -4180,7 +4180,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_s_0_3_7, __pyx_k_0_3_7, sizeof(__pyx_k_0_3_7), 0, 0, 1, 0},
+  {&__pyx_kp_s_0_3_8, __pyx_k_0_3_8, sizeof(__pyx_k_0_3_8), 0, 0, 1, 0},
   {&__pyx_kp_s_Argument_s_has_incorrect_type_ex, __pyx_k_Argument_s_has_incorrect_type_ex, sizeof(__pyx_k_Argument_s_has_incorrect_type_ex), 0, 0, 1, 0},
   {&__pyx_kp_s_Eugene_Scherba, __pyx_k_Eugene_Scherba, sizeof(__pyx_k_Eugene_Scherba), 0, 0, 1, 0},
   {&__pyx_n_s_FarmHash128, __pyx_k_FarmHash128, sizeof(__pyx_k_FarmHash128), 0, 0, 1, 1},
@@ -4202,7 +4202,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_data, __pyx_k_data, sizeof(__pyx_k_data), 0, 0, 1, 1},
   {&__pyx_n_s_email, __pyx_k_email, sizeof(__pyx_k_email), 0, 0, 1, 1},
-  {&__pyx_kp_s_escherba_farmhash_gmail_com, __pyx_k_escherba_farmhash_gmail_com, sizeof(__pyx_k_escherba_farmhash_gmail_com), 0, 0, 1, 0},
+  {&__pyx_kp_s_escherba_cityhash_gmail_com, __pyx_k_escherba_cityhash_gmail_com, sizeof(__pyx_k_escherba_cityhash_gmail_com), 0, 0, 1, 0},
   {&__pyx_n_s_farmhash, __pyx_k_farmhash, sizeof(__pyx_k_farmhash), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
@@ -4661,32 +4661,32 @@ if (!__Pyx_RefNanny) {
  * """
  * 
  * __author__      = "Eugene Scherba"             # <<<<<<<<<<<<<<
- * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.7'
+ * __email__       = "escherba+cityhash@gmail.com"
+ * __version__     = '0.3.8'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_author, __pyx_kp_s_Eugene_Scherba) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
   /* "farmhash.pyx":12
  * 
  * __author__      = "Eugene Scherba"
- * __email__       = "escherba+farmhash@gmail.com"             # <<<<<<<<<<<<<<
- * __version__     = '0.3.7'
+ * __email__       = "escherba+cityhash@gmail.com"             # <<<<<<<<<<<<<<
+ * __version__     = '0.3.8'
  * __all__         = [
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_farmhash_gmail_com) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_email, __pyx_kp_s_escherba_cityhash_gmail_com) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
 
   /* "farmhash.pyx":13
  * __author__      = "Eugene Scherba"
- * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.7'             # <<<<<<<<<<<<<<
+ * __email__       = "escherba+cityhash@gmail.com"
+ * __version__     = '0.3.8'             # <<<<<<<<<<<<<<
  * __all__         = [
  *     "FarmHash32",
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_7) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_s_0_3_8) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "farmhash.pyx":14
- * __email__       = "escherba+farmhash@gmail.com"
- * __version__     = '0.3.7'
+ * __email__       = "escherba+cityhash@gmail.com"
+ * __version__     = '0.3.8'
  * __all__         = [             # <<<<<<<<<<<<<<
  *     "FarmHash32",
  *     "FarmHash32WithSeed",

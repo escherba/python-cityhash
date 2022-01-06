@@ -10,11 +10,11 @@ Python wrapper for CityHash-CRC
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.3.7'
+__version__     = '0.3.8'
 __all__         = [
     "CityHashCrc128",
     "CityHashCrc128WithSeed",
-    "CityHashCrc256",
+    "CityHashCrc256Bytes",
 ]
 
 
@@ -105,7 +105,7 @@ Raises:
     return (long(result.first) << 64ULL) + long(result.second)
 
 
-def CityHashCrc256(data) -> bytes:
+def CityHashCrc256Bytes(data) -> bytes:
     """
 Obtain a 256-bit hash from input data using CityHash-CRC.
 
