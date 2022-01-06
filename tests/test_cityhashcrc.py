@@ -14,7 +14,7 @@ try:
     )
 
     HAVE_CRC_MODULE = True
-except:
+except Exception:
     HAVE_CRC_MODULE = False
 
 

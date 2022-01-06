@@ -10,7 +10,7 @@ Python wrapper for CityHash-CRC
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.4.0'
+__version__     = '0.4.0.post0'
 __all__         = [
     "CityHashCrc128",
     "CityHashCrc128WithSeed",
@@ -40,7 +40,7 @@ cdef extern from "<utility>" namespace "std" nogil:
 
 cdef extern from "Python.h":
     # Note that following functions can potentially raise an exception,
-    # thus they cannot be declared 'nogil'. Also PyUnicode_AsUTF8AndSize() can
+    # thus they cannot be declared 'nogil'. Also, PyUnicode_AsUTF8AndSize() can
     # potentially allocate memory inside in unlikely case of when underlying
     # unicode object was stored as non-utf8 and utf8 wasn't requested before.
     const char* PyUnicode_AsUTF8AndSize(object obj, Py_ssize_t* length) except NULL
@@ -165,7 +165,6 @@ Raises:
     cdef pair[uint64, uint64] tseed
     cdef const char* encoding
     cdef Py_ssize_t encoding_size = 0
-
 
     tseed.first = seed >> 64ULL
     tseed.second = seed & ((1ULL << 64ULL) - 1ULL)

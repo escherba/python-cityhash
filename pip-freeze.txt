@@ -17,7 +17,7 @@ prompt-toolkit==3.0.24
 ptyprocess==0.7.0
 py==1.11.0
 py-cpuinfo==8.0.0
-Pygments==2.11.1
+Pygments==2.11.2
 pyparsing==3.0.6
 pytest==6.2.5
 toml==0.10.2
