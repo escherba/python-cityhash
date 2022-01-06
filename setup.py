@@ -127,7 +127,7 @@ if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     )
 
 
-VERSION = "0.3.8"
+VERSION = "0.4.0"
 URL = "https://github.com/escherba/python-cityhash"
 
 
