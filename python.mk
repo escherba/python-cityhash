@@ -1,14 +1,15 @@
 PYMODULE := cityhash
 EXTENSION := $(PYMODULE).so
 SRC_DIR := src
-EXTENSION_INTERMEDIATE := ./$(SRC_DIR)/$(PYMODULE).cpp
-EXTENSION_DEPS := ./$(SRC_DIR)/$(PYMODULE).pyx
-PYPI_URL := https://upload.pypi.org/legacy/
+PYPI_URL := https://test.pypi.org/legacy/
+EXTENSION_DEPS := $(shell find $(SRC_DIR) -type f -name "*.pyx")
+EXTENSION_INTERMEDIATE := $(patsubst %.pyx,%.cpp,$(EXTENSION_DEPS))
+EXTENSION_OBJS := $(patsubst %.pyx,%.so,$(EXTENSION_DEPS))
 
-DISTRIBUTE := sdist
-ifeq ($(shell uname -s),Darwin)
-DISTRIBUTE += bdist_wheel
-endif
+BUILD_STAMP = .build_stamp
+ENV_STAMP = env/bin/activate
+
+DISTRIBUTE := sdist bdist_wheel
 
 PYENV := PYTHONPATH=. . env/bin/activate;
 INTERPRETER := python3
@@ -26,37 +27,41 @@ BOLD := $(shell tput bold)
 END := $(shell tput sgr0)
 
 .PHONY: package
-package: env build_ext  ## build package
+package: $(DISTRIBUTE)  ## package for distribution (deprecated)
+$(DISTRIBUTE): $(BUILD_STAMP) | $(ENV_STAMP)
 	@echo "Packaging using $(PYVERSION)"
 	$(PYTHON) setup.py $(DISTRIBUTE)
 
-# See https://packaging.python.org/guides/migrating-to-pypi-org/
 .PHONY: release
-release: env build_ext  ## upload package to PyPI
+release: $(BUILD_STAMP) | $(ENV_STAMP)  ## upload package to PyPI (deprecated)
 	@echo "Releasing using $(PYVERSION)"
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 .PHONY: shell
-shell: build_ext  ## open Python shell within the virtualenv
+shell: build  ## open Python shell within the virtualenv
 	@echo "Using $(PYVERSION)"
 	$(PYENV) ipython
 
-.PHONY: build_ext
-build_ext: $(EXTENSION)  ## build C extension(s)
-	@echo "done building '$(EXTENSION)' extension"
+.PHONY: build
+build: $(EXTENSION_OBJS)  ## build C extension(s)
+	@echo "completed $@ target"
 
-$(EXTENSION): env $(EXTENSION_DEPS)
+$(BUILD_STAMP): $(EXTENSION_DEPS) | $(ENV_STAMP)
 	@echo "Building using $(PYVERSION)"
 	$(PYTHON) setup.py build_ext --inplace
+	@echo "$(shell date --rfc-3339=seconds)" > $@
+
+$(EXTENSION_OBJS): $(BUILD_STAMP)
+	@echo "done building $@"
 
 .PHONY: test
-test: build_ext  ## run Python unit tests
+test: build  ## run Python unit tests
 	$(PYENV) pytest
 	$(PYTHON) -m doctest README.md && echo "$(BOLD)doctests passed$(END)"
 
 .PHONY: nuke
 nuke: clean  ## clean and remove virtual environment
-	rm -f $(EXTENSION_INTERMEDIATE)
+	rm -f $(BUILD_STAMP) $(EXTENSION_INTERMEDIATE)
 	rm -rf *.egg *.egg-info env
 	find $(SRC_DIR) -depth -type d -name *.egg-info -exec rm -rf {} \;
 
@@ -70,15 +75,15 @@ clean:  ## remove temporary files
 	find $(SRC_DIR) -type f -name "*.so" -exec rm {} \;
 
 .PHONY: install
-install:  build_ext  ## install package
+install:  build  ## install package
 	@echo "Installing for " `which pip`
 	-pip uninstall --yes $(PYMODULE)
 	pip install -e .
 
-.PRECIOUS: env/bin/activate
+.PRECIOUS: $(ENV_STAMP)
 .PHONY: env
-env: env/bin/activate  ## set up a virtual environment
-env/bin/activate: setup.py requirements.txt
+env: $(ENV_STAMP)  ## set up a virtual environment
+$(ENV_STAMP): setup.py requirements.txt
 	test -f $@ || virtualenv $(VENV_OPTS) env
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
 	$(PIP) install -U pip wheel

@@ -72,3 +72,6 @@ target/
 .ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
+
+# Makefile artifacts
+.build_stamp
