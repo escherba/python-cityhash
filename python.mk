@@ -67,7 +67,7 @@ nuke: clean  ## clean and remove virtual environment
 
 .PHONY: clean
 clean:  ## remove temporary files
-	python setup.py clean
+	$(PYTHON) setup.py clean
 	rm -rf dist build __pycache__
 	rm -f *.so
 	find $(SRC_DIR) -type f -name "*.pyc" -exec rm {} \;
@@ -75,10 +75,8 @@ clean:  ## remove temporary files
 	find $(SRC_DIR) -type f -name "*.so" -exec rm {} \;
 
 .PHONY: install
-install:  build  ## install package
-	@echo "Installing for " `which pip`
-	-pip uninstall --yes $(PYMODULE)
-	pip install -e .
+install:  $(BUILD_STAMP)  ## install package
+	$(PIP) install -e --force-reinstall .
 
 .PRECIOUS: $(ENV_STAMP)
 .PHONY: env
