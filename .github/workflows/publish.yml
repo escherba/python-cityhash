@@ -3,7 +3,7 @@ name: publish
 on:
   workflow_dispatch:
     inputs:
-      repository: 
+      repository:
         description: 'The repository to upload the package to'
         required: true
         default: 'testpypi'
@@ -38,7 +38,7 @@ jobs:
           CIBW_ARCHS_MACOS: 'auto arm64'
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: 'pytest -s {project}/tests'
-          CIBW_TEST_SKIP: '*-macosx_arm64' # Until the day Apple silicon instances are available on GitHub Actions
+          CIBW_TEST_SKIP: '*-macosx_arm64'  # Until the day Apple silicon instances are available on GitHub Actions
       - uses: actions/upload-artifact@v2
         with:
           path: ./wheelhouse/*.whl
