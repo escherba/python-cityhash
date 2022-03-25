@@ -152,6 +152,7 @@ setup(
     download_url=URL + "/tarball/master/" + VERSION,
     name="cityhash",
     license="MIT",
+    python_requires='>=3.6',
     zip_safe=False,
     cmdclass=CMDCLASS,
     ext_modules=EXT_MODULES,
