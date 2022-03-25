@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import struct
+import os
 from os.path import join, dirname
 
 from setuptools import setup
@@ -127,7 +127,7 @@ if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     )
 
 
-VERSION = "0.4.0.post2"
+VERSION = "0.4.1"
 URL = "https://github.com/escherba/python-cityhash"
 
 
