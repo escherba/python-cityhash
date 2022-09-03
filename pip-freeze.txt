@@ -1,6 +1,6 @@
-attrs==21.4.0
+attrs==22.1.0
 backcall==0.2.0
-Cython==0.29.28
+Cython==0.29.32
 decorator==5.1.1
 importlib-metadata==4.8.3
 iniconfig==1.1.1
@@ -13,14 +13,13 @@ packaging==21.3
 parso==0.7.1
 pexpect==4.8.0
 pickleshare==0.7.5
-pkg_resources==0.0.0
 pluggy==1.0.0
-prompt-toolkit==3.0.28
+prompt-toolkit==3.0.31
 ptyprocess==0.7.0
 py==1.11.0
 py-cpuinfo==8.0.0
-Pygments==2.11.2
-pyparsing==3.0.7
+Pygments==2.13.0
+pyparsing==3.0.9
 pytest==7.0.1
 six==1.16.0
 toml==0.10.2

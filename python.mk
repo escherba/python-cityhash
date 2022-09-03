@@ -57,7 +57,6 @@ $(EXTENSION_OBJS): $(BUILD_STAMP)
 .PHONY: test
 test: build  ## run Python unit tests
 	$(PYENV) pytest
-	$(PYTHON) -m doctest README.md && echo "$(BOLD)doctests passed$(END)"
 
 .PHONY: nuke
 nuke: clean  ## clean and remove virtual environment
@@ -76,7 +75,7 @@ clean:  ## remove temporary files
 
 .PHONY: install
 install:  $(BUILD_STAMP)  ## install package
-	$(PIP) install -e --force-reinstall .
+	$(PIP) install -e .
 
 .PRECIOUS: $(ENV_STAMP)
 .PHONY: env

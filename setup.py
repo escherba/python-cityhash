@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import struct
 import os
-from os.path import join, dirname
+import platform
+import struct
 
 from setuptools import setup
 from setuptools.dist import Distribution
@@ -62,25 +62,26 @@ else:
         ]
     )
 
-# The "cibuildwheel" tool sets the variable below to
-# something like x86_64, aarch64, i686, and so on.
-TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH")
+# The "cibuildwheel" tool sets AUDITWHEEL_ARCH variable to architecture strings
+# such as 'x86_64', 'aarch64', 'i686', etc.  If this variable is not set, we
+# assume that the build is not a CI build and target current machine
+# architecture.
+TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH", platform.machine())
+print("building for target architecture:", TARGET_ARCH)
 
-if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
+if HAVE_SSE42 and (TARGET_ARCH == "x86_64") and (BITS == 64):
     print("enabling SSE4.2 on compile")
     if SYSTEM == "nt":
         CXXFLAGS.append("/D__SSE4_2__")
     else:
         CXXFLAGS.append("-msse4.2")
 
-
-if HAVE_AES and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
+if HAVE_AES and (TARGET_ARCH == "x86_64") and (BITS == 64):
     print("enabling AES on compile")
     if SYSTEM == "nt":
         CXXFLAGS.append("/D__AES__")
     else:
         CXXFLAGS.append("-maes")
-
 
 if USE_CYTHON:
     print("building extension using Cython")
@@ -90,7 +91,6 @@ else:
     print("building extension w/o Cython")
     CMDCLASS = {}
     SRC_EXT = ".cpp"
-
 
 EXT_MODULES = [
     Extension(
@@ -111,7 +111,7 @@ EXT_MODULES = [
     ),
 ]
 
-if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
+if HAVE_SSE42 and (TARGET_ARCH == "x86_64") and (BITS == 64):
     EXT_MODULES.append(
         Extension(
             "cityhashcrc",
@@ -127,7 +127,7 @@ if HAVE_SSE42 and (TARGET_ARCH in [None, "x86_64"]) and (BITS == 64):
     )
 
 
-VERSION = "0.4.1"
+VERSION = "0.4.2"
 URL = "https://github.com/escherba/python-cityhash"
 
 
@@ -135,7 +135,7 @@ def get_long_description(relpath, encoding="utf-8"):
     _long_desc = """
 
     """
-    fname = join(dirname(__file__), relpath)
+    fname = os.path.join(os.path.dirname(__file__), relpath)
     try:
         with open(fname, "rb") as fh:
             return fh.read().decode(encoding)
