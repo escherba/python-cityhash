@@ -62,8 +62,8 @@ else:
         ]
     )
 
-# The "cibuildwheel" tool sets AUDITWHEEL_ARCH variable to strings like
-# 'x86_64', 'aarch64', 'i686', and so on.  If this variable is not set, we
+# The "cibuildwheel" tool sets AUDITWHEEL_ARCH variable to architecture strings
+# such as 'x86_64', 'aarch64', 'i686', etc.  If this variable is not set, we
 # assume that the build is not a CI build and target current machine
 # architecture.
 TARGET_ARCH = os.environ.get("AUDITWHEEL_ARCH", platform.machine())
