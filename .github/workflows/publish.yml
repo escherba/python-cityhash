@@ -24,11 +24,13 @@ jobs:
           python-version: '3.9'
       - name: Set up QEMU
         if: runner.os == 'Linux'
-        uses: docker/setup-qemu-action@v1.0.1
+        # uses: docker/setup-qemu-action@v1.0.1
+        uses: docker/setup-qemu-action@v1.2.0
         with:
           platforms: arm64
       - name: Build wheels
-        uses: joerick/cibuildwheel@v1.9.0
+        # uses: joerick/cibuildwheel@v1.9.0
+        uses: pypa/cibuildwheel@v2.9.0
         with:
           output-dir: wheelhouse
         env:
