@@ -18,7 +18,7 @@ PYVERSION := $(shell $(INTERPRETER) --version 2>&1)
 PYTHON := $(PYENV) $(INTERPRETER)
 PIP := $(PYENV) $(PACKAGE_MGR)
 
-VENV_OPTS := --python="$(shell which $(INTERPRETER))"
+VENV_OPTS := ""
 ifeq ($(PIP_SYSTEM_SITE_PACKAGES),1)
 VENV_OPTS += --system-site-packages
 endif
@@ -38,9 +38,9 @@ release: $(BUILD_STAMP) | $(ENV_STAMP)  ## upload package to PyPI (deprecated)
 	$(PYTHON) setup.py $(DISTRIBUTE) upload -r $(PYPI_URL)
 
 .PHONY: shell
-shell: build  ## open Python shell within the virtualenv
+shell: build  ## open Python shell within the virtual environment
 	@echo "Using $(PYVERSION)"
-	$(PYENV) ipython
+	$(PYENV) python
 
 .PHONY: build
 build: $(EXTENSION_OBJS)  ## build C extension(s)
@@ -81,8 +81,7 @@ install:  $(BUILD_STAMP)  ## install package
 .PHONY: env
 env: $(ENV_STAMP)  ## set up a virtual environment
 $(ENV_STAMP): setup.py requirements.txt
-	test -f $@ || virtualenv $(VENV_OPTS) env
-	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PYENV) curl https://bootstrap.pypa.io/ez_setup.py | $(INTERPRETER)
+	test -f $@ || python -m venv $(VENV_OPTS) env
 	$(PIP) install -U pip wheel
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PIP) install -r requirements.txt
 	$(PIP) freeze > pip-freeze.txt

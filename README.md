@@ -111,7 +111,7 @@ commands:
 ``` bash
 git clone https://github.com/escherba/python-cityhash.git
 cd python-cityhash
-make env           # create a Python virtualenv
+make env           # create a virtual environment
 make test          # run Python tests
 make cpp-test      # run C++ tests
 make shell         # enter IPython shell
