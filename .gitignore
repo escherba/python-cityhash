@@ -75,3 +75,7 @@ target/
 
 # Makefile artifacts
 .build_stamp
+
+# Python 3.11
+lib64
+pyvenv.cfg
