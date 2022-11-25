@@ -155,7 +155,7 @@ def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
     :return: an integer representing a 32-bit hash of the input
     :raises TypeError: if data is not of one of input types
     :raises ValueError: if input buffer is not C-contiguous
-    :raises OverflowError: if seed cannot be converted to unsigned int64
+    :raises OverflowError: if seed cannot be converted to unsigned int32
     """
 
     cdef Py_buffer buf

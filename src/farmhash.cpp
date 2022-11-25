@@ -2088,7 +2088,7 @@ static PyObject *__pyx_pf_8farmhash_2Fingerprint32(CYTHON_UNUSED PyObject *__pyx
 
 /* Python wrapper */
 static PyObject *__pyx_pw_8farmhash_5FarmHash32WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_8farmhash_4FarmHash32WithSeed[] = "FarmHash32WithSeed(data, uint32_t seed=0) -> int\nObtain a 32-bit hash using a seed.\n\n    :param data: input data (string, bytes, or buffer object)\n    :param seed: seed value (a 32-bit integer, defaults to 0)\n    :return: an integer representing a 32-bit hash of the input\n    :raises TypeError: if data is not of one of input types\n    :raises ValueError: if input buffer is not C-contiguous\n    :raises OverflowError: if seed cannot be converted to unsigned int64\n    ";
+static char __pyx_doc_8farmhash_4FarmHash32WithSeed[] = "FarmHash32WithSeed(data, uint32_t seed=0) -> int\nObtain a 32-bit hash using a seed.\n\n    :param data: input data (string, bytes, or buffer object)\n    :param seed: seed value (a 32-bit integer, defaults to 0)\n    :return: an integer representing a 32-bit hash of the input\n    :raises TypeError: if data is not of one of input types\n    :raises ValueError: if input buffer is not C-contiguous\n    :raises OverflowError: if seed cannot be converted to unsigned int32\n    ";
 static PyMethodDef __pyx_mdef_8farmhash_5FarmHash32WithSeed = {"FarmHash32WithSeed", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8farmhash_5FarmHash32WithSeed, METH_VARARGS|METH_KEYWORDS, __pyx_doc_8farmhash_4FarmHash32WithSeed};
 static PyObject *__pyx_pw_8farmhash_5FarmHash32WithSeed(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_data = 0;
