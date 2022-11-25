@@ -81,16 +81,12 @@ cdef object _type_error(argname: str, expected: object, value: object):
 
 
 def CityHashCrc128(data) -> int:
-    """
-Obtain a 128-bit hash from input data using CityHashi-CRC.
+    """Obtain a 128-bit hash from input data.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 128-bit hash of the input data
-Raises:
-    ValueError: if input buffer is not C-contiguous
-    TypeError: if input data is not a string or a buffer
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64, uint64] result
@@ -114,16 +110,12 @@ Raises:
 
 
 def CityHashCrc256Bytes(data) -> bytes:
-    """
-Obtain a 256-bit hash from input data using CityHash-CRC.
+    """Obtain a 128-bit hash from input data.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    bytes: hashed value
-Raises:
-    ValueError: if input buffer is not C-contiguous
-    TypeError: if input data is not a string or a buffer
+    :param data: input data (string, bytes, or buffer object)
+    :return: a bytes array representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint64 out[4]
@@ -147,18 +139,13 @@ Raises:
 
 
 def CityHashCrc128WithSeed(data, seed: int = 0L) -> int:
-    """
-Obtain a 128-bit hash from input data given a seed using CirHash-CRC.
+    """Obtain a 128-bit hash using a seed.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-    seed (int, default=0): seed for random number generator
-Returns:
-    int: a 128-bit hash of the input data
-Raises:
-    TypeError: if input data is not a string or a buffer
-    ValueError: if input buffer is not C-contiguous
-    OverflowError: if seed cannot be converted to unsigned int64
+    :param data: input data (string, bytes, or buffer object)
+    :param seed: seed value (defaults to 0)
+    :return: an integer representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64, uint64] result

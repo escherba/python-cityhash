@@ -10,7 +10,7 @@ Python wrapper for FarmHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.4.3'
+__version__     = '0.4.4'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",
@@ -95,6 +95,7 @@ def FarmHash32(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 32-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint32_t result
@@ -123,6 +124,7 @@ def Fingerprint32(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 32-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint32_t result
@@ -152,6 +154,8 @@ def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
     :param seed: seed value (a 32-bit integer, defaults to 0)
     :return: an integer representing a 32-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int64
     """
 
     cdef Py_buffer buf
@@ -181,6 +185,7 @@ def FarmHash64(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 64-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -209,6 +214,7 @@ def Fingerprint64(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 64-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -237,6 +243,8 @@ def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:
     :param seed: seed value (a 64-bit integer, defaults to 0)
     :return: an integer representing a 64-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -267,6 +275,8 @@ def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:
     :param seed1: second seed (a 64-bit integer, defaults to 0)
     :return: an integer representing a 64-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -295,6 +305,7 @@ def FarmHash128(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 128-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
@@ -323,6 +334,7 @@ def Fingerprint128(data) -> int:
     :param data: input data (string, bytes, or buffer object)
     :return: an integer representing a 128-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
@@ -352,6 +364,7 @@ def FarmHash128WithSeed(data, seed: int = 0L) -> int:
     :param seed: seed value (defaults to 0)
     :return: an integer representing a 128-bit hash of the input
     :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
