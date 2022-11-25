@@ -10,7 +10,7 @@ Python wrapper for FarmHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.4.3'
+__version__     = '0.4.4'
 __all__         = [
     "FarmHash32",
     "FarmHash32WithSeed",
@@ -90,15 +90,12 @@ cdef object _type_error(argname: str, expected: object, value: object):
 
 
 def FarmHash32(data) -> int:
-    """
-Obtain a 32-bit hash from input data.
+    """Obtain a 32-bit hash from input data.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 32-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 32-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint32_t result
@@ -122,15 +119,12 @@ Raises:
 
 
 def Fingerprint32(data) -> int:
-    """
-Obtain a 32-bit fingerprint (hardware-independent) from input data.
+    """Obtain a 32-bit hardware-independent fingerprint.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 32-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 32-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint32_t result
@@ -154,17 +148,16 @@ Raises:
 
 
 def FarmHash32WithSeed(data, uint32_t seed=0U) -> int:
-    """
-Obtain a 32-bit hash from input data.
+    """Obtain a 32-bit hash using a seed.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-    seed (int, default=0): seed for random generator
-Returns:
-    int: a 32-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :param seed: seed value (a 32-bit integer, defaults to 0)
+    :return: an integer representing a 32-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int32
     """
+
     cdef Py_buffer buf
     cdef uint32_t result
     cdef const char* encoding
@@ -187,15 +180,12 @@ Raises:
 
 
 def FarmHash64(data) -> int:
-    """
-Obtain a 64-bit hash from input data.
+    """Obtain a 64-bit hash from input data.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 64-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 64-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -219,15 +209,12 @@ Raises:
 
 
 def Fingerprint64(data) -> int:
-    """
-Obtain a 64-bit fingerprint (hardware-independent) from input data.
+    """Obtain a 64-bit hardware-independent fingerprint.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 64-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 64-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -250,16 +237,14 @@ Raises:
 
 
 def FarmHash64WithSeed(data, uint64_t seed=0ULL) -> int:
-    """
-Obtain a 64-bit hash from input data given a seed.
+    """Obtain a 64-bit hash using a seed.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-    seed (int, default=0): seed for random number generator
-Returns:
-    int: a 64-bit hash of the input data
-Raises:
-    TypeError, OverflowError
+    :param data: input data (string, bytes, or buffer object)
+    :param seed: seed value (a 64-bit integer, defaults to 0)
+    :return: an integer representing a 64-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -283,17 +268,15 @@ Raises:
 
 
 def FarmHash64WithSeeds(data, uint64_t seed0=0LL, uint64_t seed1=0LL) -> int:
-    """
-Obtain a 64-bit hash from input data given two seeds.
+    """Obtain a 64-bit hash using two seeds.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-    seed0 (int): seed for random number generator
-    seed1 (int): seed for random number generator
-Returns:
-    int: a 64-bit hash of the input data
-Raises:
-    TypeError, OverflowError
+    :param data: input data (string, bytes, or buffer object)
+    :param seed0: first seed (a 64-bit integer, defaults to 0)
+    :param seed1: second seed (a 64-bit integer, defaults to 0)
+    :return: an integer representing a 64-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
+    :raises OverflowError: if seed cannot be converted to unsigned int64
     """
     cdef Py_buffer buf
     cdef uint64_t result
@@ -317,15 +300,12 @@ Raises:
 
 
 def FarmHash128(data) -> int:
-    """
-Obtain a 128-bit hash from input data.
+    """Obtain a 128-bit hash from input data.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 128-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
@@ -349,15 +329,12 @@ Raises:
 
 
 def Fingerprint128(data) -> int:
-    """
-Obtain a 128-bit hash from input data.
+    """Obtain a 128-bit hardware-independent fingerprint.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-Returns:
-    int: a 128-bit hash of the input data
-Raises:
-    TypeError
+    :param data: input data (string, bytes, or buffer object)
+    :return: an integer representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
@@ -381,16 +358,13 @@ Raises:
 
 
 def FarmHash128WithSeed(data, seed: int = 0L) -> int:
-    """
-Obtain a 128-bit hash from input data given a seed.
+    """Obtain a 128-bit hash using a seed.
 
-Args:
-    data (str, buffer): input data (either string or buffer type)
-    seed (int, default=0): seed for random number generator
-Returns:
-    int: a 128-bit hash of the input data
-Raises:
-    TypeError, OverflowError
+    :param data: input data (string, bytes, or buffer object)
+    :param seed: seed value (defaults to 0)
+    :return: an integer representing a 128-bit hash of the input
+    :raises TypeError: if data is not of one of input types
+    :raises ValueError: if input buffer is not C-contiguous
     """
     cdef Py_buffer buf
     cdef pair[uint64_t, uint64_t] result
