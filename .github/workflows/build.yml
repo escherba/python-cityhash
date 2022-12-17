@@ -19,7 +19,8 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -29,7 +30,8 @@ jobs:
 
       # block below based on:
       # https://medium.com/ai2-blog/python-caching-in-github-actions-e9452698e98d
-      - uses: actions/cache@v3
+      - name: Cache Python environment
+        uses: actions/cache@v3
         with:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('pip-freeze.txt') }}
