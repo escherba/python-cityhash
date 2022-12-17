@@ -81,7 +81,7 @@ install:  $(BUILD_STAMP)  ## install package
 .PHONY: env
 env: $(ENV_STAMP)  ## set up a virtual environment
 $(ENV_STAMP): setup.py requirements.txt
-	test -f $@ || python -m venv $(VENV_OPTS) env
+	test -f $@ || $(INTERPRETER) -m venv $(VENV_OPTS) env
 	$(PIP) install -U pip wheel
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PIP) install -r requirements.txt
 	$(PIP) freeze > pip-freeze.txt
