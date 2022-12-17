@@ -67,7 +67,8 @@ jobs:
           pip install py-cpuinfo
           python setup.py build sdist
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
           path: dist/*.tar.gz
 
