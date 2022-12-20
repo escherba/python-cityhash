@@ -49,7 +49,7 @@ build: $(EXTENSION_OBJS)  ## build C extension(s)
 $(BUILD_STAMP): $(EXTENSION_DEPS) | $(ENV_STAMP)
 	@echo "Building using $(PYVERSION)"
 	$(PYTHON) setup.py build_ext --inplace
-	@echo "$(shell date --rfc-3339=seconds)" > $@
+	@echo "$(shell date -u +'%Y-%m-%dT%H:%M:%SZ')" > $@
 
 $(EXTENSION_OBJS): $(BUILD_STAMP)
 	@echo "done building $@"
