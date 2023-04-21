@@ -4,14 +4,12 @@ Python wrapper for [FarmHash](https://github.com/google/farmhash) and
 [CityHash](https://github.com/google/cityhash), a family of fast
 non-cryptographic hash functions.
 
-[![Build
-Status](https://img.shields.io/github/actions/workflow/status/escherba/python-cityhash/build.yml?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml)
-[![Latest
-Version](https://img.shields.io/pypi/v/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/escherba/python-cityhash/build.yml?branch=master)](https://github.com/escherba/python-cityhash/actions/workflows/build.yml)
+[![PyPI Version](https://img.shields.io/pypi/v/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
+[![Conda-Forge Version](https://anaconda.org/conda-forge/python-cityhash/badges/version.svg)](https://anaconda.org/conda-forge/python-cityhash)
 [![Downloads](https://img.shields.io/pypi/dm/cityhash.svg)](https://pypistats.org/packages/cityhash)
 [![License](https://img.shields.io/pypi/l/cityhash.svg)](https://opensource.org/licenses/mit-license)
-[![Supported Python
-versions](https://img.shields.io/pypi/pyversions/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/cityhash.svg)](https://pypi.python.org/pypi/cityhash)
 
 ## Getting Started
 
