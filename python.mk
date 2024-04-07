@@ -82,7 +82,7 @@ install:  $(BUILD_STAMP)  ## install package
 env: $(ENV_STAMP)  ## set up a virtual environment
 $(ENV_STAMP): setup.py requirements.txt
 	test -f $@ || $(INTERPRETER) -m venv $(VENV_OPTS) env
-	$(PIP) install -U pip wheel
+	$(PIP) install -U pip wheel setuptools
 	export SETUPTOOLS_USE_DISTUTILS=stdlib; $(PIP) install -r requirements.txt
 	$(PIP) freeze > pip-freeze.txt
 	$(PIP) install -e .
