@@ -36,6 +36,7 @@ TEST_CASE( "CityHash32: basic test", "[basic]" )
     REQUIRE(hash != 0);
 }
 
+
 TEST_CASE( "CityHash32: test different inputs", "[diff_inputs]" )
 {
     const char test_string1[] = "abracadabr";
@@ -51,6 +52,13 @@ TEST_CASE( "CityHash64: basic test", "[basic]" )
     uint64 hash = CityHash64(test_string, STRLEN(test_string));
     REQUIRE(hash != 0);
 }
+
+// TEST_CASE( "CityHash64: match Rust", "[basic]" )
+// {
+//     const char test_string[] = "hello";
+//     uint64 hash = CityHash64(test_string, STRLEN(test_string));
+//     REQUIRE(hash == 2578220239953316063);
+// }
 
 TEST_CASE( "CityHash64: test different inputs", "[diff_inputs]" )
 {

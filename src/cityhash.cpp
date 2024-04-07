@@ -9,7 +9,9 @@
         "extra_compile_args": [
             "-O3",
             "-Wno-unused-value",
-            "-Wno-unused-function"
+            "-Wno-unused-function",
+            "-msse4.2",
+            "-maes"
         ],
         "include_dirs": [
             "src"
