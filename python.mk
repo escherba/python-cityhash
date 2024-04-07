@@ -13,7 +13,7 @@ DISTRIBUTE := sdist bdist_wheel
 
 PYENV := PYTHONPATH=. . env/bin/activate;
 INTERPRETER := python3
-PACKAGE_MGR := pip3
+PACKAGE_MGR := python3 -m pip
 PYVERSION := $(shell $(INTERPRETER) --version 2>&1)
 PYTHON := $(PYENV) $(INTERPRETER)
 PIP := $(PYENV) $(PACKAGE_MGR)
