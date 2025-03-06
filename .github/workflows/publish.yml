@@ -17,23 +17,23 @@ jobs:
         os: [ubuntu-20.04, windows-2019, macOS-11]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - name: Set up QEMU
         if: runner.os == 'Linux'
         # uses: docker/setup-qemu-action@v1.0.1
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
 
       - name: Build wheels
         # uses: joerick/cibuildwheel@v1.9.0
-        uses: pypa/cibuildwheel@v2.11.2
+        uses: pypa/cibuildwheel@v2.23.0
         with:
           output-dir: wheelhouse
         env:
@@ -46,7 +46,7 @@ jobs:
           CIBW_TEST_SKIP: '*-macosx_arm64'  # Until the day Apple silicon instances are available on GitHub Actions
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: ./wheelhouse/*.whl
 
@@ -55,10 +55,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -68,7 +68,7 @@ jobs:
           python setup.py build sdist
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: dist/*.tar.gz
 
@@ -78,12 +78,12 @@ jobs:
     needs: [build_wheels, build_sdist]
     steps:
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
       - name: Set up built items
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: artifact
           path: dist
