@@ -48,6 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          name: wheelhouse-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -70,6 +71,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          name: dist-${{ strategy.job-index }}
           path: dist/*.tar.gz
 
   publish:
