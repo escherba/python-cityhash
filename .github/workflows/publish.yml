@@ -87,8 +87,8 @@ jobs:
       - name: Set up built items
         uses: actions/download-artifact@v4
         with:
-          name: artifact
-          path: dist
+          name: wheelhouse-${{ strategy.job-index }}
+          path: wheelhouse
 
       - name: Install dependencies
         run: |
