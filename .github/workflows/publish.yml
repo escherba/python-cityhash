@@ -89,6 +89,8 @@ jobs:
         merge-multiple: true
 
     - uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
 
   # publish:
   #   name: 'Upload to PyPI/TestPyPI'
