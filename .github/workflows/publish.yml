@@ -76,7 +76,7 @@ jobs:
 
   publish:
     needs: [build_wheels, build_sdist]
-    environment: pypi
+    environment: ${{ github.event.inputs.repository }}
     permissions:
       id-token: write
     runs-on: ubuntu-latest
