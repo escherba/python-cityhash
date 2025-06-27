@@ -1,49 +1,72 @@
-name: build
+name: Build wheels
 
 on:
   push:
-    branches:
-      - master
+    branches: [main]
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
-        python-version: ["3.13"]
-
+  build-wheels:
+    name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
-      - name: Set up Python ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-          architecture: x64
+          python-version: '3.11'
 
-      # block below based on:
-      # https://medium.com/ai2-blog/python-caching-in-github-actions-e9452698e98d
-      - name: Cache Python environment
-        uses: actions/cache@v4
+      - name: Install cibuildwheel
+        run: python -m pip install cibuildwheel
+
+      - name: Build wheels
+        run: python -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_BUILD: "cp311-* cp312-* cp313-*"
+          CIBW_ARCHS_LINUX: "x86_64 aarch64"
+          CIBW_ARCHS_MACOS: "x86_64 arm64 universal2"
+          CIBW_ARCHS_WINDOWS: "AMD64"
+
+      - name: Upload built wheels
+        uses: actions/upload-artifact@v4
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('pip-freeze.txt') }}
+          name: python-wheels-${{ matrix.os }}
+          path: wheelhouse/*.whl
 
-      - name: Install dependencies
-        run: |
-          pip install --upgrade --upgrade-strategy eager setuptools wheel
-          pip install --upgrade --upgrade-strategy eager -r requirements.txt
-          pip freeze > pip-freeze.txt
+  build-musllinux:
+    name: Build musllinux wheels
+    runs-on: ubuntu-latest
+    container:
+      image: quay.io/pypa/musllinux_1_1_x86_64
+      options: --privileged  # Needed for QEMU for aarch64
 
-      - name: Test with pytest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python and cibuildwheel
         run: |
-          python setup.py build_ext --inplace
-          pip install -e .
-          python -m pytest
+          apk add --no-cache python3 py3-pip bash
+          pip3 install cibuildwheel
+
+      - name: Build musllinux wheels
+        run: python3 -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_PLATFORM: "linux"
+          CIBW_BUILD: "cp311-* cp312-* cp313-*"
+          CIBW_ARCHS: "x86_64 aarch64"
+          CIBW_MANYLINUX_X86_64_IMAGE: musllinux_1_1
+          CIBW_MANYLINUX_AARCH64_IMAGE: musllinux_1_1
+
+      - name: Upload musllinux wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-wheels-musllinux
+          path: wheelhouse/*.whl
