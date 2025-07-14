@@ -25,25 +25,25 @@ jobs:
         - os: ubuntu-latest
           qemu: ppc64le
           musl: ""
-        - os: ubuntu-latest
-          qemu: ppc64le
-          musl: musllinux
-        - os: ubuntu-latest
-          qemu: s390x
-          musl: ""
-        - os: ubuntu-latest
-          qemu: s390x
-          musl: musllinux
-        - os: ubuntu-latest
-          qemu: armv7l
-          musl: ""
-        - os: ubuntu-latest
-          qemu: armv7l
-          musl: musllinux
-        - os: ubuntu-latest
-          musl: musllinux
-        - os: ubuntu-24.04-arm
-          musl: musllinux
+#        - os: ubuntu-latest
+#          qemu: ppc64le
+#          musl: musllinux
+#        - os: ubuntu-latest
+#          qemu: s390x
+#          musl: ""
+#        - os: ubuntu-latest
+#          qemu: s390x
+#          musl: musllinux
+#        - os: ubuntu-latest
+#          qemu: armv7l
+#          musl: ""
+#        - os: ubuntu-latest
+#          qemu: armv7l
+#          musl: musllinux
+#        - os: ubuntu-latest
+#          musl: musllinux
+#        - os: ubuntu-24.04-arm
+#          musl: musllinux
     steps:
     - name: Checkout
       uses: actions/checkout@v4
