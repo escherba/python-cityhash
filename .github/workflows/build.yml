@@ -9,64 +9,95 @@ on:
 
 jobs:
   build-wheels:
-    name: Build wheels on ${{ matrix.os }}
+    permissions:
+      contents: read # to fetch code (actions/checkout)
+
+    name: Build wheels on ${{ matrix.os }} ${{ matrix.qemu }} ${{ matrix.musl }}
     runs-on: ${{ matrix.os }}
+    needs: pre-deploy
     strategy:
-      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
+        os: ["ubuntu-latest", "windows-latest", "macos-latest", "ubuntu-24.04-arm"]
+        qemu: ['']
+        musl: [""]
+        include:
+          # Split ubuntu/musl jobs for the sake of speed-up
+        - os: ubuntu-latest
+          qemu: ppc64le
+          musl: ""
+        - os: ubuntu-latest
+          qemu: ppc64le
+          musl: musllinux
+        - os: ubuntu-latest
+          qemu: s390x
+          musl: ""
+        - os: ubuntu-latest
+          qemu: s390x
+          musl: musllinux
+        - os: ubuntu-latest
+          qemu: armv7l
+          musl: ""
+        - os: ubuntu-latest
+          qemu: armv7l
+          musl: musllinux
+        - os: ubuntu-latest
+          musl: musllinux
+        - os: ubuntu-24.04-arm
+          musl: musllinux
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel
-
-      - name: Build wheels
-        run: python -m cibuildwheel --output-dir wheelhouse
-        env:
-          CIBW_BUILD: "cp311-* cp312-* cp313-*"
-          CIBW_ARCHS_LINUX: "x86_64 aarch64"
-          CIBW_ARCHS_MACOS: "x86_64 arm64 universal2"
-          CIBW_ARCHS_WINDOWS: "AMD64"
-
-      - name: Upload built wheels
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-wheels-${{ matrix.os }}
-          path: wheelhouse/*.whl
-
-  build-musllinux:
-    name: Build musllinux wheels
-    runs-on: ubuntu-latest
-    container:
-      image: quay.io/pypa/musllinux_1_1_x86_64
-      options: --privileged  # Needed for QEMU for aarch64
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Python and cibuildwheel
-        run: |
-          apk add --no-cache python3 py3-pip bash
-          pip3 install cibuildwheel
-
-      - name: Build musllinux wheels
-        run: python3 -m cibuildwheel --output-dir wheelhouse
-        env:
-          CIBW_PLATFORM: "linux"
-          CIBW_BUILD: "cp311-* cp312-* cp313-*"
-          CIBW_ARCHS: "x86_64 aarch64"
-          CIBW_MANYLINUX_X86_64_IMAGE: musllinux_1_1
-          CIBW_MANYLINUX_AARCH64_IMAGE: musllinux_1_1
-
-      - name: Upload musllinux wheels
-        uses: actions/upload-artifact@v4
-        with:
-          name: python-wheels-musllinux
-          path: wheelhouse/*.whl
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Set up QEMU
+      if: ${{ matrix.qemu }}
+      uses: docker/setup-qemu-action@v3
+      with:
+        platforms: all
+        # This should be temporary
+        # xref https://github.com/docker/setup-qemu-action/issues/188
+        # xref https://github.com/tonistiigi/binfmt/issues/215
+        image: tonistiigi/binfmt:qemu-v8.1.5
+      id: qemu
+    - name: Prepare emulation
+      run: |
+        if [[ -n "${{ matrix.qemu }}" ]]; then
+          # Build emulated architectures only if QEMU is set,
+          # use default "auto" otherwise
+          echo "CIBW_ARCHS_LINUX=${{ matrix.qemu }}" >> $GITHUB_ENV
+        fi
+      shell: bash
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+    - name: Update pip, wheel, setuptools, build, twine
+      run: |
+        python -m pip install -U pip wheel setuptools build twine
+#    - name: Install cython
+#      run: >-
+#        python -m
+#        pip install -r requirements/cython.in -c requirements/cython.txt
+#    - name: Restore llhttp generated files
+#      uses: actions/download-artifact@v4
+#      with:
+#        name: llhttp
+#        path: vendor/llhttp/build/
+#    - name: Cythonize
+#      run: |
+#        make cythonize
+    - name: Build wheels
+      uses: pypa/cibuildwheel@v3.0.1
+      env:
+        CIBW_SKIP: pp* ${{ matrix.musl == 'musllinux' && '*manylinux*' || '*musllinux*' }}
+        CIBW_ARCHS_MACOS: x86_64 arm64 universal2
+    - name: Upload wheels
+      uses: actions/upload-artifact@v4
+      with:
+        name: >-
+          dist-${{ matrix.os }}-${{ matrix.musl }}-${{
+            matrix.qemu
+            && matrix.qemu
+            || 'native'
+          }}
+        path: ./wheelhouse/*.whl
