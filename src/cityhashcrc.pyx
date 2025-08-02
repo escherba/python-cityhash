@@ -66,6 +66,7 @@ from cpython.buffer cimport PyBuffer_Release
 from cpython.buffer cimport PyBUF_SIMPLE
 
 from cpython.unicode cimport PyUnicode_Check
+from cpython.long cimport PyLong_FromUnsignedLongLong
 
 from cpython.bytes cimport PyBytes_Check
 from cpython.bytes cimport PyBytes_GET_SIZE
@@ -106,7 +107,9 @@ def CityHashCrc128(data) -> int:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return (long(result.first) << 64ULL) + long(result.second)
+    first = <object>PyLong_FromUnsignedLongLong(result.first)
+    second = <object>PyLong_FromUnsignedLongLong(result.second)
+    return (first << 64ULL) + second
 
 
 def CityHashCrc256Bytes(data) -> bytes:
@@ -169,4 +172,6 @@ def CityHashCrc128WithSeed(data, seed: int = 0L) -> int:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return (long(result.first) << 64ULL) + long(result.second)
+    first = <object>PyLong_FromUnsignedLongLong(result.first)
+    second = <object>PyLong_FromUnsignedLongLong(result.second)
+    return (first << 64ULL) + second

@@ -10,7 +10,7 @@ Python wrapper for CityHash
 
 __author__      = "Eugene Scherba"
 __email__       = "escherba+cityhash@gmail.com"
-__version__     = '0.4.8'
+__version__     = '0.4.9'
 __all__         = [
     "CityHash32",
     "CityHash64",
@@ -69,6 +69,7 @@ from cpython.buffer cimport PyBuffer_Release
 from cpython.buffer cimport PyBUF_SIMPLE
 
 from cpython.unicode cimport PyUnicode_Check
+from cpython.long cimport PyLong_FromUnsignedLongLong
 
 from cpython.bytes cimport PyBytes_Check
 from cpython.bytes cimport PyBytes_GET_SIZE
@@ -228,7 +229,9 @@ def CityHash128(data) -> int:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return (long(result.first) << 64ULL) + long(result.second)
+    first = <object>PyLong_FromUnsignedLongLong(result.first)
+    second = <object>PyLong_FromUnsignedLongLong(result.second)
+    return (first << 64ULL) + second
 
 
 def CityHash128WithSeed(data, seed: int = 0L) -> int:
@@ -262,4 +265,6 @@ def CityHash128WithSeed(data, seed: int = 0L) -> int:
         PyBuffer_Release(&buf)
     else:
         raise _type_error("data", ["basestring", "buffer"], data)
-    return (long(result.first) << 64ULL) + long(result.second)
+    first = <object>PyLong_FromUnsignedLongLong(result.first)
+    second = <object>PyLong_FromUnsignedLongLong(result.second)
+    return (first << 64ULL) + second
