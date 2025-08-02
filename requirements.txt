@@ -1,4 +1,4 @@
-Cython
+Cython<3.1
 ipdb
 ipython
 numpy
