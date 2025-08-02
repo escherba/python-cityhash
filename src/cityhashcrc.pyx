@@ -66,6 +66,7 @@ from cpython.buffer cimport PyBuffer_Release
 from cpython.buffer cimport PyBUF_SIMPLE
 
 from cpython.unicode cimport PyUnicode_Check
+from cpython.long cimport PyLong_FromUnsignedLongLong
 
 from cpython.bytes cimport PyBytes_Check
 from cpython.bytes cimport PyBytes_GET_SIZE
