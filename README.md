@@ -62,8 +62,8 @@ persist hashed values.
 ### Incremental hashing
 
 CityHash and FarmHash do not support incremental hashing and thus are not ideal
-for hashing of character streams. If you require incremental hashing, consider
-another hashing library, such as
+for hashing of long character streams. If you require incremental hashing,
+consider another hashing library, such as
 [MetroHash](https://github.com/escherba/python-metrohash) or
 [xxHash](https://github.com/ifduyue/python-xxhash).
 
@@ -99,10 +99,10 @@ variants of FarmHash significantly benefit from SSE4.2 instructions.
 The vanilla CityHash functions (under `cityhash` module) do not take advantage
 of SSE4.2. Instead, one can use the `cityhashcrc` module provided with this
 package which exposes 128- and 256-bit CRC functions that do harness SSE4.2.
-These functions are very fast, and even beat `FarmHash128` on speed (FarmHash does
-not include a 256-bit function). Before using the CityHash-CRC functions, however,
-you may want to check that they provide sufficient randomness for your intended
-application.
+These functions are very fast, and even beat `FarmHash128` on speed (FarmHash
+does not include a 256-bit function). Before using the CityHash-CRC functions,
+however, you may want to check that they provide sufficient randomness for your
+intended application.
 
 ## Development
 
