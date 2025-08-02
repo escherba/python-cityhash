@@ -49,8 +49,8 @@ Usage example for FarmHash:
 ### Hardware-independent fingerprints
 
 Fingerprints are seedless hashes that are guaranteed to be hardware- and
-platform-independent. This can be useful for networking applications which
-require persisting hashed values.
+platform-independent. This can be useful for networking applications that
+persist hashed values.
 
 ``` python
 >>> from farmhash import Fingerprint128
@@ -99,10 +99,9 @@ variants of FarmHash significantly benefit from SSE4.2 instructions.
 The vanilla CityHash functions (under `cityhash` module) do not take advantage
 of SSE4.2. Instead, one can use the `cityhashcrc` module provided with this
 package which exposes 128- and 256-bit CRC functions that do harness SSE4.2.
-These functions are very fast, and beat `FarmHash128` on speed (FarmHash does
-not include a 256-bit function). Since FarmHash is the intended successor of
-CityHash, I would be careful before using the CityHash-CRC functions, however,
-and would verify whether they provide sufficient randomness for your intended
+These functions are very fast, and even beat `FarmHash128` on speed (FarmHash does
+not include a 256-bit function). Before using the CityHash-CRC functions, however,
+you may want to check that they provide sufficient randomness for your intended
 application.
 
 ## Development
@@ -120,7 +119,7 @@ make cpp-test      # run C++ tests
 make shell         # enter IPython shell
 ```
 
-To find out which Make targets are available, enter:
+To find out which Make targets are available, run:
 
 ``` bash
 make help
